@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
+// import 'bootstrap/dist/css/bootstrap.min.css'; 
 import { Route } from 'react-router-dom'
 import { api } from './services/api'
 import Login from './components/Login'
 import Dashboard from './containers/Dashboard'
+import NavBar from './containers/NavBar'
+import Leagues from './components/Leagues'
+import Teams from './components/Teams'
 
 class App extends Component {
 
@@ -40,8 +44,13 @@ class App extends Component {
   }
 
   render() {
+    const token = localStorage.getItem("token")
     return (
       <div>
+        <NavBar
+          currentUser={this.state.auth.user}
+          handleLogout={this.onLogout}
+        />
         <Route
           exact
           path="/login"
@@ -50,6 +59,14 @@ class App extends Component {
         <Route
           path="/dashboard"
           render={props => <Dashboard {...props} currentUser={this.state.auth.user} />}
+        />
+        <Route
+          path="/leagues"
+          render={props => <Leagues {...props} currentUser={this.state.auth.user} />}
+        />
+        <Route
+          path="/teams"
+          render={props => <Teams {...props} currentUser={this.state.auth.user} />}
         />
       </div>
     )

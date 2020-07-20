@@ -28,9 +28,29 @@ const getCurrentUser = () => {
     }).then(resp => resp.json())
 }
 
+const fetchUserLeagues = () => {
+    const URL = 'http://localhost:3000/api/v1/leagues'
+    return fetch(URL, {
+        headers: headers()
+    }).then(resp => resp.json())
+}
+
+const fetchUserTeams = () => {
+    const URL = 'http://localhost:3000/api/v1/teams'
+    return fetch(URL, {
+        headers: headers()
+    }).then(resp => resp.json())
+}
+
 export const api = {
     auth: {
         login,
         getCurrentUser
+    },
+    leagues: {
+        fetchUserLeagues
+    },
+    teams: {
+        fetchUserTeams
     }
 }
