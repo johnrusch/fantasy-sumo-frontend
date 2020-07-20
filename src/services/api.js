@@ -16,7 +16,9 @@ const login = data => {
         method: "POST",
         headers: headers(),
         body: JSON.stringify(data)
-    }).then(resp => resp.json());
+    }).then(resp => {
+        return resp.json();
+    })
 }
 
 const getCurrentUser = () => {
@@ -24,4 +26,11 @@ const getCurrentUser = () => {
     return fetch(URL, {
         headers: headers()
     }).then(resp => resp.json())
+}
+
+export const api = {
+    auth: {
+        login,
+        getCurrentUser
+    }
 }

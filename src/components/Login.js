@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom"
+import { api } from "../services/api";
 
 class Login extends Component {
   constructor() {
@@ -18,13 +20,26 @@ class Login extends Component {
     this.setState({ fields: newFields });
   };
 
+  handleSubmit = (e) => {
+      e.preventDefault();
+
+      api.auth.login(this.state.fields).then((resp) => {
+          if (!resp.error) {
+              this.props.onLogin(resp)
+              this.props.history.push("/dashboard");
+          } else {
+              this.setState({ error: true });
+          }
+      })
+  }
+
   render() {
+    const { fields } = this.state;
     return (
       <div className="container mt-5">
         <div className="card col-sm-6">
           {this.state.error ? <h1>Try Again</h1> : null}
           <div className="card-body">
-            <h5 className="card-title">Login to access messages</h5>
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
                 <label>Username</label>
@@ -58,3 +73,5 @@ class Login extends Component {
     );
   }
 }
+
+export default Login;

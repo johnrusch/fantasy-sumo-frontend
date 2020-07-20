@@ -1,9 +1,43 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Route } from 'react-router-dom'
+import { api } from './services/api'
 import Login from './components/Login'
+import Dashboard from './containers/Dashboard'
 
 class App extends Component {
+
+  constructor() {
+    super()
+    this.state = {
+      auth: {
+        user: {}
+      }
+    }
+  }
+
+  onLogin = data => {
+    const updatedState = {...this.state.auth, user: {id: data.id, name: data.name}}
+    localStorage.setItem("token", data.jwt);
+    this.setState({ auth: updatedState })
+  }
+
+  onLogout = () => {
+    localStorage.removeItem("token")
+    this.setState({ auth: { user: {} } })
+  }
+
+  componentDidMount() {
+    const token = localStorage.getItem("token")
+
+    if (token) {
+      console.log("getting user from app.js")
+      api.auth.getCurrentUser().then(user => {
+        const updatedState = {...this.state.auth, user: user}
+        this.setState({ auth: updatedState })
+      })
+    }
+  }
 
   render() {
     return (
@@ -11,7 +45,11 @@ class App extends Component {
         <Route
           exact
           path="/login"
-          render={props => <Login {...props} />}
+          render={props => <Login {...props} onLogin={this.onLogin}/>}
+        />
+        <Route
+          path="/dashboard"
+          render={props => <Dashboard {...props} currentUser={this.state.auth.user} />}
         />
       </div>
     )
