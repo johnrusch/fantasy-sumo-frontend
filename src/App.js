@@ -61,6 +61,7 @@ class App extends Component {
   };
 
   selectTeam = (id) => {
+    console.log(id)
     const team = this.state.teams.find((team) => {
       return team.id === id;
     });
@@ -126,12 +127,6 @@ class App extends Component {
           render={(props) => <Login {...props} onLogin={this.onLogin} />}
         />
         <Route
-          path="/dashboard"
-          render={(props) => (
-            <Dashboard {...props} currentUser={this.state.auth.user} />
-          )}
-        />
-        <Route
           path="/leagues"
           render={(props) => (
             <Leagues {...props} currentUser={this.state.auth.user} leagues={this.state.leagues} selectLeague={this.selectLeague}/>
@@ -150,12 +145,6 @@ class App extends Component {
               allTeams={this.state.teams}
               selectTeam={this.selectTeam}
             />
-          )}
-        />
-        <Route
-          path="/team"
-          render={(props) => (
-            <TeamCard {...props} teamData={this.state.selectedTeam} selectTeam={this.selectTeam}/>
           )}
         />
         <Route

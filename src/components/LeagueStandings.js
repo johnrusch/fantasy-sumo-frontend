@@ -24,6 +24,7 @@ const LeagueStandings = (props) => {
     if (teams) {
       const sortedTeams = teams.sort(comparePoints);
       return sortedTeams.map(team => {
+        console.log(team.id)
         return <TeamCard teamData={team} selectTeam={selectTeam}/>;
       });
     } else {
