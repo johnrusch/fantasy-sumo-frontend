@@ -1,21 +1,22 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 // import LeagueStandings from "./LeagueStandings";
 
 const LeagueCard = (props) => {
-    const { onClick, leagueData } = props
+    const { selectLeague, leagueData } = props
     const { name, id, teams } = leagueData
     
     
 
         return (
             <div >
-                <li>
-                    <div onClick={props => onClick(id)}>
+                <Link to='/league/standings'>
+                    <div onClick={props => selectLeague(id)}>
                         {name}
                         {id}
                         {teams.length}
                     </div>
-                </li>
+                </Link>
             </div>
         )
  

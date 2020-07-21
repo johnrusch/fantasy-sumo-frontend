@@ -2,10 +2,10 @@ import React from "react";
 import TeamCard from "./TeamCard";
 
 const LeagueStandings = (props) => {
-  const { name, teams, id } = props.leagueData;
+  const { leagueData, selectTeam } = props;
+  const { name, teams, id } = leagueData;
 
   const comparePoints = (a, b) => {
-    // Use toUpperCase() to ignore character casing
     const pointsA = parseInt(a.points);
     const pointsB = parseInt(b.points);
 
@@ -18,13 +18,17 @@ const LeagueStandings = (props) => {
     return comparison;
   };
 
-  const sortedTeams = teams.sort(comparePoints);
-
+  
   const renderTeams = () => {
-    console.log(sortedTeams)
-    return sortedTeams.map(team => {
-      return <TeamCard name={team.name} user={team.user} points={team.points} />;
-    });
+    console.log(props)
+    if (teams) {
+      const sortedTeams = teams.sort(comparePoints);
+      return sortedTeams.map(team => {
+        return <TeamCard teamData={team} selectTeam={selectTeam}/>;
+      });
+    } else {
+      props.history.push("/leagues")
+    }
   };
 
   return (

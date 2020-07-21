@@ -9,7 +9,7 @@ class NavBar extends Component {
     return (
         <div>
         <nav className="navbar navbar-expand-lg navbar-light navbar-custom">
-          <Link className="navbar-brand" to="/login">
+          <Link className="navbar-brand" to="/">
             Hey
           </Link>
           <button

@@ -1,38 +1,34 @@
 import React, { Component } from "react";
 import { api } from "../services/api";
-import TeamCard from './TeamCard'
+import { Route } from 'react-router-dom';
+import TeamCard from "./TeamCard";
+import TeamWrestlers from "./TeamWrestlers";
 
 class Teams extends Component {
 
-    state = {
-        teams: []
-    }
-
-    fetchUserTeams = () => {
-        api.teams.fetchUserTeams().then(data => {
-            this.setState({
-                teams: data
-            })
+    userTeams = () => {
+        const currentUser = this.props.currentUser
+        return this.props.allTeams.filter(team => {
+            console.log(team.user)
+            return team.user.id === currentUser.id
         })
     }
 
-    renderTeams = () => {
-        return this.state.teams.map(team => {
-            return <TeamCard name={team.name} league={team.league} />
-        })
-    }
+  renderTeams = () => {
+    return this.userTeams().map((team) => {
+      return <TeamCard teamData={team} selectTeam={this.props.selectTeam}/>;
+    });
+  };
 
-    componentDidMount() {
-        this.fetchUserTeams()
-    }
+  render() {
+    return (
+      <div>
+        
+          {this.renderTeams()}
 
-    render() {
-        return (
-            <div>
-                {this.renderTeams()}
-            </div>
-        )
-    }
+      </div>
+    );
+  }
 }
 
 export default Teams;

@@ -35,8 +35,15 @@ const fetchUserLeagues = () => {
     }).then(resp => resp.json())
 }
 
-const fetchUserTeams = () => {
+const fetchAllTeams = () => {
     const URL = 'http://localhost:3000/api/v1/teams'
+    return fetch(URL, {
+        headers: headers()
+    }).then(resp => resp.json())
+}
+
+const fetchAllWrestlers = () => {
+    const URL = 'http://localhost:3000/api/v1/wrestlers'
     return fetch(URL, {
         headers: headers()
     }).then(resp => resp.json())
@@ -51,6 +58,9 @@ export const api = {
         fetchUserLeagues
     },
     teams: {
-        fetchUserTeams
+        fetchAllTeams
+    },
+    wrestlers: {
+        fetchAllWrestlers
     }
 }
