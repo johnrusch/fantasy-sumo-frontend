@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
+import { connect } from 'react-redux';
+import { selectWrestler } from '../actions/wrestlerActions'
+
 const WrestlerCard = (props) => {
     const { selectWrestler, wrestlerData } = props
     const { id, name, img, currentRank } = wrestlerData
@@ -8,7 +11,7 @@ const WrestlerCard = (props) => {
     return (
         <div>
             <Link to='/wrestler'>
-                <div onClick={() => selectWrestler(id)}>
+                <div onClick={() => selectWrestler(wrestlerData)}>
                     <img src={img} alt="Sumo Wrestler" />
                     <h3>{name}</h3>
                     <h5>{currentRank}</h5>
@@ -18,4 +21,4 @@ const WrestlerCard = (props) => {
     )
 }
 
-export default WrestlerCard;
+export default connect(null, { selectWrestler })(WrestlerCard);

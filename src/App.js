@@ -2,14 +2,20 @@ import React, { Component } from "react";
 import "./App.css";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route } from "react-router-dom";
+
+import { connect } from 'react-redux'
+import { fetchWrestlers } from './actions/wrestlerActions'
+import { fetchLeagues } from './actions/leagueActions'
+import { fetchTeams } from './actions/teamActions'
+
 import { api } from "./services/api";
 import Login from "./components/Login";
-import Dashboard from "./containers/Dashboard";
+// import Dashboard from "./containers/Dashboard";
 import NavBar from "./containers/NavBar";
 import Leagues from "./components/Leagues";
 import LeagueStandings from './components/LeagueStandings'
 import Teams from "./components/Teams";
-import TeamCard from "./components/TeamCard";
+// import TeamCard from "./components/TeamCard";
 import TeamWrestlers from "./components/TeamWrestlers";
 import WrestlerSpecs from "./components/WrestlerSpecs";
 
@@ -60,15 +66,15 @@ class App extends Component {
     });
   };
 
-  selectTeam = (id) => {
-    console.log(id)
-    const team = this.state.teams.find((team) => {
-      return team.id === id;
-    });
-    this.setState({
-      selectedTeam: team,
-    });
-  };
+  // selectTeam = (id) => {
+  //   console.log(id)
+  //   const team = this.state.teams.find((team) => {
+  //     return team.id === id;
+  //   });
+  //   this.setState({
+  //     selectedTeam: team,
+  //   });
+  // };
 
   fetchAllTeams = () => {
     api.teams.fetchAllTeams().then((allTeams) => {
@@ -78,14 +84,14 @@ class App extends Component {
     });
   };
 
-  selectLeague = (id) => {
-    const league = this.state.leagues.find((league) => {
-      return league.id === id;
-    });
-    this.setState({
-      selectedLeague: league,
-    });
-  };
+  // selectLeague = (id) => {
+  //   const league = this.leagues.find((league) => {
+  //     return league.id === id;
+  //   });
+  //   this.setState({
+  //     selectedLeague: league,
+  //   });
+  // };
 
   fetchUserLeagues = () => {
     api.leagues.fetchUserLeagues().then(userLeagues => {
@@ -99,7 +105,7 @@ class App extends Component {
     const token = localStorage.getItem("token");
 
     if (token) {
-      console.log("getting user from app.js");
+      // console.log("getting user from app.js");
       api.auth.getCurrentUser().then((user) => {
         const updatedState = { ...this.state.auth, user: user };
         this.setState({
@@ -110,11 +116,15 @@ class App extends Component {
     }
     this.fetchAllWrestlers();
     this.fetchAllTeams();
-    this.fetchUserLeagues();
+    // this.fetchUserLeagues();
+    this.props.fetchWrestlers();
+    this.props.fetchLeagues();
+    this.props.fetchTeams();
   }
 
   render() {
     const token = localStorage.getItem("token");
+    console.log(this.props)
     return (
       <div>
         <NavBar
@@ -129,12 +139,12 @@ class App extends Component {
         <Route
           path="/leagues"
           render={(props) => (
-            <Leagues {...props} currentUser={this.state.auth.user} leagues={this.state.leagues} selectLeague={this.selectLeague}/>
+            <Leagues {...props} />
           )}
         />
         <Route
           path="/league/standings"
-          render={props => <LeagueStandings {...props} leagueData={this.state.selectedLeague} selectTeam={this.selectTeam}/>}
+          render={props => <LeagueStandings {...props} />}
         />
         <Route
           path="/teams"
@@ -152,7 +162,7 @@ class App extends Component {
           render={(props) => (
             <TeamWrestlers
               {...props}
-              teamData={this.state.selectedTeam}
+              // teamData={this.props.selectedTeam}
               selectWrestler={this.selectWrestler}
             />
           )}
@@ -171,4 +181,22 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    wrestlers: state.wrestlers,
+    loading: state.loading,
+    selectedLeague: state.leagues.selectedLeague,
+    leagues: state.leagues.leagues,
+    teams: state.teams.teams
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchWrestlers: () => dispatch(fetchWrestlers()),
+    fetchLeagues: () => dispatch(fetchLeagues()),
+    fetchTeams: () => dispatch(fetchTeams())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

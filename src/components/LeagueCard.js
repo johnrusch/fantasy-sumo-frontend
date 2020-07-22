@@ -1,17 +1,18 @@
 import React from "react";
-import { Link } from 'react-router-dom'
-// import LeagueStandings from "./LeagueStandings";
+import { Link, Route } from 'react-router-dom'
+
+import { connect } from 'react-redux';
+import { selectLeague } from '../actions/leagueActions';
 
 const LeagueCard = (props) => {
-    const { selectLeague, leagueData } = props
+    const { leagueData } = props
     const { name, id, teams } = leagueData
-    
-    
+
 
         return (
             <div >
                 <Link to='/league/standings'>
-                    <div onClick={props => selectLeague(id)}>
+                    <div onClick={() => props.selectLeague(leagueData)}>
                         {name}
                         {id}
                         {teams.length}
@@ -23,4 +24,4 @@ const LeagueCard = (props) => {
 
 }
 
-export default LeagueCard;
+export default connect(null, { selectLeague })(LeagueCard);

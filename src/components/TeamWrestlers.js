@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import WrestlerCard from "./WrestlerCard";
 
+import { connect } from 'react-redux';
+
+
 const TeamWrestlers = (props) => {
     const { teamData, selectWrestler } = props
     const { name, wrestlers } = teamData
@@ -14,6 +17,7 @@ const TeamWrestlers = (props) => {
     }
     return (
         <div>
+            {console.log(props.teamData)}
             <h3>{name}</h3>
             <ul>
                 {renderWrestlers()}
@@ -23,4 +27,10 @@ const TeamWrestlers = (props) => {
     
 }
 
-export default TeamWrestlers;
+const mapStateToProps = state => {
+    return {
+        teamData: state.teams.selectedTeam
+    }
+}
+
+export default connect(mapStateToProps)(TeamWrestlers);

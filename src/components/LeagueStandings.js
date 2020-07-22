@@ -1,6 +1,8 @@
 import React from "react";
 import TeamCard from "./TeamCard";
 
+import { connect } from 'react-redux';
+
 const LeagueStandings = (props) => {
   const { leagueData, selectTeam } = props;
   const { name, teams, id } = leagueData;
@@ -20,11 +22,9 @@ const LeagueStandings = (props) => {
 
   
   const renderTeams = () => {
-    console.log(props)
     if (teams) {
       const sortedTeams = teams.sort(comparePoints);
       return sortedTeams.map(team => {
-        console.log(team.id)
         return <TeamCard teamData={team} selectTeam={selectTeam}/>;
       });
     } else {
@@ -40,4 +40,10 @@ const LeagueStandings = (props) => {
   );
 };
 
-export default LeagueStandings;
+const mapStateToProps = state => {
+  return {
+    leagueData: state.leagues.selectedLeague
+  }
+}
+
+export default connect(mapStateToProps)(LeagueStandings);
