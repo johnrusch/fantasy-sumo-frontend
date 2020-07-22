@@ -1,7 +1,7 @@
 import React from "react";
 import TeamCard from "./TeamCard";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 const LeagueStandings = (props) => {
   const { leagueData, selectTeam } = props;
@@ -20,15 +20,14 @@ const LeagueStandings = (props) => {
     return comparison;
   };
 
-  
   const renderTeams = () => {
     if (teams) {
       const sortedTeams = teams.sort(comparePoints);
-      return sortedTeams.map(team => {
-        return <TeamCard teamData={team} selectTeam={selectTeam}/>;
+      return sortedTeams.map((team) => {
+        return <TeamCard teamData={team} selectTeam={selectTeam} />;
       });
     } else {
-      props.history.push("/leagues")
+      props.history.push("/leagues");
     }
   };
 
@@ -40,10 +39,10 @@ const LeagueStandings = (props) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    leagueData: state.leagues.selectedLeague
-  }
-}
+    leagueData: state.leagues.selectedLeague,
+  };
+};
 
 export default connect(mapStateToProps)(LeagueStandings);

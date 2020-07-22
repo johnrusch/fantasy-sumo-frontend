@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+import { connect } from 'react-redux';
+
 class NavBar extends Component {
 
   render() {
@@ -38,15 +40,10 @@ class NavBar extends Component {
               </li>
               <li className="nav-item dropdown">
                 <Link
-                  className="nav-link dropdown-toggle"
-                  to="/mailbox"
-                  id="navbarDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
+                  className="nav-link"
+                  to="/rules"
                 >
-                  My Messages
+                  Rules
                 </Link>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <Link className="dropdown-item" to="/dashboard/mailbox/inbox">
@@ -103,4 +100,10 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar;
+const mapStateToProps = state => {
+  return {
+    currentUser: state.auth
+  }
+}
+
+export default connect(mapStateToProps)(NavBar);

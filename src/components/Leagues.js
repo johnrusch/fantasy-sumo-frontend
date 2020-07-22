@@ -1,23 +1,16 @@
 import React, { Component } from "react";
-import { api } from "../services/api";
-import { Link, Route } from "react-router-dom";
 import LeagueCard from "./LeagueCard";
-import LeagueStandings from "./LeagueStandings";
 
 import { connect } from "react-redux";
 
 class Leagues extends Component {
-
   renderLeagues = () => {
-        const leagues = this.props.leagues;
-        return leagues.map((league) => {
-          return (
-            <LeagueCard
-              selectLeague={this.selectLeague}
-              leagueData={league}
-            />
-          );
-        });
+    const leagues = this.props.leagues;
+    return leagues.map((league) => {
+      return (
+        <LeagueCard selectLeague={this.selectLeague} leagueData={league} />
+      );
+    });
   };
 
   render() {
