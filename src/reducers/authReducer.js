@@ -12,15 +12,15 @@ const authReducer = (
         loading: true,
       };
     case "ADD_AUTH":
+        console.log(action)
       return {
         ...state,
-        id: action.id,
-        name: action.name,
-        password: action.password,
+        id: action.auth.id,
+        name: action.auth.name,
+        password: action.auth.password,
         loading: false,
       };
     case "ADD_USER":
-      console.log(action);
       return {
         ...state,
         id: action.user.id,

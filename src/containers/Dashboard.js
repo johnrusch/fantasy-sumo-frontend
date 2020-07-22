@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import AuthHOC from "../HOCs/AuthHOC";
 import { Route, Switch, NavLink } from "react-router-dom";
-import { api } from "../services/api";
 import Leagues from "../components/Leagues"
 class Dashboard extends Component {
   render() {

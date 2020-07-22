@@ -14,7 +14,6 @@ export const logIn = data => {
     const URL = 'http://localhost:3000/api/v1/auth'
     return dispatch => {
         dispatch({ type: 'LOGGING_IN' });
-        console.log(data)
         fetch(URL, {
             method: "POST",
             headers: headers(),
@@ -22,6 +21,7 @@ export const logIn = data => {
         })
             .then(resp => resp.json())
             .then(auth => {
+                console.log(auth)
                 if (!auth.error) {
                     dispatch({ type: 'ADD_AUTH', auth })
                     localStorage.setItem("token", auth.jwt)
