@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { fetchWrestlers } from './actions/wrestlerActions'
 import { fetchLeagues } from './actions/leagueActions'
 import { fetchTeams } from './actions/teamActions'
+import { getCurrentUser } from './actions/authActions';
 
 import { api } from "./services/api";
 import Login from "./components/Login";
@@ -25,98 +26,39 @@ class App extends Component {
     this.state = {
       auth: {
         user: {},
-      },
-      wrestlers: {},
-      selectedWrestler: "",
-      teams: [],
-      selectedTeam: "",
-      leagues: [],
-      selectedLeague: "",
+      }
     };
   }
 
-  onLogin = (data) => {
-    const updatedState = {
-      ...this.state.auth,
-      user: { id: data.id, name: data.name },
-    };
-    localStorage.setItem("token", data.jwt);
-    this.setState({ auth: updatedState });
-  };
+  // onLogin = (data) => {
+  //   const updatedState = {
+  //     ...this.state.auth,
+  //     user: { id: data.id, name: data.name },
+  //   };
+  //   localStorage.setItem("token", data.jwt);
+  //   this.setState({ auth: updatedState });
+  // };
 
   onLogout = () => {
     localStorage.removeItem("token");
     this.setState({ auth: { user: {} } });
   };
 
-  selectWrestler = (id) => {
-    const wrestler = this.state.wrestlers.find(
-      (wrestler) => wrestler.id === id
-    );
-    this.setState({
-      selectedWrestler: wrestler,
-    });
-  };
-
-  fetchAllWrestlers = () => {
-    api.wrestlers.fetchAllWrestlers().then((allWrestlers) => {
-      this.setState({
-        wrestlers: allWrestlers,
-      });
-    });
-  };
-
-  // selectTeam = (id) => {
-  //   console.log(id)
-  //   const team = this.state.teams.find((team) => {
-  //     return team.id === id;
-  //   });
-  //   this.setState({
-  //     selectedTeam: team,
-  //   });
-  // };
-
-  fetchAllTeams = () => {
-    api.teams.fetchAllTeams().then((allTeams) => {
-      this.setState({
-        teams: allTeams,
-      });
-    });
-  };
-
-  // selectLeague = (id) => {
-  //   const league = this.leagues.find((league) => {
-  //     return league.id === id;
-  //   });
-  //   this.setState({
-  //     selectedLeague: league,
-  //   });
-  // };
-
-  fetchUserLeagues = () => {
-    api.leagues.fetchUserLeagues().then(userLeagues => {
-      this.setState({
-        leagues: userLeagues
-      })
-    })
-  }
 
   componentDidMount() {
-    const token = localStorage.getItem("token");
 
-    if (token) {
-      // console.log("getting user from app.js");
-      api.auth.getCurrentUser().then((user) => {
-        const updatedState = { ...this.state.auth, user: user };
-        this.setState({
-          auth: updatedState,
-          selectedWrestler: "",
-        });
-      });
-    }
-    this.fetchAllWrestlers();
-    this.fetchAllTeams();
-    // this.fetchUserLeagues();
+    // const token = localStorage.getItem("token");
+
+    // if (token) {
+    //   api.auth.getCurrentUser().then((user) => {
+    //     const updatedState = { ...this.state.auth, user: user };
+    //     this.setState({
+    //       auth: updatedState,
+    //       selectedWrestler: "",
+    //     });
+    //   });
+    // }
+    this.props.getCurrentUser();
     this.props.fetchWrestlers();
     this.props.fetchLeagues();
     this.props.fetchTeams();
@@ -187,16 +129,17 @@ const mapStateToProps = state => {
     loading: state.loading,
     selectedLeague: state.leagues.selectedLeague,
     leagues: state.leagues.leagues,
-    teams: state.teams.teams
+    teams: state.teams.teams,
+    auth: state.auth
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchWrestlers: () => dispatch(fetchWrestlers()),
-    fetchLeagues: () => dispatch(fetchLeagues()),
-    fetchTeams: () => dispatch(fetchTeams())
-  }
-}
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     fetchWrestlers: () => dispatch(fetchWrestlers()),
+//     fetchLeagues: () => dispatch(fetchLeagues()),
+//     fetchTeams: () => dispatch(fetchTeams()),
+//   }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, { fetchWrestlers, fetchLeagues, fetchTeams, getCurrentUser })(App);

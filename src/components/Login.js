@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom"
 import { api } from "../services/api";
 
+import { connect } from 'react-redux';
+import { logIn } from '../actions/authActions'
+
 class Login extends Component {
   constructor() {
     super();
@@ -22,15 +25,9 @@ class Login extends Component {
 
   handleSubmit = (e) => {
       e.preventDefault();
-
-      api.auth.login(this.state.fields).then((resp) => {
-          if (!resp.error) {
-              this.props.onLogin(resp)
-              this.props.history.push("/dashboard");
-          } else {
-              this.setState({ error: true });
-          }
-      })
+      console.log(this.state.fields)
+      this.props.logIn(this.state.fields)
+      this.props.history.push('/')
   }
 
   render() {
@@ -74,4 +71,10 @@ class Login extends Component {
   }
 }
 
-export default Login;
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     logIn: () => dispatch(logIn())
+//   }
+// }
+
+export default connect(null, {logIn})(Login);
