@@ -4,11 +4,13 @@ import { Route } from 'react-router-dom';
 import TeamCard from "./TeamCard";
 import TeamWrestlers from "./TeamWrestlers";
 
+import { connect } from 'react-redux';
+
 class Teams extends Component {
 
     userTeams = () => {
         const currentUser = this.props.currentUser
-        return this.props.allTeams.filter(team => {
+        return this.props.teams.filter(team => {
             console.log(team.user)
             return team.user.id === currentUser.id
         })
@@ -16,7 +18,7 @@ class Teams extends Component {
 
   renderTeams = () => {
     return this.userTeams().map((team) => {
-      return <TeamCard teamData={team} selectTeam={this.props.selectTeam}/>;
+      return <TeamCard teamData={team} />;
     });
   };
 
@@ -31,4 +33,11 @@ class Teams extends Component {
   }
 }
 
-export default Teams;
+const mapStateToProps = state => {
+  return {
+    currentUser: state.auth,
+    teams: state.teams.teams
+  }
+}
+
+export default connect(mapStateToProps)(Teams);
