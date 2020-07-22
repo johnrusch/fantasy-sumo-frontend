@@ -2,17 +2,18 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import { connect } from 'react-redux';
+import { logOut } from '../actions/authActions'
 
 class NavBar extends Component {
 
   render() {
     const currentUser = this.props.currentUser
-
+    console.log(currentUser)
     return (
         <div>
         <nav className="navbar navbar-expand-lg navbar-light navbar-custom">
           <Link className="navbar-brand" to="/">
-            Hey
+            Fantasy Sumo
           </Link>
           <button
             className="navbar-toggler"
@@ -45,6 +46,12 @@ class NavBar extends Component {
                 >
                   Rules
                 </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/settings">
+                  User Settings 
+                </Link>
+              </li>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <Link className="dropdown-item" to="/dashboard/mailbox/inbox">
                     Inbox
@@ -57,7 +64,6 @@ class NavBar extends Component {
                     New Message
                   </Link>
                 </div>
-              </li>
             </ul>
             <ul className="navbar-nav ml-auto">
               {/* {loggedIn ? (
@@ -67,7 +73,7 @@ class NavBar extends Component {
                 <li className="nav-item">
                   <Link to="/login" className="nav-link">
                     <div onClick={() => {
-                      this.props.handleLogout();
+                      this.props.logOut();
                     }}
                     className="ui primary button"
                     >
@@ -102,8 +108,8 @@ class NavBar extends Component {
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.auth
+    currentUser: state.auth.name
   }
 }
 
-export default connect(mapStateToProps)(NavBar);
+export default connect(mapStateToProps, { logOut })(NavBar);

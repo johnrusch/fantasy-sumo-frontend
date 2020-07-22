@@ -32,7 +32,7 @@ const LeagueStandings = (props) => {
   };
 
   return (
-    <div>
+    <div className="card-group">
       <h3>{name}</h3>
       <ul>{renderTeams()}</ul>
     </div>

@@ -18,6 +18,7 @@ import Teams from "./components/Teams";
 import TeamWrestlers from "./components/TeamWrestlers";
 import WrestlerSpecs from "./components/WrestlerSpecs";
 import Rules from './components/Rules';
+import Settings from './components/Settings';
 
 class App extends Component {
   // constructor() {
@@ -45,7 +46,6 @@ class App extends Component {
 
   render() {
     const token = localStorage.getItem("token");
-    console.log(this.props);
     return (
       <div>
         <NavBar
@@ -71,6 +71,10 @@ class App extends Component {
         <Route 
           path="/rules"
           render={props => <Rules {...props} />}
+        />
+        <Route 
+          path="/settings"
+          render={props => <Settings {...props} />}
         />
       </div>
     );

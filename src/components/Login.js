@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
-import { logIn } from "../actions/authActions";
+import { loggingIn } from "../actions/authActions";
+import { addAuth } from "../actions/authActions";
 
 class Login extends Component {
   constructor() {
@@ -25,8 +26,17 @@ class Login extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     console.log(this.state.fields);
-    this.props.logIn(this.state.fields);
-    this.props.history.push("/");
+    this.props.loggingIn(this.state.fields)
+    // .then(auth => {
+    //   console.log(auth)
+    //   if (!auth.error) {
+    //       localStorage.setItem("token", auth.jwt)
+    //       this.props.addAuth(auth)
+    //     } else {
+    //       this.props.history.push('/login')
+    //     }
+        this.props.history.push("/");
+  
   };
 
   render() {
@@ -72,8 +82,9 @@ class Login extends Component {
 
 // const mapDispatchToProps = dispatch => {
 //   return {
-//     logIn: () => dispatch(logIn())
+//     loggingIn: () => dispatch(loggingIn()),
+//     addAuth: () => dispatch(addAuth())
 //   }
 // }
 
-export default connect(null, { logIn })(Login);
+export default connect(null, { loggingIn })(Login);

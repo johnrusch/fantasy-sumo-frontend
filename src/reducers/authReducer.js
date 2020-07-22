@@ -1,5 +1,5 @@
 const authReducer = (
-  state = { id: 0, name: "", password: "", loading: false },
+  state = {},
   action
 ) => {
   switch (action.type) {
@@ -25,6 +25,22 @@ const authReducer = (
         ...state,
         id: action.user.id,
         name: action.user.name,
+        password: state.password,
+        loading: false,
+      };
+    case "DELETE_USER":
+      return {
+        ...state,
+        id: state.id,
+        name: state.name,
+        password: state.password,
+        loading: true,
+      };
+    case "DELETE_AUTH":
+      return {
+        ...state,
+        id: 0,
+        name: '',
         password: state.password,
         loading: false,
       };

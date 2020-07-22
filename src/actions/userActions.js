@@ -13,7 +13,6 @@ const headers = () => {
 export const signUp = data => {
     const URL = 'http://localhost:3000/api/v1/users'
     return dispatch => {
-        console.log(data)
         dispatch({ type: 'SIGNING_UP '});
         fetch(URL, {
         method: "POST",
@@ -27,5 +26,23 @@ export const signUp = data => {
                 localStorage.setItem("token", user.jwt)
             }
         })
+}
+}
+
+export const deleteUser = data => {
+    const URL = 'http://localhost:3000/api/v1/users' + `/${data}`
+    return dispatch => {
+        console.log(data)
+        dispatch({ type: 'DELETE_USER'});
+        fetch(URL, {
+        method: "DELETE"
+        })
+        // .then(resp => resp.json())
+        // .then(user => {
+            // if (!user.error) {
+                localStorage.removeItem("token")
+                dispatch({ type: 'DELETE_AUTH' })
+        //     }
+        // })
 }
 }

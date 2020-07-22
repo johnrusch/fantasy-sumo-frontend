@@ -8,12 +8,13 @@ const TeamCard = (props) => {
     const { teamData, selectTeam } = props
 
     return (
-        <div>
+        <div className="card" onClick={() => selectTeam(teamData)}>
             <Link to='/team/wrestlers'>
-                <div onClick={() => selectTeam(teamData)}>
-                    <li>
-                        <h3>{teamData.name} - Points: {teamData.points}</h3>
-                    </li>
+                <div className="card-header">
+                    <h4>{teamData.name}</h4>
+                </div>
+                <div className="card-body">
+                    <p>Points: {teamData.points}</p>
                 </div>
             </Link>
         </div>

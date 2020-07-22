@@ -10,7 +10,7 @@ const headers = () => {
     };
 };
 
-export const logIn = data => {
+export const loggingIn = data => {
     const URL = 'http://localhost:3000/api/v1/auth'
     return dispatch => {
         dispatch({ type: 'LOGGING_IN' });
@@ -23,11 +23,15 @@ export const logIn = data => {
             .then(auth => {
                 console.log(auth)
                 if (!auth.error) {
-                    dispatch({ type: 'ADD_AUTH', auth })
                     localStorage.setItem("token", auth.jwt)
+                    dispatch({ type: 'ADD_AUTH', auth })
                 }
             })
     }
+}
+
+export const addAuth = (auth) => {
+    return { type: 'ADD_AUTH', auth }
 }
 
 export const getCurrentUser = () => {
@@ -48,3 +52,7 @@ export const getCurrentUser = () => {
     }
 }
 
+export const logOut = () => {
+    localStorage.removeItem("token")
+    return { type: 'DELETE_AUTH' }
+}
