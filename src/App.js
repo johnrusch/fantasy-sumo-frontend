@@ -19,6 +19,7 @@ import TeamWrestlers from "./components/TeamWrestlers";
 import WrestlerSpecs from "./components/WrestlerSpecs";
 import Rules from './components/Rules';
 import Settings from './components/Settings';
+import Banzuke from './components/Banzuke'
 
 class App extends Component {
   // constructor() {
@@ -75,6 +76,10 @@ class App extends Component {
         <Route 
           path="/settings"
           render={props => <Settings {...props} />}
+        />
+        <Route 
+          path="/banzuke"
+          render={props => <Banzuke {...props} />}
         />
       </div>
     );

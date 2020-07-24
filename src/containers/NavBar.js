@@ -39,6 +39,11 @@ class NavBar extends Component {
                   Teams
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/banzuke">
+                  Banzuke
+                </Link>
+              </li>
               <li className="nav-item dropdown">
                 <Link
                   className="nav-link"
