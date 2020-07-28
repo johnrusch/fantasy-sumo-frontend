@@ -44,6 +44,14 @@ const authReducer = (
         password: state.password,
         loading: false,
       };
+    case "UPDATE_AUTH":
+      return {
+        ...state,
+        id: action.auth.id,
+        name: action.id.name,
+        password: state.password,
+        loading: false,
+      };
     default:
       return state;
   }

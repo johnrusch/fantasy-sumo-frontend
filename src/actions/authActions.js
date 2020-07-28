@@ -56,3 +56,7 @@ export const logOut = () => {
     localStorage.removeItem("token")
     return { type: 'DELETE_AUTH' }
 }
+
+// export const updateAuth = updatedAuth => {
+//     return { type: 'UPDATE_AUTH', updatedAuth }
+// }

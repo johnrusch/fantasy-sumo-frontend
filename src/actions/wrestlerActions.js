@@ -24,3 +24,14 @@ export const fetchWrestlers = () => {
 export const selectWrestler = (wrestler) => {
     return { type: 'SELECT_WRESTLER', payload: wrestler }
 };
+
+export const fetchBanzuke = () => {
+    return (dispatch) => {
+        dispatch({ type: 'LOADING_WRESTLERS'});
+        fetch('http://localhost:3000/api/v1/banzuke', {
+            headers: headers()
+        })
+            .then(resp => resp.json())
+            .then(banzuke => dispatch({ type: 'ADD_BANZUKE', banzuke }))
+    }
+}

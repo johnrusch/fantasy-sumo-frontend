@@ -1,4 +1,9 @@
 import React from 'react';
+import { Route, Link } from 'react-router-dom'
+import Button from '@material-ui/core/Button';
+
+import EditUserForm from './EditUserForm';
+import DeleteUserModal from './DeleteUserModal';
 
 import { connect } from 'react-redux';
 import { deleteUser } from '../actions/userActions';
@@ -13,7 +18,9 @@ const Settings = props => {
 
     return (
         <div>
-            <button onClick={() => handleClick(props.currentUserId)}>Delete Account</button>
+            <EditUserForm {...props}/>
+            {/* <Button className="btn btn-danger" onClick={() => handleClick(props.currentUserId)}>Delete Account</Button> */}
+            <DeleteUserModal {...props}/>
         </div>
     )
 }

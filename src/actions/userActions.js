@@ -13,6 +13,7 @@ const headers = () => {
 export const signUp = data => {
     const URL = 'http://localhost:3000/api/v1/users'
     return dispatch => {
+        console.log(data)
         dispatch({ type: 'SIGNING_UP '});
         fetch(URL, {
         method: "POST",
@@ -42,7 +43,27 @@ export const deleteUser = data => {
             // if (!user.error) {
                 localStorage.removeItem("token")
                 dispatch({ type: 'DELETE_AUTH' })
-        //     }
+            // }
         // })
 }
+}
+
+export const updateUser = data => {
+    const URL = 'http://localhost:3000/api/v1/users' + `/${data.id}`
+    return dispatch => {
+        console.log(data)
+        dispatch({ type: 'UPDATE_USER'});
+        fetch(URL, {
+        method: "PUT",
+        headers: headers(),
+        body: JSON.stringify(data)
+        })
+        .then(resp => resp.json())
+        .then(user => {
+            if (!user.error) {
+                dispatch({ type: 'ADD_USER', user })
+                localStorage.setItem("token", user.jwt)
+            }
+        })
+    }
 }
