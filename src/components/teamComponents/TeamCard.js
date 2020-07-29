@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { selectTeam } from '../actions/teamActions';
+import { selectTeam } from '../../actions/teamActions';
 
 const TeamCard = (props) => {
     const { teamData, selectTeam } = props

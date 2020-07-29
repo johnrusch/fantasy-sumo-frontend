@@ -1,5 +1,5 @@
 import React from "react";
-import TeamCard from "./TeamCard";
+import TeamCard from "../teamComponents/TeamCard";
 
 import { connect } from "react-redux";
 

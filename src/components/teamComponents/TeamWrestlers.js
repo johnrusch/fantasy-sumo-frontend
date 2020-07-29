@@ -1,5 +1,5 @@
 import React from "react";
-import WrestlerCard from "./WrestlerCard";
+import WrestlerCard from "../wrestlerComponents/WrestlerCard";
 
 import { connect } from "react-redux";
 

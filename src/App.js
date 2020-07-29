@@ -9,16 +9,16 @@ import { fetchLeagues } from "./actions/leagueActions";
 import { fetchTeams } from "./actions/teamActions";
 import { getCurrentUser } from "./actions/authActions";
 
-import Login from "./components/Login";
-import SignUp from "./components/SignUp";
 import NavBar from "./containers/NavBar";
-import Leagues from "./components/Leagues";
-import LeagueStandings from "./components/LeagueStandings";
-import Teams from "./components/Teams";
-import TeamWrestlers from "./components/TeamWrestlers";
-import WrestlerSpecs from "./components/WrestlerSpecs";
+import Login from "./components/userComponents/Login";
+import SignUp from "./components/userComponents/SignUp";
+import Settings from './components/userComponents/Settings';
+import Leagues from "./components/leagueComponents/Leagues";
+import LeagueStandings from "./components/leagueComponents/LeagueStandings";
+import Teams from "./components/teamComponents/Teams";
+import TeamWrestlers from "./components/teamComponents/TeamWrestlers";
+import WrestlerSpecs from "./components/wrestlerComponents/WrestlerSpecs";
 import Rules from './components/Rules';
-import Settings from './components/Settings';
 import Banzuke from './components/Banzuke'
 
 class App extends Component {

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
-import { selectWrestler } from "../actions/wrestlerActions";
+import { selectWrestler } from "../../actions/wrestlerActions";
 
 const WrestlerCard = (props) => {
   const { selectWrestler, wrestlerData } = props;

@@ -24,15 +24,6 @@ const wrestlersReducer = (
         loading: false,
         selectedWrestler: action.payload
       };
-    case "ADD_BANZUKE":
-      console.log(action.payload)
-      return {
-        ...state,
-        wrestlers: [...state.wrestlers],
-        loading: false,
-        selectedWrestler: state.selectedWrestler,
-        banzuke: action.payload.banzuke
-      };
     default:
       return state;
   }

@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
 
 import { connect } from 'react-redux';
-import { updateUser } from '../actions/userActions';
+import { updateUser } from '../../actions/userActions';
 
 class EditUserForm extends Component {
 

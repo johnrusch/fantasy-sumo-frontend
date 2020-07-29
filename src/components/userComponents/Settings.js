@@ -6,7 +6,7 @@ import EditUserForm from './EditUserForm';
 import DeleteUserModal from './DeleteUserModal';
 
 import { connect } from 'react-redux';
-import { deleteUser } from '../actions/userActions';
+import { deleteUser } from '../../actions/userActions';
 
 
 const Settings = props => {

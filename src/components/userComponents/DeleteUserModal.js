@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
 
 import { connect } from 'react-redux';
-import { deleteUser } from '../actions/userActions';
+import { deleteUser } from '../../actions/userActions';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;

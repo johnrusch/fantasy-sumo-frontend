@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
 
-import BanzukeRow from "../banzukeComponents/BanzukeRow";
 import { fetchBanzuke } from '../actions/wrestlerActions';
 
 
@@ -14,44 +13,41 @@ class Banzuke extends Component {
 
     renderRow = (ew, ww) => {
         return (
-            <tr>
-                <td>{ew.current_wins} - {ew.current_losses}</td>
+            // <tr>
+            <div>
+                <td>{ew.currentWins} - {ew.currentLosses}</td>
                 <td>{ew.name}</td>
-                <td>{ew.current_rank}</td>
+                <td>{ew.currentRank}</td>
                 <td>{ww.name}</td>
-                <td>{ww.current_wins} - {ww.current_losses}</td>
-            </tr>
+                <td>{ww.currentWins} - {ww.currentLosses}</td>
+            </div>
         )
     }
 
-  componentDidMount() {
-      this.props.fetchBanzuke()
-  }
-
   render() {
-    // const eastYokozuna = this.props.yokozuna.find(w => w.division === "East")
-    // const westYokozuna = this.props.yokozuna.find(w => w.division === "West")
+    const eastYokozuna = this.props.wrestlers.find(w => w.division === "East" && w.currentRank === "Yokozuna")
+    const westYokozuna = this.props.wrestlers.find(w => w.division === "West" && w.currentRank === "Yokozuna")
     
-    // const eastOzeki = this.props.ozeki.find(w => w.division === "East")
-    // const westOzeki = this.props.ozeki.find(w => w.division === "West")
+    const eastOzeki = this.props.wrestlers.find(w => w.division === "East" && w.currentRank === "Ozeki")
+    const westOzeki = this.props.wrestlers.find(w => w.division === "West" && w.currentRank === "Ozeki")
 
-    // const eastSekiwake = this.props.sekiwake.find(w => w.division === "East")
-    // const westSekiwake = this.props.sekiwake.find(w => w.division === "West")
+    const eastSekiwake = this.props.wrestlers.find(w => w.division === "East" && w.currentRank === "Sekiwake")
+    const westSekiwake = this.props.wrestlers.find(w => w.division === "West" && w.currentRank === "Sekiwake")
 
-    // const eastKomusubi = this.props.komusubi.find(w => w.division === "East")
-    // const westKomusubi = this.props.komusubi.find(w => w.division === "West")
+    const eastKomusubi = this.props.wrestlers.find(w => w.division === "East" && w.currentRank === "Komusubi")
+    const westKomusubi = this.props.wrestlers.find(w => w.division === "West" && w.currentRank === "Komusubi")
 
-    // const eastMaegashira1 = this.props.maegashira1.find(w => w.division === "East")
-    // const westMaegashira1 = this.props.maegashira1.find(w => w.division === "West")
+    const eastMaegashira1 = this.props.wrestlers.find(w => w.division === "East" && w.currentRank === "Maegashira 1")
+    const westMaegashira1 = this.props.wrestlers.find(w => w.division === "West" && w.currentRank === "Maegashira 1")
 
-    // const eastMaegashira2 = this.props.maegashira2.find(w => w.division === "East")
-    // const westMaegashira2 = this.props.maegashira2.find(w => w.division === "West")
+    const eastMaegashira2 = this.props.wrestlers.find(w => w.division === "East" && w.currentRank === "Maegashira 2")
+    const westMaegashira2 = this.props.wrestlers.find(w => w.division === "West" && w.currentRank === "Maegashira 2")
 
-    // const eastMaegashira3 = this.props.maegashira3.find(w => w.division === "East")
-    // const westMaegashira3 = this.props.maegashira3.find(w => w.division === "West")
+    const eastMaegashira3 = this.props.wrestlers.find(w => w.division === "East" && w.currentRank === "Maegashira 3")
+    const westMaegashira3 = this.props.wrestlers.find(w => w.division === "West" && w.currentRank === "Maegashira 3")
 
-    // const eastMaegashira4 = this.props.maegashira4.find(w => w.division === "East")
-    // const westMaegashira4 = this.props.maegashira4.find(w => w.division === "West")
+    const eastMaegashira4 = this.props.wrestlers.find(w => w.division === "East" && w.currentRank === "Maegashira 4")
+    const westMaegashira4 = this.props.wrestlers.find(w => w.division === "West" && w.currentRank === "Maegashira 4")
 
     // const eastMaegashira5 = this.props.maegashira5.find(w => w.division === "East")
     // const westMaegashira5 = this.props.maegashira5.find(w => w.division === "West")
@@ -96,9 +92,20 @@ class Banzuke extends Component {
     <div>
 
       <table>
-        <tbody>
-            {/* {this.renderRow(eastYokozuna, westYokozuna)} */}
+            {this.props.wrestlers[0] ? 
+          <tbody>
+            <tr>{this.renderRow(eastYokozuna, westYokozuna)}</tr>
+            <tr>{this.renderRow(eastOzeki, westOzeki)}</tr>
+            <tr>{this.renderRow(eastSekiwake, westSekiwake)}</tr>
+            <tr>{this.renderRow(eastKomusubi, westKomusubi)}</tr>
+            <tr>{this.renderRow(eastMaegashira1, westMaegashira1)}</tr>
+            <tr>{this.renderRow(eastMaegashira2, westMaegashira2)}</tr>
+            <tr>{this.renderRow(eastMaegashira3, westMaegashira3)}</tr>
+            {/* <tr>{this.renderRow(eastMaegashira4, westMaegashira4)}</tr> */}
         </tbody>
+          :
+          null}
+            {/* {console.log(this.props.wrestlers.find(w => w.division === "East" && w.currentRank === "Yokozuna"))} */}
       </table>
     </div>
   );
@@ -131,4 +138,10 @@ class Banzuke extends Component {
 //   };
 // };
 
-export default connect(null, { fetchBanzuke })(Banzuke);
+const mapStateToProps = state => {
+  return {
+    wrestlers: state.wrestlers.wrestlers
+  }
+}
+
+export default connect(mapStateToProps, { fetchBanzuke })(Banzuke);
