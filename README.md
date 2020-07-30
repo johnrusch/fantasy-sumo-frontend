@@ -1,68 +1,58 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Fantasy Sumo - Frontend
 
-## Available Scripts
+Fantasy Sumo is a fantasy sports app for fans of Sumo Wrestling. Users can create leagues with other users, draft teams of sumo wrestlers, and compete for the most points.
 
-In the project directory, you can run:
+[This](https://github.com/johnrusch/fantasy-sumo-backend) is a link to the back-end repository.
 
-### `yarn start`
+## Motivation
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+After playing "Fantasy Sumo" with friends only using an excel spreadsheet, I wanted to create an app that makes the experience automatic and user friendly. 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Screenshots
+Login
 
-### `yarn test`
+<img src="screenshots/login.png" width="800">
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Home Page
 
-### `yarn build`
+<img src="screenshots/home.png" width="800">
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+User Leagues Page
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+<img src="screenshots/leagues.png" width="800">
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+User Teams Page
 
-### `yarn eject`
+<img src="screenshots/teams.png" width="800">
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Technology Used
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- React
+- Redux
+- Nokogiri
+- Rails Router
 
-## Learn More
+## Features
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Users Can:
+- Create an account
+- Create a league
+- Create a team
+- View league standings
+- View wrestler stats
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+## Contributing
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Contributions are welcome, submit a pull request!
 
-### Analyzing the Bundle Size
+## Author
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+* **John Rusch** - [GitHub](https://github.com/johnrusch)
 
-### Making a Progressive Web App
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+## License
 
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+This project is licensed under the [GNU GPL](https://www.gnu.org/licenses/gpl-3.0.en.html)

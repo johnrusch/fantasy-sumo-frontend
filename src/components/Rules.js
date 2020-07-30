@@ -3,8 +3,9 @@ import React from "react";
 const Rules = () => {
   return (
     <div>
-      So you think you've got what it takes to win it all... Here are some rules
-      and info about Fantasy Sumo: Each league will draft rikishi in an order
+      <h4>So you think you've got what it takes to win it all... </h4><br/>
+      <h6>Here are some rules and info about Fantasy Sumo</h6>
+      <p>Each league will draft rikishi in an order
       determined by the individual league. We recommend drafting approximately
       35 rikishi in each league, leaving a bench of 7 or so to choose from in
       the event of injuries or other withdrawals. Leagues with 4 participants
@@ -35,7 +36,7 @@ const Rules = () => {
       techniques a rikishi can use to win a match. Currently the Japanese Sumo
       Association recognizes 82 different kimarite. Mawashi - belt that rikishi
       wear during a bout Tachiai - initial charge at the beginning of the match
-      Gyoji - referee ​Good luck!
+      Gyoji - referee ​Good luck!</p>
     </div>
   );
 };

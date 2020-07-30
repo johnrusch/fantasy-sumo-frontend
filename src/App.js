@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route } from "react-router-dom";
+import Jumbotron from 'react-bootstrap/Jumbotron'
 
 import { connect } from "react-redux";
 import { fetchWrestlers } from "./actions/wrestlerActions";
@@ -52,6 +53,13 @@ class App extends Component {
         <NavBar
           handleLogout={this.onLogout}
         />
+        {window.location.href === '/' ? (
+        <Jumbotron>
+          <h1>Welcome to Fantasy Sumo!</h1>
+        </Jumbotron>
+        ) : (
+          null
+        )}
         <Route exact path="/login" render={(props) => <Login {...props} />} />
         <Route path="/signup" render={props => <SignUp {...props} />}
         />
