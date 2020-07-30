@@ -1,28 +1,42 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
 
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { updateUser } from '../../actions/userActions';
 
-class EditUserForm extends Component {
+const EditUserForm = props => {
 
-    state = {
-        user: {
-            id: this.props.currentUser.id,
-            name: this.props.currentUser.name
-        },
-        showModal: false
+    // state = {
+    //     user: {
+    //         id: this.props.currentUser.id,
+    //         name: this.props.currentUser.name
+    //     },
+    //     showModal: false
+    // }
+    const currentUser = useSelector(s => s.auth)
+
+    const dispatch = useDispatch()
+
+    const [id, setId] = useState(currentUser.id)
+    const [name, setName] = useState(currentUser.name)
+    const [showModal, setShowModal] = useState(false)
+
+    const user = {
+      id,
+      name
     }
 
-    rand = () => {
+
+    const rand = () => {
         return Math.round(Math.random() * 20) - 10;
     }
 
-    getModalStyle = () => {
-        const top = 50 + this.rand();
-        const left = 50 + this.rand();
+    const getModalStyle = () => {
+        const top = 50 + rand();
+        const left = 50 + rand();
         return {
           top: `${top}%`,
           left: `${left}%`,
@@ -30,7 +44,7 @@ class EditUserForm extends Component {
         };
     }
 
-    useStyles = makeStyles((theme) => ({
+    const useStyles = makeStyles((theme) => ({
         modal: {
           display: "flex",
           alignItems: "center",
@@ -48,33 +62,30 @@ class EditUserForm extends Component {
     // SimpleModal = props => {
         
       
-        handleOpen = () => {
-          this.setOpen(true);
+        const handleOpen = () => {
+          setOpen(true);
         };
       
-        handleClose = () => {
-          this.setOpen(false);
+        const handleClose = () => {
+          setOpen(false);
         };
 
-    handleChange = (e) => {
-        this.setState({
-            user: {
-                id: this.props.currentUser.id,
-                name: e.target.value
-            }
-        })
+    const handleChange = (e) => {
+        setName(e.target.value)
+        console.log(currentUser.id)
     }
 
-    handleSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
-        this.props.updateUser(this.state.user)
-        this.props.history.push('/')
+        // setId(currentUser.id)
+        console.log(currentUser.id)
+        dispatch(updateUser({id: currentUser.id, name}))
+        props.history.push('/')
     }
 
-    render() {
 
-        const classes = this.useStyles();
-        const [modalStyle] = React.useState(this.getModalStyle);
+        const classes = useStyles();
+        const [modalStyle] = React.useState(getModalStyle);
         const [open, setOpen] = React.useState(false);
 
         return (
@@ -85,43 +96,43 @@ class EditUserForm extends Component {
             //     </form>
             // </div>
             <div>
-            <Button variant="contained" color="primary" onClick={this.handleOpen}>
-              Delete Account
+            <Button variant="contained" color="primary" onClick={handleOpen}>
+              Update Account
             </Button>
       
             <Modal
               aria-labelledby="simple-modal-title"
               aria-describedby="simple-modal-description"
               open={open}
-              onClose={this.handleClose}
+              onClose={handleClose}
             >
-            <form onSubmit={this.handleSubmit}>
-                <input type="text" value={this.state.user.name} onChange={this.handleChange} />
+            <form style={modalStyle} className={classes.paper} onSubmit={handleSubmit}>
+                <input type="text" value={name} onChange={handleChange} />
                 <input type="submit" className="btn btn-warning" value="Update Account"/>
+                {/* <Button variant="contained" color="primary" onClick={handleSubmit}>
+                  Update
+                </Button> */}
             </form>
-              <div style={modalStyle} className={classes.paper}>
+              {/* <div style={modalStyle} className={classes.paper}>
                 <h2>Delete Account</h2>
                 <p>
                   Are you sure you want to delete your account?
-                </p>
-                <Button variant="contained" color="primary" onClick={this.handleSubmit}>
-                  Yes
-                </Button>
-              </div>
+                </p> */}
+              {/* </div> */}
             </Modal>
           </div>
         )
-    }
+    
 
 
 }
 
-const mapStateToProps = state => {
-    return {
-        currentUser: state.auth
-    }
-}
+// const mapStateToProps = state => {
+//     return {
+//         currentUser: state.auth
+//     }
+// }
 
-export default connect(mapStateToProps, { updateUser })(EditUserForm);
+export default EditUserForm;
 
 
