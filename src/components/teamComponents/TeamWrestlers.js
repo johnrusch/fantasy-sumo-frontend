@@ -1,6 +1,9 @@
 import React from "react";
 import WrestlerCard from "../wrestlerComponents/WrestlerCard";
 
+import List from '@material-ui/core/List';
+
+
 import { connect } from "react-redux";
 
 const TeamWrestlers = (props) => {
@@ -21,9 +24,14 @@ const TeamWrestlers = (props) => {
   };
   return (
     <div>
-      {console.log(props.teamData)}
-      <h3>{name}</h3>
-      <ul>{renderWrestlers()}</ul>
+      {/* <List> */}
+   {teamData.name ? (
+      <h4 className="center">{`${teamData.name} - ${teamData.user.name}`}</h4>
+   ) : (
+     props.history.push("/league/standings")
+   )}
+      {renderWrestlers()}
+      {/* </List> */}
     </div>
   );
 };

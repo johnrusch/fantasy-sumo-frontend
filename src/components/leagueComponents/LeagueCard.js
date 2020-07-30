@@ -3,6 +3,7 @@ import { Link, Route } from "react-router-dom";
 
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Paper from '@material-ui/core/Paper';
 
 import { connect } from "react-redux";
 import { selectLeague } from "../../actions/leagueActions";
@@ -13,6 +14,7 @@ const LeagueCard = (props) => {
 
   return (
     <div onClick={() => props.selectLeague(leagueData)}>
+      <Paper elevation={3}>
       <Link to="/league/standings">
         <ListItem>
           <ListItemText
@@ -25,6 +27,8 @@ const LeagueCard = (props) => {
           </div> */}
         </ListItem>
       </Link>
+      </Paper>
+      
     </div>
   );
 };

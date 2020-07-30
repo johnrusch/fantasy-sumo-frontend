@@ -40,9 +40,16 @@ title {
 }
 
 .center {
-  text-align: center;
+  margin: auto;
+  width: 400%;
+  padding: 10px;
 }
 
 .bigger {
   zoom: 130%;
+  display: flex;
+}
+
+.record {
+  text-align: right;
 }

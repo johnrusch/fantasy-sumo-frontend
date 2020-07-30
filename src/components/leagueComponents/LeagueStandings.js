@@ -1,6 +1,9 @@
 import React from "react";
 import TeamCard from "../teamComponents/TeamCard";
 
+import List from '@material-ui/core/List';
+import Grid from "@material-ui/core/Grid";
+
 import { connect } from "react-redux";
 
 const LeagueStandings = (props) => {
@@ -32,9 +35,13 @@ const LeagueStandings = (props) => {
   };
 
   return (
-    <div className="card-group">
+    <div className="center">
+      <Grid container className="bigger">
       <h3>{name}</h3>
-      <ul>{renderTeams()}</ul>
+      <List>
+        {renderTeams()}
+      </List>
+      </Grid>
     </div>
   );
 };

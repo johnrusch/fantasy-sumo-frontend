@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import LeagueCard from "./LeagueCard";
-import CreateLeagueModal from './CreateLeagueModal'
+import CreateLeagueModal from "./CreateLeagueModal";
 
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import List from "@material-ui/core/List";
 
 import { connect } from "react-redux";
 
@@ -22,22 +20,15 @@ class Leagues extends Component {
 
   render() {
     return (
-      <div>
-          <Grid container className="bigger">
-            <Typography variant="h6" >
-              Leagues
-            </Typography>
-            <div>
-              <List className="center">
-                {this.renderLeagues()}
-                {<CreateLeagueModal />}
-              </List>
-            </div>
-          </Grid>
-          {/* <div>
-            <ul>{this.renderLeagues()}</ul>
-            <CreateLeagueModal />
-          </div> */}
+      <div className="center">
+        <Grid container className="bigger container-fluid">
+          <div>
+            <List className="center">
+              {this.props.leagues && this.renderLeagues()}
+              {<CreateLeagueModal />}
+            </List>
+          </div>
+        </Grid>
       </div>
     );
   }

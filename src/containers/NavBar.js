@@ -5,7 +5,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -13,6 +12,7 @@ import FormGroup from "@material-ui/core/FormGroup";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import Link from "@material-ui/core/Link";
+import Button from "@material-ui/core/Button";
 
 import { connect } from "react-redux";
 import { logOut } from "../actions/authActions";
@@ -69,20 +69,20 @@ const NavBar = (props) => {
     <AppBar position="static">
       <Toolbar>
         <Typography variant="h6" className={classes.title}>
-          <NavLink to="/" className="domain">
+          <Button href="/" className="domain">
             Fantasy Sumo
-          </NavLink>
+          </Button>
         </Typography>
 
-        <NavLink className="link" to="/leagues">
+        <Button color="inherit" className="link" href="/leagues">
           Leagues
-        </NavLink>
-        <NavLink className="link" to="/teams">
+        </Button>
+        <Button color="inherit" className="link" href="/teams">
           Teams
-        </NavLink>
-        <NavLink className="link" to="/rules">
+        </Button>
+        <Button color="inherit" className="link" href="/rules">
           Rules
-        </NavLink>
+        </Button>
         {currentUser && (
           <div>
             <IconButton
@@ -109,13 +109,15 @@ const NavBar = (props) => {
               open={open}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>
-                <a href="/settings">My Account</a>
+              <MenuItem>
+                <Button href="/settings" onClick={handleClose}>
+                  My Account
+                </Button>
               </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <Link href="/login" onClick={handleLogout}>
+              <MenuItem>
+                <Button href="/login" onClick={handleLogout}>
                   Log Out
-                </Link>
+                </Button>
               </MenuItem>
             </Menu>
           </div>
