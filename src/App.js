@@ -53,7 +53,7 @@ class App extends Component {
         <NavBar
           handleLogout={this.onLogout}
         />
-        {window.location.href === '/' ? (
+        {window.location.href === 'http://localhost:3001/' ? (
         <Jumbotron>
           <h1>Welcome to Fantasy Sumo!</h1>
         </Jumbotron>
