@@ -61,7 +61,8 @@ const NavBar = (props) => {
   };
 
   const handleLogout = () => {
-    props.logOut();
+    // props.logOut();
+    localStorage.removeItem("token")
     props.history.push("/login");
   };
 

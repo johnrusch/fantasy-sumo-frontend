@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import Jumbotron from 'react-bootstrap/Jumbotron'
 
 import { connect } from "react-redux";
@@ -23,43 +23,22 @@ import Rules from './components/Rules';
 import Banzuke from './components/Banzuke'
 
 class App extends Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     auth: {
-  //       user: {},
-  //     },
-  //   };
-  // }
 
-
-  onLogout = () => {
-    localStorage.removeItem("token");
-    this.setState({ auth: { user: {} } });
-  };
 
   componentDidMount() {
     console.log(this.props.getCurrentUser());
     this.props.getCurrentUser();
-    this.props.fetchWrestlers();
-    this.props.fetchLeagues();
-    this.props.fetchTeams();
+    // this.props.fetchWrestlers();
+    // this.props.fetchLeagues();
+    // this.props.fetchTeams();
   }
 
   render() {
     const token = localStorage.getItem("token");
     return (
       <div>
-        <NavBar
-          handleLogout={this.onLogout}
-        />
-        {window.location.href === 'http://localhost:3001/' ? (
-        <Jumbotron>
-          <h1>Welcome to Fantasy Sumo!</h1>
-        </Jumbotron>
-        ) : (
-          null
-        )}
+        <NavBar />
+        {!token ? <Redirect to="/login" /> : null }
         <Route exact path="/login" render={(props) => <Login {...props} />} />
         <Route path="/signup" render={props => <SignUp {...props} />}
         />
