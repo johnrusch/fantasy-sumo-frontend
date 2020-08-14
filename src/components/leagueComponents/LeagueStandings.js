@@ -35,13 +35,11 @@ const LeagueStandings = (props) => {
   };
 
   return (
-    <div className="center">
-      <Grid container className="bigger">
-      <h3>{name}</h3>
-      <List>
+    <div>
+      <h4 className="center">{name}</h4>
         {renderTeams()}
-      </List>
-      </Grid>
+
+
     </div>
   );
 };

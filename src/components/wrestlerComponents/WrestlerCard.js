@@ -89,9 +89,17 @@ const WrestlerCard = (props) => {
                 </React.Fragment>
               }
             />
-            <ListItemText className="record">
-              
-                {`Current Record: ${wrestlerData.currentWins} - ${wrestlerData.currentLosses}`}
+            <ListItemText className="right">
+            <React.Fragment>
+                  <Typography
+                    component="span"
+                    variant="body2"
+                    color="textPrimary"
+                  >
+                    {`Current Record: ${wrestlerData.currentWins} - ${wrestlerData.currentLosses}`}
+                  </Typography>
+                </React.Fragment>
+                
               
             </ListItemText>
           </ListItem>

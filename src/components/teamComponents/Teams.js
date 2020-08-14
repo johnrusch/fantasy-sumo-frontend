@@ -3,11 +3,12 @@ import TeamCard from "./TeamCard";
 
 import { connect } from "react-redux";
 
+import { fetchTeams } from "../../actions/teamActions"
+
 class Teams extends Component {
   userTeams = () => {
     const currentUser = this.props.currentUser;
     return this.props.teams.filter((team) => {
-      console.log(team.user);
       return team.user.id === currentUser.id;
     });
   };
@@ -18,8 +19,17 @@ class Teams extends Component {
     });
   };
 
+  componentDidMount() {
+    this.props.fetchTeams()
+  }
+
   render() {
-    return <div>{this.renderTeams()}</div>;
+    return (
+    <div>
+      <h4 className="center">My Teams</h4> 
+      {this.renderTeams()}
+    </div>
+    )
   }
 }
 
@@ -30,4 +40,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Teams);
+export default connect(mapStateToProps, { fetchTeams })(Teams);

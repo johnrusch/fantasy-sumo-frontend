@@ -15,7 +15,8 @@ const TeamCard = (props) => {
   const { teamData, selectTeam } = props;
 
   return (
-    <div onClick={() => selectTeam(teamData)}>
+    <div className="flexbox" onClick={() => selectTeam(teamData)}>
+      {console.log(teamData)}
       <Paper elevation={3}>
         <Link to="/team/wrestlers">
           <ListItem alignItems="flex-start">
@@ -39,6 +40,18 @@ const TeamCard = (props) => {
                 </React.Fragment>
               }
             />
+            <ListItemText>
+                <React.Fragment>
+                  <Typography
+                    component="span"
+                    variant="body2"
+                    color="textPrimary"
+                  >
+                    {`League: ${teamData.league.name}`}
+                  </Typography>
+                  
+                </React.Fragment>
+            </ListItemText>
            
           </ListItem>
         </Link>

@@ -13,23 +13,18 @@ const LeagueCard = (props) => {
   const { name, id, teams } = leagueData;
 
   return (
-    <div onClick={() => props.selectLeague(leagueData)}>
-      <Paper elevation={3}>
+    <div className="flexbox" onClick={() => props.selectLeague(leagueData)}>
+    <Paper elevation={3}>
       <Link to="/league/standings">
         <ListItem>
           <ListItemText
             primary={name}
             secondary={teams.length}
           /> 
-          {/* <div className="card-header">{name}</div>
-          <div className="card-body">
-            Number of teams: {teams.length}
-          </div> */}
         </ListItem>
       </Link>
-      </Paper>
-      
-    </div>
+    </Paper>
+  </div>
   );
 };
 

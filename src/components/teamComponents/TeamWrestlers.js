@@ -31,7 +31,6 @@ const TeamWrestlers = (props) => {
      props.history.push("/league/standings")
    )}
       {renderWrestlers()}
-      {/* </List> */}
     </div>
   );
 };

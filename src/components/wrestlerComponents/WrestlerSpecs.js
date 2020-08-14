@@ -38,7 +38,7 @@ const WrestlerSpecs = (props) => {
                 <p>Stable: {props.wrestlerData.heya}</p>
               </div>
               <div className="row">
-                <p>Yusho: {props.wrestlerData.yusho}</p>
+                <p>Yusho (Tournament Wins): {props.wrestlerData.yusho}</p>
               </div>
             </div>
           </CardContent>

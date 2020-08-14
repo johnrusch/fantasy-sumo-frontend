@@ -3,10 +3,11 @@ import LeagueCard from "./LeagueCard";
 import CreateLeagueModal from "./CreateLeagueModal";
 
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
 import List from "@material-ui/core/List";
 
 import { connect } from "react-redux";
+
+import { fetchLeagues } from "../../actions/leagueActions"
 
 class Leagues extends Component {
   renderLeagues = () => {
@@ -18,18 +19,18 @@ class Leagues extends Component {
     });
   };
 
+  componentDidMount() {
+    this.props.fetchLeagues()
+  }
+
   render() {
+
     return (
-      <div className="center">
-        <Grid container className="bigger container-fluid">
           <div>
-            <List className="center">
+              <h4 className="center">My Leagues</h4>
               {this.props.leagues && this.renderLeagues()}
               {<CreateLeagueModal />}
-            </List>
           </div>
-        </Grid>
-      </div>
     );
   }
 }
@@ -41,4 +42,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Leagues);
+export default connect(mapStateToProps, { fetchLeagues })(Leagues);
