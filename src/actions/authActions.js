@@ -11,7 +11,7 @@ const headers = () => {
 };
 
 export const loggingIn = data => {
-    const URL = 'http://localhost:3000/api/v1/auth'
+    const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/auth'
     return dispatch => {
         dispatch({ type: 'LOGGING_IN' });
         fetch(URL, {
@@ -35,7 +35,7 @@ export const addAuth = (auth) => {
 }
 
 export const getCurrentUser = () => {
-    const URL = 'http://localhost:3000/api/v1/current_user'
+    const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/current_user'
     return dispatch => {
         dispatch({ type: 'LOGGING_IN' });
         fetch(URL, {

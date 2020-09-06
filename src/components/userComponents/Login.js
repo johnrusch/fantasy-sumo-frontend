@@ -164,10 +164,15 @@ const Login = props => {
               </Grid>
             </Grid>
             <Box mt={5}>
-              {/* <Copyright /> */}
             </Box>
           </form>
         </div>
+        {/* <Typography variant="h1" component="h2" gutterBottom>
+            Under Construction!
+          </Typography>
+          <Typography variant="h4" gutterBottom>
+            Fantasy Sumo coming soon!
+          </Typography> */}
       </Grid>
     </Grid>
       // <div className="container mt-5">

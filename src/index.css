@@ -53,3 +53,22 @@ title {
 .right {
   text-align: right;
 }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 1px 1px;
+  grid-template-areas:
+    "Name Chart Chart"
+    "Attributes Chart Chart"
+    "Stable . .";
+}
+
+.Chart { grid-area: Chart; }
+
+.Name { grid-area: Name; }
+
+.Attributes { grid-area: Attributes; }
+
+.Stable { grid-area: Stable; }

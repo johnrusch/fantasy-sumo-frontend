@@ -13,7 +13,7 @@ const headers = () => {
 export const fetchWrestlers = () => {
     return (dispatch) => {
         dispatch({ type: 'LOADING_WRESTLERS'});
-        fetch('http://localhost:3000/api/v1/wrestlers', {
+        fetch('https://fantasy-sumo-backend.herokuapp.com/api/v1/wrestlers', {
             headers: headers()
         })
             .then(resp => resp.json())
@@ -28,7 +28,7 @@ export const selectWrestler = (wrestler) => {
 export const fetchBanzuke = () => {
     return (dispatch) => {
         dispatch({ type: 'LOADING_WRESTLERS'});
-        fetch('http://localhost:3000/api/v1/banzuke', {
+        fetch('https://fantasy-sumo-backend.herokuapp.com/api/v1/banzuke', {
             headers: headers()
         })
             .then(resp => resp.json())

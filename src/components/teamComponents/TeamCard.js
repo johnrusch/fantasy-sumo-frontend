@@ -27,7 +27,7 @@ const TeamCard = (props) => {
             </ListItemAvatar>
             <ListItemText
               primary={teamData.name}
-              secondary= {
+              secondary={
                 <React.Fragment>
                   <Typography
                     component="span"
@@ -40,7 +40,8 @@ const TeamCard = (props) => {
                 </React.Fragment>
               }
             />
-            <ListItemText>
+            {window.location.href === "/league/standings" ? null : (
+              <ListItemText>
                 <React.Fragment>
                   <Typography
                     component="span"
@@ -49,10 +50,9 @@ const TeamCard = (props) => {
                   >
                     {`League: ${teamData.league.name}`}
                   </Typography>
-                  
                 </React.Fragment>
-            </ListItemText>
-           
+              </ListItemText>
+            )}
           </ListItem>
         </Link>
       </Paper>

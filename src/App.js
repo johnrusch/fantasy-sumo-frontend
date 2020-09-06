@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route, Redirect } from "react-router-dom";
-import Jumbotron from 'react-bootstrap/Jumbotron'
 
 import { connect } from "react-redux";
 import { fetchWrestlers } from "./actions/wrestlerActions";

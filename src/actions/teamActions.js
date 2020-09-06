@@ -11,7 +11,7 @@ const headers = () => {
 };
 
 export const fetchTeams = () => {
-    const URL = 'http://localhost:3000/api/v1/teams'
+    const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/teams'
     return (dispatch) => {
         dispatch({ type: 'LOADING_TEAMS'});
         fetch(URL, {

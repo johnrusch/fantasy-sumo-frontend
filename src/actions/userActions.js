@@ -11,7 +11,7 @@ const headers = () => {
 };
 
 export const signUp = data => {
-    const URL = 'http://localhost:3000/api/v1/users'
+    const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/users'
     return dispatch => {
         console.log(data)
         dispatch({ type: 'SIGNING_UP '});
@@ -31,7 +31,7 @@ export const signUp = data => {
 }
 
 export const deleteUser = data => {
-    const URL = 'http://localhost:3000/api/v1/users' + `/${data}`
+    const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/users' + `/${data}`
     return dispatch => {
         console.log(data)
         dispatch({ type: 'DELETE_USER'});
@@ -49,7 +49,7 @@ export const deleteUser = data => {
 }
 
 export const updateUser = data => {
-    const URL = 'http://localhost:3000/api/v1/users' + `/${data.id}`
+    const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/users' + `/${data.id}`
     return dispatch => {
         console.log(data)
         dispatch({ type: 'UPDATE_USER'});

@@ -11,7 +11,7 @@ const headers = () => {
 };
 
 export const fetchLeagues = () => {
-    const URL = 'http://localhost:3000/api/v1/leagues'
+    const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/leagues'
     return (dispatch) => {
         dispatch({ type: 'LOADING_LEAGUES'});
         fetch(URL, {
