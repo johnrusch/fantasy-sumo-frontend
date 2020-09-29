@@ -7,11 +7,11 @@ import List from "@material-ui/core/List";
 
 import { connect } from "react-redux";
 
-import { fetchLeagues } from "../../actions/leagueActions"
+import { fetchUserLeagues, fetchOpenLeagues } from "../../actions/leagueActions"
 
 class Leagues extends Component {
-  renderLeagues = () => {
-    const leagues = this.props.leagues;
+  renderUserLeagues = () => {
+    const leagues = this.props.userLeagues;
     return leagues.map((league) => {
       return (
         <LeagueCard selectLeague={this.selectLeague} leagueData={league} />
@@ -19,16 +19,31 @@ class Leagues extends Component {
     });
   };
 
+  renderOpenLeagues = () => {
+    const leagues = this.props.openLeagues;
+    return leagues.map((league) => {
+      if (!league.closed) {
+        return (
+          <LeagueCard selectLeague={this.selectLeague} leagueData={league} />
+        );
+      }
+    });
+  };
+
   componentDidMount() {
-    this.props.fetchLeagues()
+    this.props.fetchUserLeagues()
+    this.props.fetchOpenLeagues()
   }
 
   render() {
 
     return (
           <div>
+              {console.log(this.props)}
               <h4 className="center">My Leagues</h4>
-              {this.props.leagues && this.renderLeagues()}
+              {this.props.userLeagues && this.renderUserLeagues()}
+              <h4 className="center">Open Leagues</h4>
+              {this.props.openLeagues && this.renderOpenLeagues()}
               {<CreateLeagueModal />}
           </div>
     );
@@ -37,9 +52,10 @@ class Leagues extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    leagues: state.leagues.leagues,
+    userLeagues: state.leagues.userLeagues,
+    openLeagues: state.leagues.openLeagues,
     loading: state.loading,
   };
 };
 
-export default connect(mapStateToProps, { fetchLeagues })(Leagues);
+export default connect(mapStateToProps, { fetchUserLeagues, fetchOpenLeagues })(Leagues);

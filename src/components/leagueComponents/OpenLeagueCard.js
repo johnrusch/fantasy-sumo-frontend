@@ -8,7 +8,7 @@ import Paper from '@material-ui/core/Paper';
 import { connect } from "react-redux";
 import { selectLeague } from "../../actions/leagueActions";
 
-const LeagueCard = (props) => {
+const OpenLeagueCard = (props) => {
   const { leagueData } = props;
   const { name, id, teams } = leagueData;
 
@@ -28,4 +28,4 @@ const LeagueCard = (props) => {
   );
 };
 
-export default connect(null, { selectLeague })(LeagueCard);
+export default connect(null, { selectLeague })(OpenLeagueCard);

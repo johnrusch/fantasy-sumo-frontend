@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 
 const LeagueStandings = (props) => {
   const { leagueData, selectTeam } = props;
-  const { name, teams, id } = leagueData;
+  const { name, teams, id, closed } = leagueData;
 
   const comparePoints = (a, b) => {
     const pointsA = parseInt(a.points);
@@ -24,7 +24,7 @@ const LeagueStandings = (props) => {
   };
 
   const renderTeams = () => {
-    if (teams) {
+    if (teams && closed === true) {
       const sortedTeams = teams.sort(comparePoints);
       return sortedTeams.map((team) => {
         return <TeamCard teamData={team} selectTeam={selectTeam} />;
@@ -37,6 +37,7 @@ const LeagueStandings = (props) => {
   return (
     <div>
       <h4 className="center">{name}</h4>
+        {console.log(props.leagueData)}
         {renderTeams()}
 
 

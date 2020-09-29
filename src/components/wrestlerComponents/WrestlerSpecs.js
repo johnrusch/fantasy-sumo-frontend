@@ -39,6 +39,7 @@ const WrestlerSpecs = (props) => {
 
   const classes = useStyles();
 
+ 
   const tournaments = records.map(record => {
     return record.tournament
   })
@@ -47,8 +48,9 @@ const WrestlerSpecs = (props) => {
     return record.wins
   })
 
+
   const state = {
-    labels: tournaments,
+    labels: tournaments.reverse(),
     datasets: [
       {
         label: 'Wins',
@@ -57,7 +59,7 @@ const WrestlerSpecs = (props) => {
         backgroundColor: 'rgba(75,192,192,1)',
         borderColor: 'rgba(0,0,0,1)',
         borderWidth: 2,
-        data: wins
+        data: wins.reverse()
       }
     ]
   }

@@ -5,7 +5,7 @@ import { Route, Redirect } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { fetchWrestlers } from "./actions/wrestlerActions";
-import { fetchLeagues } from "./actions/leagueActions";
+import { fetchUserLeagues, fetchOpenLeagues } from "./actions/leagueActions";
 import { fetchTeams } from "./actions/teamActions";
 import { getCurrentUser } from "./actions/authActions";
 
@@ -28,7 +28,8 @@ class App extends Component {
     console.log(this.props.getCurrentUser());
     this.props.getCurrentUser();
     // this.props.fetchWrestlers();
-    // this.props.fetchLeagues();
+    this.props.fetchUserLeagues();
+    this.props.fetchOpenLeagues();
     // this.props.fetchTeams();
   }
 
@@ -37,6 +38,7 @@ class App extends Component {
     return (
       <div>
         <NavBar />
+        {console.log(this.props.leagues)}
         {!token ? <Redirect to="/login" /> : null }
         <Route exact path="/login" render={(props) => <Login {...props} />} />
         <Route path="/signup" render={props => <SignUp {...props} />}
@@ -85,7 +87,8 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   fetchWrestlers,
-  fetchLeagues,
+  fetchUserLeagues,
+  fetchOpenLeagues,
   fetchTeams,
   getCurrentUser,
 })(App);

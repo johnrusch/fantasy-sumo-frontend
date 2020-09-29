@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
 import ListItem from "@material-ui/core/ListItem";
+import TextField from "@material-ui/core/TextField";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
 import { connect } from "react-redux";
+import { createLeague } from '../../actions/leagueActions'
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -33,12 +40,43 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
 }));
 
 const CreateLeagueModal = (props) => {
   const classes = useStyles();
-  const [modalStyle] = React.useState(getModalStyle);
-  const [open, setOpen] = React.useState(false);
+  const [modalStyle] = useState(getModalStyle);
+  const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [teams, setTeams] = useState("");
+
+  const newLeague = {
+    name: name,
+    number_of_teams: teams,
+    password: password,
+    closed: false,
+    creator_id: props.currentUserId,
+  };
+
+  const updateName = (username) => {
+    return setName(username);
+  };
+
+  const updatePassword = (leaguePassword) => {
+    return setPassword(leaguePassword);
+  };
+
+  const updateConfirmPassword = (leaguePassword) => {
+    return setConfirmPassword(leaguePassword);
+  };
 
   const handleOpen = () => {
     setOpen(true);
@@ -48,10 +86,24 @@ const CreateLeagueModal = (props) => {
     setOpen(false);
   };
 
-  const handleDelete = () => {
-    props.deleteUser(props.currentUserId);
-    props.history.push("/login");
+  const handleChange = (event) => {
+    setTeams(event.target.value);
   };
+
+  const createLeague = (e) => {
+    e.preventDefault();
+    console.log(newLeague);
+    props.createLeague(newLeague);
+  };
+
+  useEffect(() => {
+    ValidatorForm.addValidationRule('isPasswordMatch', (value) => {
+      if (value !== password) {
+          return false;
+      }
+      return true;
+  });
+  })
 
   return (
     <div>
@@ -60,7 +112,6 @@ const CreateLeagueModal = (props) => {
           Create New League
         </Button>
       </ListItem>
-
       <Modal
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
@@ -68,11 +119,55 @@ const CreateLeagueModal = (props) => {
         onClose={handleClose}
       >
         <div style={modalStyle} className={classes.paper}>
-          <h2>Delete Account</h2>
-          <p>Are you sure you want to delete your account?</p>
-          <Button variant="contained" color="primary" onClick={handleDelete}>
-            Yes
-          </Button>
+          {/* <h2>Create a new league</h2> */}
+          <ValidatorForm
+            className={classes.formControl}
+            onSubmit={createLeague}
+          >
+            <TextValidator
+              id="leagueName"
+              label="Name"
+              value={name}
+              onChange={(e) => updateName(e.target.value)}
+              validators={["required"]}
+              errorMessages={["this field is required"]}
+            />
+            <TextValidator
+              id="leaguePassword"
+              label="Password"
+              type="password"
+              value={password}
+              onChange={(e) => updatePassword(e.target.value)}
+              validators={["required"]}
+              errorMessages={["this field is required"]}
+            />
+            <TextValidator
+              id="confirmLeaguePassword"
+              label="Confirm Password"
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => updateConfirmPassword(e.target.value)}
+              validators={["required", 'isPasswordMatch']}
+              errorMessages={["this field is required", 'password mismatch']}
+            />
+            <InputLabel id="demo-simple-select-label">Teams</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={teams}
+              onChange={handleChange}
+            >
+              <MenuItem value={2}>2</MenuItem>
+              <MenuItem value={3}>3</MenuItem>
+              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={6}>6</MenuItem>
+              <MenuItem value={7}>7</MenuItem>
+            </Select>
+            <Button variant="contained" color="primary" type="submit">
+              Create League
+            </Button>
+          </ValidatorForm>
         </div>
       </Modal>
     </div>
@@ -85,4 +180,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(CreateLeagueModal);
+export default connect(mapStateToProps, { createLeague })(CreateLeagueModal);
