@@ -39,7 +39,6 @@ class Leagues extends Component {
 
     return (
           <div>
-              {console.log(this.props)}
               <h4 className="center">My Leagues</h4>
               {this.props.userLeagues && this.renderUserLeagues()}
               <h4 className="center">Open Leagues</h4>

@@ -12,7 +12,6 @@ const leaguesReducer = (
         selectedLeague: state.selectedLeague,
       };
     case "ADD_USER_LEAGUES":
-      console.log(action)
       return {
         ...state,
         userLeagues: action.userLeagues,
