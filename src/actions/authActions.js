@@ -43,7 +43,6 @@ export const getCurrentUser = () => {
         })
             .then(resp => resp.json())
             .then(user => {
-                console.log(user)
                 const token = localStorage.getItem("token");
                 if (token) {
                     dispatch({ type: 'ADD_USER', user })
