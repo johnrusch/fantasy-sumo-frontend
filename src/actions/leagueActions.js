@@ -17,8 +17,13 @@ export const fetchUserLeagues = () => {
         fetch(URL, {
             headers: headers()
         })
-            .then(resp => resp.json())
-            .then(userLeagues => dispatch({ type: 'ADD_USER_LEAGUES', userLeagues }))
+        .then(resp => resp.json())
+        .then(userLeagues => {
+                console.log(userLeagues)
+                if (!userLeagues.error) {
+                    dispatch({ type: 'ADD_USER_LEAGUES', userLeagues })
+                }
+            })
     }
 }
 
