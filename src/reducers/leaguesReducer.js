@@ -20,6 +20,7 @@ const leaguesReducer = (
         selectedLeague: state.selectedLeague,
       };
     case "ADD_OPEN_LEAGUES":
+      console.log(action)
       return {
         ...state,
         userLeagues: state.userLeagues,
@@ -36,6 +37,7 @@ const leaguesReducer = (
         selectedLeague: action.payload,
       };
     case "CREATE_LEAGUE":
+      console.log(action)
       return {
         ...state,
         userLeagues: [...state.userLeagues],
