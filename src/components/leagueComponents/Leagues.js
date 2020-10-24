@@ -1,13 +1,15 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import LeagueCard from "./LeagueCard";
-import CreateLeagueModal from "./CreateLeagueModal";
-
-import Grid from "@material-ui/core/Grid";
-import List from "@material-ui/core/List";
+import CreateLeague from "./CreateLeague";
+import Paper from '@material-ui/core/Paper';
 
 import { connect } from "react-redux";
 
-import { fetchUserLeagues, fetchOpenLeagues } from "../../actions/leagueActions"
+import {
+  fetchUserLeagues,
+  fetchOpenLeagues,
+} from "../../actions/leagueActions";
 
 class Leagues extends Component {
   renderUserLeagues = () => {
@@ -31,20 +33,23 @@ class Leagues extends Component {
   };
 
   componentDidMount() {
-    this.props.fetchUserLeagues()
-    this.props.fetchOpenLeagues()
+    this.props.fetchUserLeagues();
+    this.props.fetchOpenLeagues();
   }
 
   render() {
-
     return (
-          <div>
-              <h4 className="center">My Leagues</h4>
-              {this.props.userLeagues && this.renderUserLeagues()}
-              <h4 className="center">Open Leagues</h4>
-              {this.props.openLeagues && this.renderOpenLeagues()}
-              {<CreateLeagueModal />}
-          </div>
+      <div>
+        <h4 className="center">My Leagues</h4>
+        {this.props.userLeagues && this.renderUserLeagues()}
+        <h4 className="center">Open Leagues</h4>
+        {this.props.openLeagues && this.renderOpenLeagues()}
+        <Paper elevation={3}>
+          <Link to="/league/new">
+            Create New League
+          </Link>
+        </Paper>
+      </div>
     );
   }
 }
@@ -57,4 +62,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchUserLeagues, fetchOpenLeagues })(Leagues);
+export default connect(mapStateToProps, { fetchUserLeagues, fetchOpenLeagues })(
+  Leagues
+);

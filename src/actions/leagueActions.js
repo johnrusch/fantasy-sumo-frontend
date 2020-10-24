@@ -54,6 +54,8 @@ export const createLeague = data => {
             if (!league.error) {
                 dispatch({ type: 'CREATE_LEAGUE', league })
                 // localStorage.setItem("token", user.jwt)
+            } else {
+                dispatch({ type: 'THROW_ERROR', league })
             }
         })
 }

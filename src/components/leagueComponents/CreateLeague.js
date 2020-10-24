@@ -12,46 +12,11 @@ import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
 import { connect } from "react-redux";
 import { createLeague } from '../../actions/leagueActions'
+import LeagueSuccessModal from "./LeagueSuccessModal";
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
 
-function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
-}
 
-const useStyles = makeStyles((theme) => ({
-  modal: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  paper: {
-    position: "absolute",
-    width: 450,
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
-
-const CreateLeagueModal = (props) => {
-  const classes = useStyles();
-  const [modalStyle] = useState(getModalStyle);
+const CreateLeague = (props) => {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -60,8 +25,7 @@ const CreateLeagueModal = (props) => {
 
   const newLeague = {
     name: name,
-    number_of_teams: teams,
-    password: password,
+    passphrase: password,
     closed: false,
     creator_id: props.currentUserId,
   };
@@ -78,22 +42,11 @@ const CreateLeagueModal = (props) => {
     return setConfirmPassword(leaguePassword);
   };
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleChange = (event) => {
-    setTeams(event.target.value);
-  };
-
-  const createLeague = (e) => {
+  const addLeague = (e) => {
     e.preventDefault();
-    console.log(newLeague);
+    // console.log(newLeague);
     props.createLeague(newLeague);
+    if (!props.errors) return <LeagueSuccessModal {...props} />
   };
 
   useEffect(() => {
@@ -107,22 +60,11 @@ const CreateLeagueModal = (props) => {
 
   return (
     <div>
-      <ListItem>
-        <Button variant="contained" color="primary" onClick={handleOpen}>
-          Create New League
-        </Button>
-      </ListItem>
-      <Modal
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-        open={open}
-        onClose={handleClose}
-      >
-        <div style={modalStyle} className={classes.paper}>
+      
+        <div>
           {/* <h2>Create a new league</h2> */}
           <ValidatorForm
-            className={classes.formControl}
-            onSubmit={createLeague}
+            onSubmit={addLeague}
           >
             <TextValidator
               id="leagueName"
@@ -150,26 +92,11 @@ const CreateLeagueModal = (props) => {
               validators={["required", 'isPasswordMatch']}
               errorMessages={["this field is required", 'password mismatch']}
             />
-            <InputLabel id="demo-simple-select-label">Teams</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={teams}
-              onChange={handleChange}
-            >
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
-              <MenuItem value={5}>5</MenuItem>
-              <MenuItem value={6}>6</MenuItem>
-              <MenuItem value={7}>7</MenuItem>
-            </Select>
             <Button variant="contained" color="primary" type="submit">
               Create League
             </Button>
           </ValidatorForm>
         </div>
-      </Modal>
     </div>
   );
 };
@@ -177,7 +104,8 @@ const CreateLeagueModal = (props) => {
 const mapStateToProps = (state) => {
   return {
     currentUserId: state.auth.id,
+    errors: state.errors
   };
 };
 
-export default connect(mapStateToProps, { createLeague })(CreateLeagueModal);
+export default connect(mapStateToProps, { createLeague })(CreateLeague);

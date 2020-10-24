@@ -15,6 +15,7 @@ import SignUp from "./components/userComponents/SignUp";
 import Settings from './components/userComponents/Settings';
 import Leagues from "./components/leagueComponents/Leagues";
 import LeagueStandings from "./components/leagueComponents/LeagueStandings";
+import CreateLeague from "./components/leagueComponents/CreateLeague";
 import Teams from "./components/teamComponents/Teams";
 import TeamWrestlers from "./components/teamComponents/TeamWrestlers";
 import WrestlerSpecs from "./components/wrestlerComponents/WrestlerSpecs";
@@ -48,6 +49,7 @@ class App extends Component {
           path="/league/standings"
           render={(props) => <LeagueStandings {...props} />}
         />
+        <Route path="/league/new" render={(props) => <CreateLeague {...props} />} />
         <Route path="/teams" render={(props) => <Teams {...props} />} />
         <Route
           path="/team/wrestlers"
