@@ -6,12 +6,14 @@ import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
 import { connect } from "react-redux";
 import { createLeague } from "../../actions/leagueActions";
+import { fetchOpenLeagues } from "../../actions/leagueActions";
 
 const CreateLeague = (props) => {
   //new league state
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [createdLeagueId, setCreatedLeagueId] = useState(0);
 
   //collects new league into object for post request
   const newLeague = {
@@ -39,11 +41,24 @@ const CreateLeague = (props) => {
     e.preventDefault();
     props.createLeague(newLeague);
     if (!props.errors) {
-      return handleOpen();
+      const newLeagueId = findNewLeagueId(newLeague.name);
+      console.log(props);
+      handleOpen();
     } else {
       return props.error;
     }
   };
+
+  const findNewLeagueId = leagueName => {
+    const createdLeague = props.openLeagues.map(league => {
+      return league.name === name;
+    })
+    if (createdLeague.length !== 0) {
+      return createdLeague
+    } else {
+      return null;
+    }
+  }
 
   //on component update checks to see if passwords match
   useEffect(() => {
@@ -53,6 +68,9 @@ const CreateLeague = (props) => {
       }
       return true;
     });
+    fetchOpenLeagues();
+    setCreatedLeagueId(findNewLeagueId(newLeague.name))
+    console.log(props);
   });
 
   //modal state
@@ -95,7 +113,7 @@ const CreateLeague = (props) => {
       marginTop: theme.spacing(2),
     },
   }));
-  
+
   const classes = useStyles();
 
   const handleOpen = () => {
@@ -147,7 +165,7 @@ const CreateLeague = (props) => {
           onClose={handleClose}
         >
           <div style={modalStyle} className={classes.paper}>
-            You're ready to go!
+            You're ready to go! {createdLeagueId}
           </div>
         </Modal>
       </div>
@@ -159,6 +177,8 @@ const mapStateToProps = (state) => {
   return {
     currentUserId: state.auth.id,
     errors: state.errors,
+    openLeagues: state.leagues.openLeagues,
+    loading: state.leagues.loading
   };
 };
 

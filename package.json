@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^7.1.2",
     "bootstrap": "^4.5.0",
     "chart.js": "^2.9.3",
+    "mobx": "^6.0.1",
     "react": "^16.13.1",
     "react-actioncable-provider": "^2.0.0",
     "react-bootstrap": "^1.2.2",
