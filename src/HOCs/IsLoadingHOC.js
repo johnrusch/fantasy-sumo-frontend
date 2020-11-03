@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const IsLoadingHOC = (WrappedComponent, loadingMessage) => {
 
     function HOC(props) {
-        const [isLoading, setIsLoading] = useState(true);
+        const [isLoading, setIsLoading] = useState(false);
 
         const setLoadingState = isComponentLoading => {
             setIsLoading(isComponentLoading);

@@ -2,32 +2,46 @@ import React, { createContext, useContext } from 'react';
 import { makeAutoObservable, action, observable, computed, reaction } from 'mobx';
 import { getWrestlers } from '../actions/wrestlerActions';
 import { logIn } from '../actions/authActions';
+import { getUserLeagues, getOpenLeagues } from '../actions/leagueActions';
 
 export default class Store {
-    wrestlers = [];
-    currentUserName = '';
-    
     currentUserID = '';
+    currentUserName = '';
+    wrestlers = [];
+    selectedWrestler = '';
+    userLeagues = [];
+    openLeagues = [];
+    selectedLeague = '';
+
     constructor(){
         makeAutoObservable(this, {
-            wrestlers: observable,
             currentUserID: observable,
             currentUserName: observable,
+            wrestlers: observable,
+            selectedWrestler: observable,
+            userLeagues: observable,
+            openLeagues: observable,
+            selectedLeague: observable,
             loadWrestlers: action,
             loadUser: action,
             loggedIn: computed,
             wrestlersLoaded: computed
         });
     }
+    
+    async loadUser(data) {
+        let currentUser = await logIn(data)
+        this.currentUserID = currentUser.id;
+        this.currentUserName = currentUser.name;
+    }
 
     async loadWrestlers() {
         this.wrestlers = await getWrestlers();
     }
 
-    async loadUser(data) {
-        let currentUser = await logIn(data)
-        this.currentUserID = currentUser.id;
-        this.currentUserName = currentUser.name;
+    async loadLeagues() {
+        this.userLeagues = await getUserLeagues();
+        this.openLeagues = await getOpenLeagues();
     }
 
     get loggedIn() {return !!this.currentUserID}

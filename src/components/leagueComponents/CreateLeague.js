@@ -4,10 +4,6 @@ import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
-import { connect } from "react-redux";
-import { createLeague } from "../../actions/leagueActions";
-import { fetchOpenLeagues } from "../../actions/leagueActions";
-
 const CreateLeague = (props) => {
   //new league state
   const [name, setName] = useState("");
@@ -68,7 +64,6 @@ const CreateLeague = (props) => {
       }
       return true;
     });
-    fetchOpenLeagues();
     setCreatedLeagueId(findNewLeagueId(newLeague.name))
     console.log(props);
   });
@@ -182,4 +177,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { createLeague })(CreateLeague);
+export default CreateLeague;

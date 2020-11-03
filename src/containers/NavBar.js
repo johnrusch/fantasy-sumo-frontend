@@ -14,11 +14,15 @@ import Menu from "@material-ui/core/Menu";
 import Link from "@material-ui/core/Link";
 import Button from "@material-ui/core/Button";
 
+import { observer } from 'mobx-react';
+import { useStore } from '../store';
+
 // import { connect } from "react-redux";
 // import { logOut } from "../actions/authActions";
 
-const NavBar = (props) => {
+const NavBar = observer((props) => {
   const currentUser = props.currentUser;
+  const store = useStore();
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -128,7 +132,7 @@ const NavBar = (props) => {
    
   );
   
-};
+});
 
 const mapStateToProps = (state) => {
   return {

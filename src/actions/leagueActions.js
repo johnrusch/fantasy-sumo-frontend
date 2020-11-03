@@ -10,32 +10,50 @@ const headers = () => {
     };
 };
 
-export const fetchUserLeagues = () => {
+// export const fetchUserLeagues = () => {
+//     const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/user_leagues'
+//     return (dispatch) => {
+//         dispatch({ type: 'LOADING_LEAGUES'});
+//         fetch(URL, {
+//             headers: headers()
+//         })
+//         .then(resp => resp.json())
+//         .then(userLeagues => {
+//                 console.log(userLeagues)
+//                 if (!userLeagues.error) {
+//                     dispatch({ type: 'ADD_USER_LEAGUES', userLeagues })
+//                 }
+//             })
+//     }
+// }
+
+export const getUserLeagues = async () => {
     const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/user_leagues'
-    return (dispatch) => {
-        dispatch({ type: 'LOADING_LEAGUES'});
-        fetch(URL, {
-            headers: headers()
-        })
-        .then(resp => resp.json())
-        .then(userLeagues => {
-                console.log(userLeagues)
-                if (!userLeagues.error) {
-                    dispatch({ type: 'ADD_USER_LEAGUES', userLeagues })
-                }
-            })
+    let response = await fetch(URL, { headers: headers() });
+    let userLeagues = await response.json();
+    if (!userLeagues.error) {
+        return userLeagues;
     }
 }
 
-export const fetchOpenLeagues = () => {
+// export const fetchOpenLeagues = () => {
+//     const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/open_leagues'
+//     return (dispatch) => {
+//         dispatch({ type: 'LOADING_LEAGUES'});
+//         fetch(URL, {
+//             headers: headers()
+//         })
+//             .then(resp => resp.json())
+//             .then(openLeagues => dispatch({ type: 'ADD_OPEN_LEAGUES', openLeagues }))
+//     }
+// }
+
+export const getOpenLeagues = async () => {
     const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/open_leagues'
-    return (dispatch) => {
-        dispatch({ type: 'LOADING_LEAGUES'});
-        fetch(URL, {
-            headers: headers()
-        })
-            .then(resp => resp.json())
-            .then(openLeagues => dispatch({ type: 'ADD_OPEN_LEAGUES', openLeagues }))
+    let response = await fetch(URL, { headers: headers() });
+    let openLeagues = await response.json();
+    if (!openLeagues.error) {
+        return openLeagues;
     }
 }
 

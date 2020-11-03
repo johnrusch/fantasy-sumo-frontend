@@ -20,22 +20,29 @@ import Teams from "./components/teamComponents/Teams";
 import TeamWrestlers from "./components/teamComponents/TeamWrestlers";
 import WrestlerSpecs from "./components/wrestlerComponents/WrestlerSpecs";
 import Rules from './components/Rules';
+import IsLoadingHOC from './HOCs/IsLoadingHOC';
 
 import { observer } from 'mobx-react';
 import { useStore } from './store';
 
-const App = observer(() => {
+const App = observer((props) => {
   const token = localStorage.getItem("token");
   const store = useStore();
   const loggedIn = store.loggedIn;
 
   useEffect(() => {
-    if (!loggedIn) return;
-    store.loadWrestlers();
+    if (!loggedIn) {
+      return;
+    } else {
+      props.setLoading(true);
+      store.loadWrestlers();
+      store.loadLeagues();
+    }
   })
 
     return (
       <div>
+        {console.log(props)}
         {!loggedIn ? <Redirect to="/login" /> : 
         <NavBar /> }
         <Route exact path="/login" render={(props) => <Login {...props} />} />
@@ -68,4 +75,4 @@ const App = observer(() => {
     );
 });
 
-export default App;
+export default IsLoadingHOC(App, "One sec!");
