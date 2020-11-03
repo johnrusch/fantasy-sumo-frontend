@@ -29,11 +29,15 @@ const App = observer(() => {
   const store = useStore();
   const loggedIn = store.loggedIn;
 
+  useEffect(() => {
+    if (!loggedIn) return;
+    store.loadWrestlers();
+  })
+
     return (
       <div>
         {!loggedIn ? <Redirect to="/login" /> : 
         <NavBar /> }
-        {console.log(store)}
         <Route exact path="/login" render={(props) => <Login {...props} />} />
         <Route path="/signup" render={props => <SignUp {...props} />}
         />

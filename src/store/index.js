@@ -10,7 +10,7 @@ export default class Store {
     currentUserID = '';
     constructor(){
         makeAutoObservable(this, {
-            // wrestlers: observable,
+            wrestlers: observable,
             currentUserID: observable,
             currentUserName: observable,
             loadWrestlers: action,
@@ -22,7 +22,6 @@ export default class Store {
 
     async loadWrestlers() {
         this.wrestlers = await getWrestlers();
-        console.log(this.wrestlers);
     }
 
     async loadUser(data) {
