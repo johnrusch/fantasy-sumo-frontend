@@ -1,105 +1,91 @@
 import React, { useState } from "react";
 // import { Link } from "react-router-dom";
 
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Link from "@material-ui/core/Link";
+import Paper from "@material-ui/core/Paper";
+import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 
-import { connect } from "react-redux";
-import { loggingIn } from "../../actions/authActions";
-import { addAuth } from "../../actions/authActions";
+import { observer } from "mobx-react";
+import { useStore } from "../../store/index";
+// import { connect } from "react-redux";
+// import { loggingIn } from "../../actions/authActions";
+// import { addAuth } from "../../actions/authActions";
 
-const Login = props => {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     error: false,
-  //     fields: {
-  //       name: "",
-  //       password: "",
-  //     },
-  //   };
-  // }
+const Login = observer((props) => {
+  const store = useStore();
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const fields = { name, password };
 
   // changes state with the input received in the login form
   const handlePassword = (e) => {
-    console.log(password)
-    setPassword(e.target.value)
+    console.log(password);
+    setPassword(e.target.value);
   };
 
   const handleName = (e) => {
-    setName(e.target.value)
-  }
+    setName(e.target.value);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(fields);
-    props.loggingIn(fields)
-    // .then(auth => {
-    //   console.log(auth)
-    //   if (!auth.error) {
-    //       localStorage.setItem("token", auth.jwt)
-    //       this.props.addAuth(auth)
-    //     } else {
-    //       this.props.history.push('/login')
-    //     }
+    store.loadUser(fields);
     props.history.push("/");
-  
   };
 
   // render() {
 
-    const [name, setName] = useState("")
-    const [password, setPassword] = useState("")
-    const fields = { name, password }
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      height: "100vh",
+    },
+    image: {
+      backgroundImage:
+        "url(https://s27363.pcdn.co/wp-content/uploads/2016/04/Sumo-Wrestlers-Japan.jpg.optimal.jpg)",
+      backgroundRepeat: "no-repeat",
+      backgroundColor:
+        theme.palette.type === "light"
+          ? theme.palette.grey[50]
+          : theme.palette.grey[900],
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    },
+    paper: {
+      margin: theme.spacing(8, 4),
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+    },
+    avatar: {
+      margin: theme.spacing(1),
+      backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+      width: "100%", // Fix IE 11 issue.
+      marginTop: theme.spacing(1),
+    },
+    submit: {
+      margin: theme.spacing(3, 0, 2),
+    },
+  }));
 
-    const useStyles = makeStyles((theme) => ({
-      root: {
-        height: '100vh',
-      },
-      image: {
-        backgroundImage: 'url(https://s27363.pcdn.co/wp-content/uploads/2016/04/Sumo-Wrestlers-Japan.jpg.optimal.jpg)',
-        backgroundRepeat: 'no-repeat',
-        backgroundColor:
-          theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      },
-      paper: {
-        margin: theme.spacing(8, 4),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      },
-      avatar: {
-        margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
-      },
-      form: {
-        width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(1),
-      },
-      submit: {
-        margin: theme.spacing(3, 0, 2),
-      },
-    }));
+  const classes = useStyles();
 
-    const classes = useStyles();
-
-    // const { fields } = this.state;
-
-    return (
-      <Grid container component="main" className={classes.root}>
+  return (
+    
+    <Grid container component="main" className={classes.root}>
+      {console.log(store.currentUserID)}
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -163,54 +149,12 @@ const Login = props => {
                 </Link>
               </Grid>
             </Grid>
-            <Box mt={5}>
-            </Box>
+            <Box mt={5}></Box>
           </form>
         </div>
-        {/* <Typography variant="h1" component="h2" gutterBottom>
-            Under Construction!
-          </Typography>
-          <Typography variant="h4" gutterBottom>
-            Fantasy Sumo coming soon!
-          </Typography> */}
       </Grid>
     </Grid>
-      // <div className="container mt-5">
-      //   <div className="card col-sm-6">
-      //     {this.state.error ? <h1>Try Again</h1> : null}
-      //     <div className="card-body">
-      //       <form onSubmit={this.handleSubmit}>
-      //         <div className="form-group">
-      //           <label>Username</label>
-      //           <input
-      //             name="name"
-      //             className="form-control"
-      //             placeholder="Enter username"
-      //             value={fields.username}
-      //             onChange={this.handleChange}
-      //           />
-      //         </div>
-      //         <div>
-      //           <label>Password</label>
-      //           <input
-      //             name="password"
-      //             type="password"
-      //             className="form-control"
-      //             placeholder="Password"
-      //             value={fields.password}
-      //             onChange={this.handleChange}
-      //           />
-      //         </div>
-      //         <button className="btn btn-primary btn mt-3 mr-3" type="submit">
-      //           Login
-      //         </button>
-      //         <Link to="/signup">Not a member? Sign up</Link>
-      //       </form>
-      //     </div>
-      //   </div>
-      // </div>
-    );
-  }
-// }
+  );
+});
 
-export default connect(null, { loggingIn, addAuth })(Login);
+export default Login;

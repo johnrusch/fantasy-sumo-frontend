@@ -10,23 +10,37 @@ const headers = () => {
     };
 };
 
-export const loggingIn = data => {
-    const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/auth'
-    return dispatch => {
-        dispatch({ type: 'LOGGING_IN' });
-        fetch(URL, {
-            method: "POST",
-            headers: headers(),
-            body: JSON.stringify(data)
-        })
-            .then(resp => resp.json())
-            .then(auth => {
-                console.log(auth)
-                if (!auth.error) {
-                    localStorage.setItem("token", auth.jwt)
-                    dispatch({ type: 'ADD_AUTH', auth })
-                }
-            })
+// export const loggingIn = data => {
+//     const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/auth'
+//     return dispatch => {
+//         dispatch({ type: 'LOGGING_IN' });
+//         fetch(URL, {
+//             method: "POST",
+//             headers: headers(),
+//             body: JSON.stringify(data)
+//         })
+//             .then(resp => resp.json())
+//             .then(auth => {
+//                 console.log(auth)
+//                 if (!auth.error) {
+//                     localStorage.setItem("token", auth.jwt)
+//                     dispatch({ type: 'ADD_AUTH', auth })
+//                 }
+//             })
+//     }
+// }
+
+export const logIn = async data => {
+    const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/auth';
+    let response = await fetch(URL, {
+        method: "POST",
+        headers: headers(),
+        body: JSON.stringify(data)
+    });
+    let auth = await response.json();
+    if (!auth.error){
+        localStorage.setItem("token", auth.jwt)
+        return auth;
     }
 }
 
@@ -56,6 +70,6 @@ export const logOut = () => {
     return { type: 'DELETE_AUTH' }
 }
 
-// export const updateAuth = updatedAuth => {
-//     return { type: 'UPDATE_AUTH', updatedAuth }
+// export const authAPI = {
+//     logIn = logIn
 // }

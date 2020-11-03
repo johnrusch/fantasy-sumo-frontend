@@ -10,15 +10,22 @@ const headers = () => {
     };
 };
 
-export const fetchWrestlers = () => {
-    return (dispatch) => {
-        dispatch({ type: 'LOADING_WRESTLERS'});
-        fetch('https://fantasy-sumo-backend.herokuapp.com/api/v1/wrestlers', {
-            headers: headers()
-        })
-            .then(resp => resp.json())
-            .then(wrestlers => dispatch({ type: 'ADD_WRESTLERS', wrestlers }))
-    }
+const WRESTLERS_URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/wrestlers';
+// export const fetchWrestlers = () => {
+//     return (dispatch) => {
+//         dispatch({ type: 'LOADING_WRESTLERS'});
+//         fetch('https://fantasy-sumo-backend.herokuapp.com/api/v1/wrestlers', {
+//             headers: headers()
+//         })
+//             .then(resp => resp.json())
+//             .then(wrestlers => dispatch({ type: 'ADD_WRESTLERS', wrestlers }))
+//     }
+// }
+
+export const getWrestlers = async () => {
+    let response = await fetch(WRESTLERS_URL, { headers: headers() });
+    let wrestlers = await response.json();
+    return wrestlers;
 }
 
 export const selectWrestler = (wrestler) => {
@@ -35,3 +42,7 @@ export const fetchBanzuke = () => {
             .then(banzuke => dispatch({ type: 'ADD_BANZUKE', banzuke }))
     }
 }
+
+// export const wrestlerAPI = {
+//     getWrestlers: getWrestlers
+// }

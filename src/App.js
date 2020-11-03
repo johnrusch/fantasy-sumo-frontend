@@ -3,11 +3,11 @@ import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route, Redirect } from "react-router-dom";
 
-import { connect } from "react-redux";
-import { fetchWrestlers } from "./actions/wrestlerActions";
-import { fetchUserLeagues, fetchOpenLeagues } from "./actions/leagueActions";
-import { fetchTeams } from "./actions/teamActions";
-import { getCurrentUser } from "./actions/authActions";
+// import { connect } from "react-redux";
+// import { fetchWrestlers } from "./actions/wrestlerActions";
+// import { fetchUserLeagues, fetchOpenLeagues } from "./actions/leagueActions";
+// import { fetchTeams } from "./actions/teamActions";
+// import { getCurrentUser } from "./actions/authActions";
 
 import NavBar from "./containers/NavBar";
 import Login from "./components/userComponents/Login";
@@ -20,27 +20,28 @@ import Teams from "./components/teamComponents/Teams";
 import TeamWrestlers from "./components/teamComponents/TeamWrestlers";
 import WrestlerSpecs from "./components/wrestlerComponents/WrestlerSpecs";
 import Rules from './components/Rules';
-import Banzuke from './components/Banzuke'
 
-class App extends Component {
+import { observer } from 'mobx-react';
+import { useStore } from './store';
 
+const App = observer(() => {
+  const token = localStorage.getItem("token");
+  const store = useStore();
+  const loggedIn = store.loggedIn;
+  // componentDidMount() {
+  //   // console.log(this.props.getCurrentUser());
+  //   // this.props.getCurrentUser();
+  //   // // this.props.fetchWrestlers();
+  //   // this.props.fetchUserLeagues();
+  //   // this.props.fetchOpenLeagues();
+  //   // this.props.fetchTeams();
+  // }
 
-  componentDidMount() {
-    console.log(this.props.getCurrentUser());
-    this.props.getCurrentUser();
-    // this.props.fetchWrestlers();
-    this.props.fetchUserLeagues();
-    this.props.fetchOpenLeagues();
-    // this.props.fetchTeams();
-  }
-
-  render() {
-    const token = localStorage.getItem("token");
     return (
       <div>
-        <NavBar />
-        {console.log(this.props.leagues)}
-        {!token ? <Redirect to="/login" /> : null }
+        {/* <NavBar /> */}
+        {!loggedIn ? <Redirect to="/login" /> : 
+        <NavBar /> }
         <Route exact path="/login" render={(props) => <Login {...props} />} />
         <Route path="/signup" render={props => <SignUp {...props} />}
         />
@@ -67,30 +68,8 @@ class App extends Component {
           path="/settings"
           render={props => <Settings {...props} />}
         />
-        <Route 
-          path="/banzuke"
-          render={props => <Banzuke {...props} />}
-        />
       </div>
     );
-  }
-}
+});
 
-const mapStateToProps = (state) => {
-  return {
-    wrestlers: state.wrestlers,
-    loading: state.loading,
-    selectedLeague: state.leagues.selectedLeague,
-    leagues: state.leagues.leagues,
-    teams: state.teams.teams,
-    auth: state.auth,
-  };
-};
-
-export default connect(mapStateToProps, {
-  fetchWrestlers,
-  fetchUserLeagues,
-  fetchOpenLeagues,
-  fetchTeams,
-  getCurrentUser,
-})(App);
+export default App;
