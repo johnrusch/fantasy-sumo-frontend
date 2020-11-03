@@ -5,12 +5,12 @@ import { logIn } from '../actions/authActions';
 
 export default class Store {
     wrestlers = [];
-    currentUserID = '';
     currentUserName = '';
-
+    
+    currentUserID = '';
     constructor(){
         makeAutoObservable(this, {
-            wrestlers: observable,
+            // wrestlers: observable,
             currentUserID: observable,
             currentUserName: observable,
             loadWrestlers: action,
@@ -22,10 +22,11 @@ export default class Store {
 
     async loadWrestlers() {
         this.wrestlers = await getWrestlers();
+        console.log(this.wrestlers);
     }
 
     async loadUser(data) {
-        let currentUser = await logIn(data);
+        let currentUser = await logIn(data)
         this.currentUserID = currentUser.id;
         this.currentUserName = currentUser.name;
     }
@@ -33,13 +34,7 @@ export default class Store {
     get loggedIn() {return !!this.currentUserID}
 
     get wrestlersLoaded() {return !!this.wrestlers.length}
-
-    getUserData = reaction(
-        () => this.loggedIn, loggedIn => {
-            if (!loggedIn) return;
-            this.loadWrestlers();
-        }
-    )
+    
 }
 
 const StoreContext = createContext();

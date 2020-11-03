@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route, Redirect } from "react-router-dom";
@@ -28,20 +28,12 @@ const App = observer(() => {
   const token = localStorage.getItem("token");
   const store = useStore();
   const loggedIn = store.loggedIn;
-  // componentDidMount() {
-  //   // console.log(this.props.getCurrentUser());
-  //   // this.props.getCurrentUser();
-  //   // // this.props.fetchWrestlers();
-  //   // this.props.fetchUserLeagues();
-  //   // this.props.fetchOpenLeagues();
-  //   // this.props.fetchTeams();
-  // }
 
     return (
       <div>
-        {/* <NavBar /> */}
         {!loggedIn ? <Redirect to="/login" /> : 
         <NavBar /> }
+        {console.log(store)}
         <Route exact path="/login" render={(props) => <Login {...props} />} />
         <Route path="/signup" render={props => <SignUp {...props} />}
         />
