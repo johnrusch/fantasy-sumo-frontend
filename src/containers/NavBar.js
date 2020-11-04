@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import { makeStyles } from "@material-ui/core/styles";
@@ -11,7 +11,6 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormGroup from "@material-ui/core/FormGroup";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import Link from "@material-ui/core/Link";
 import Button from "@material-ui/core/Button";
 
 import { observer } from 'mobx-react';
@@ -79,8 +78,10 @@ const NavBar = observer((props) => {
           </Button>
         </Typography>
 
-        <Button color="inherit" className="link" href="/leagues">
-          Leagues
+        <Button color="inherit" className="link">
+          <Link to="/leagues">
+            Leagues
+          </Link>
         </Button>
         <Button color="inherit" className="link" href="/teams">
           Teams

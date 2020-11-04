@@ -18,22 +18,10 @@ const Leagues = observer(() => {
     });
   };
 
-  // renderOpenLeagues = () => {
-  //   const leagues = this.props.openLeagues;
-  //   return leagues.map((league) => {
-  //     if (!league.closed) {
-  //       return (
-  //         <LeagueCard selectLeague={this.selectLeague} leagueData={league} />
-  //       );
-  //     }
-  //   });
-  // };
-
-
     return (
       <div>
         <h4 className="center">My Leagues</h4>
-        {this.props.userLeagues && renderUserLeagues()}
+        {store.userLeagues && renderUserLeagues()}
         {/* <h4 className="center">Open Leagues</h4>
         {this.props.openLeagues && this.renderOpenLeagues()} */}
         <Paper elevation={3}>
@@ -41,14 +29,6 @@ const Leagues = observer(() => {
         </Paper>
       </div>
     );
-})
-
-// const mapStateToProps = (state) => {
-//   return {
-//     userLeagues: state.leagues.userLeagues,
-//     openLeagues: state.leagues.openLeagues,
-//     loading: state.loading,
-//   };
-// };
+});
 
 export default Leagues;

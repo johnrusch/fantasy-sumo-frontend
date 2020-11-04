@@ -30,48 +30,49 @@ const App = observer((props) => {
   const store = useStore();
   const loggedIn = store.loggedIn;
 
-  useEffect(() => {
-    if (!loggedIn) {
-      return;
-    } else {
-      // store.loadWrestlers();
-      // store.loadLeagues();
-    }
-  })
-
     return (
       <div>
         {console.log(props)}
-        {!loggedIn ? <Redirect to="/login" /> : 
-        <NavBar /> }
-        <Route exact path="/login" render={(props) => <Login {...props} />} />
-        <Route path="/signup" render={props => <SignUp {...props} />}
-        />
-        <Route path="/leagues" render={(props) => <Leagues {...props} />} />
-        <Route
-          path="/league/standings"
-          render={(props) => <LeagueStandings {...props} />}
-        />
-        <Route path="/league/new" render={(props) => <CreateLeague {...props} />} />
-        <Route path="/teams" render={(props) => <Teams {...props} />} />
-        <Route
-          path="/team/wrestlers"
-          render={(props) => <TeamWrestlers {...props} />}
-        />
-        <Route
-          path="/wrestler"
-          render={(props) => <WrestlerSpecs {...props} />}
-        />
-        <Route 
-          path="/rules"
-          render={props => <Rules {...props} />}
-        />
-        <Route 
-          path="/settings"
-          render={props => <Settings {...props} />}
-        />
+        <>
+          {!loggedIn ?
+          <Redirect to="/login" /> 
+          : 
+          <NavBar /> }
+        </>
+        {store.retrievingData ?
+        <IsLoadingHOC  />
+        :
+        <>
+          <Route exact path="/login" render={(props) => <Login {...props} />} />
+          <Route path="/signup" render={props => <SignUp {...props} />}
+          />
+          <Route path="/leagues" render={(props) => <Leagues {...props} />} />
+          <Route
+            path="/league/standings"
+            render={(props) => <LeagueStandings {...props} />}
+          />
+          <Route path="/league/new" render={(props) => <CreateLeague {...props} />} />
+          <Route path="/teams" render={(props) => <Teams {...props} />} />
+          <Route
+            path="/team/wrestlers"
+            render={(props) => <TeamWrestlers {...props} />}
+          />
+          <Route
+            path="/wrestler"
+            render={(props) => <WrestlerSpecs {...props} />}
+          />
+          <Route 
+            path="/rules"
+            render={props => <Rules {...props} />}
+          />
+          <Route 
+            path="/settings"
+            render={props => <Settings {...props} />}
+          />
+        </>
+        }
       </div>
     );
 });
 
-export default IsLoadingHOC(App, "One sec!");
+export default App;

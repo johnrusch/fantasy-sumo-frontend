@@ -24,10 +24,10 @@ export default class Store {
             openLeagues: observable,
             selectedLeague: observable,
             retrievingData: observable,
-            // loadWrestlers: action,
             loadUser: action,
             loggedIn: computed,
-            wrestlersLoaded: computed
+            wrestlersLoaded: computed,
+            selectLeague: action
         });
     }
     
@@ -42,14 +42,9 @@ export default class Store {
         this.retrievingData = false;
     }
 
-    // async loadWrestlers() {
-    //     this.wrestlers = await getWrestlers();
-    // }
-
-    // async loadLeagues() {
-    //     this.userLeagues = await getUserLeagues();
-    //     this.openLeagues = await getOpenLeagues();
-    // }
+    selectLeague = (leagueData) => {
+        this.selectedLeague = leagueData
+    }
 
     get loggedIn() {return !!this.currentUserID}
 
