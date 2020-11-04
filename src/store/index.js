@@ -12,6 +12,7 @@ export default class Store {
     userLeagues = [];
     openLeagues = [];
     selectedLeague = '';
+    retrievingData = false;
 
     constructor(){
         makeAutoObservable(this, {
@@ -22,7 +23,8 @@ export default class Store {
             userLeagues: observable,
             openLeagues: observable,
             selectedLeague: observable,
-            loadWrestlers: action,
+            retrievingData: observable,
+            // loadWrestlers: action,
             loadUser: action,
             loggedIn: computed,
             wrestlersLoaded: computed
@@ -30,19 +32,24 @@ export default class Store {
     }
     
     async loadUser(data) {
+        this.retrievingData = true;
         let currentUser = await logIn(data)
         this.currentUserID = currentUser.id;
         this.currentUserName = currentUser.name;
-    }
-
-    async loadWrestlers() {
         this.wrestlers = await getWrestlers();
-    }
-
-    async loadLeagues() {
         this.userLeagues = await getUserLeagues();
         this.openLeagues = await getOpenLeagues();
+        this.retrievingData = false;
     }
+
+    // async loadWrestlers() {
+    //     this.wrestlers = await getWrestlers();
+    // }
+
+    // async loadLeagues() {
+    //     this.userLeagues = await getUserLeagues();
+    //     this.openLeagues = await getOpenLeagues();
+    // }
 
     get loggedIn() {return !!this.currentUserID}
 

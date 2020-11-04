@@ -34,9 +34,8 @@ const App = observer((props) => {
     if (!loggedIn) {
       return;
     } else {
-      props.setLoading(true);
-      store.loadWrestlers();
-      store.loadLeagues();
+      // store.loadWrestlers();
+      // store.loadLeagues();
     }
   })
 
