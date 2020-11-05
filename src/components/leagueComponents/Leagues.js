@@ -1,7 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import LeagueCard from "./LeagueCard";
-import CreateLeague from "./CreateLeague";
 import Paper from "@material-ui/core/Paper";
 import { observer } from 'mobx-react';
 import { useStore } from '../../store';
@@ -13,7 +12,7 @@ const Leagues = observer(() => {
     const leagues = store.userLeagues;
     return leagues.map((league) => {
       return (
-        <LeagueCard selectLeague={this.selectLeague} leagueData={league} />
+        <LeagueCard selectLeague={store.selectLeague} leagueData={league} key={league.id}/>
       );
     });
   };

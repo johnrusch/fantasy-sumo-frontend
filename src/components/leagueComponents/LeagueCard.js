@@ -4,16 +4,16 @@ import { Link } from "react-router-dom";
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
+import { observer } from 'mobx-react'
+import { useStore } from '../../store';
 
-import { connect } from "react-redux";
-import { selectLeague } from "../../actions/leagueActions";
-
-const LeagueCard = (props) => {
+const LeagueCard = observer((props) => {
   const { leagueData } = props;
   const { name, id, teams } = leagueData;
+  const store = useStore();
 
   return (
-    <div className="flexbox" onClick={() => props.selectLeague(leagueData)}>
+    <div className="flexbox" onClick={() => store.selectLeague(leagueData)}>
     <Paper elevation={3}>
       <Link to="/league/standings">
         <ListItem>
@@ -26,6 +26,6 @@ const LeagueCard = (props) => {
     </Paper>
   </div>
   );
-};
+});
 
-export default connect(null, { selectLeague })(LeagueCard);
+export default LeagueCard;

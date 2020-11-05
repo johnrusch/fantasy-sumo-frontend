@@ -1,14 +1,11 @@
 import React from "react";
 import TeamCard from "../teamComponents/TeamCard";
+import { observer } from 'mobx-react';
+import { useStore } from '../../store';
 
-import List from '@material-ui/core/List';
-import Grid from "@material-ui/core/Grid";
-
-import { connect } from "react-redux";
-
-const LeagueStandings = (props) => {
-  const { leagueData, selectTeam } = props;
-  const { name, teams, id, closed } = leagueData;
+const LeagueStandings = observer((props) => {
+  const store = useStore();
+  const { name, teams, id, closed } = store.selectedLeague;
 
   const comparePoints = (a, b) => {
     const pointsA = parseInt(a.points);
@@ -25,9 +22,9 @@ const LeagueStandings = (props) => {
 
   const renderTeams = () => {
     if (teams && closed === true) {
-      const sortedTeams = teams.sort(comparePoints);
+      const sortedTeams = teams.slice().sort(comparePoints);
       return sortedTeams.map((team) => {
-        return <TeamCard teamData={team} selectTeam={selectTeam} />;
+        return <TeamCard teamData={team} key={team.id} />;
       });
     } else {
       props.history.push("/leagues");
@@ -37,18 +34,9 @@ const LeagueStandings = (props) => {
   return (
     <div>
       <h4 className="center">{name}</h4>
-        {console.log(props.leagueData)}
         {renderTeams()}
-
-
     </div>
   );
-};
+});
 
-const mapStateToProps = (state) => {
-  return {
-    leagueData: state.leagues.selectedLeague,
-  };
-};
-
-export default connect(mapStateToProps)(LeagueStandings);
+export default LeagueStandings;

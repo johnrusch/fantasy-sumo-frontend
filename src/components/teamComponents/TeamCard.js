@@ -1,21 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { connect } from "react-redux";
-import { selectTeam } from "../../actions/teamActions";
-
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
+import { observer } from 'mobx-react';
+import { useStore } from '../../store';
 
-const TeamCard = (props) => {
-  const { teamData, selectTeam } = props;
+const TeamCard = observer((props) => {
+  const { teamData } = props;
+  const store = useStore();
 
   return (
-    <div className="flexbox" onClick={() => selectTeam(teamData)}>
+    <div className="flexbox" onClick={() => store.selectTeam(teamData)}>
       {console.log(teamData)}
       <Paper elevation={3}>
         <Link to="/team/wrestlers">
@@ -58,6 +58,6 @@ const TeamCard = (props) => {
       </Paper>
     </div>
   );
-};
+});
 
-export default connect(null, { selectTeam })(TeamCard);
+export default TeamCard;

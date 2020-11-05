@@ -12,6 +12,7 @@ export default class Store {
     userLeagues = [];
     openLeagues = [];
     selectedLeague = '';
+    selectedTeam = '';
     retrievingData = false;
 
     constructor(){
@@ -23,11 +24,13 @@ export default class Store {
             userLeagues: observable,
             openLeagues: observable,
             selectedLeague: observable,
+            selectedTeam: observable,
             retrievingData: observable,
             loadUser: action,
+            selectLeague: action,
+            selectTeam: action,
             loggedIn: computed,
             wrestlersLoaded: computed,
-            selectLeague: action
         });
     }
     
@@ -44,6 +47,10 @@ export default class Store {
 
     selectLeague = (leagueData) => {
         this.selectedLeague = leagueData
+    }
+
+    selectTeam = (teamData) => {
+        this.selectedTeam = teamData
     }
 
     get loggedIn() {return !!this.currentUserID}
