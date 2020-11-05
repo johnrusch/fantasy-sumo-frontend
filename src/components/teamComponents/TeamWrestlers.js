@@ -1,14 +1,14 @@
 import React from "react";
 import WrestlerCard from "../wrestlerComponents/WrestlerCard";
-
+import { observer } from 'mobx-react';
+import { useStore } from '../../store';
 import List from '@material-ui/core/List';
 
 
-import { connect } from "react-redux";
-
-const TeamWrestlers = (props) => {
-  const { teamData, selectWrestler } = props;
-  const { name, wrestlers } = teamData;
+const TeamWrestlers = observer((props) => {
+  const store = useStore();
+  const { selectWrestler } = props;
+  const { name, wrestlers } = store.selectedTeam;
 
   const renderWrestlers = () => {
     if (wrestlers) {
@@ -16,7 +16,8 @@ const TeamWrestlers = (props) => {
         return (
           <WrestlerCard
             wrestlerData={wrestler}
-            selectWrestler={selectWrestler}
+            selectWrestler={store.selectWrestler}
+            key={wrestler.id}
           />
         );
       });
@@ -25,20 +26,15 @@ const TeamWrestlers = (props) => {
   return (
     <div>
       {/* <List> */}
-   {teamData.name ? (
-      <h4 className="center">{`${teamData.name} - ${teamData.user.name}`}</h4>
+   {name ? (
+      <h4 className="center">{`${name} - ${store.selectedTeam.user.name}`}</h4>
    ) : (
      props.history.push("/league/standings")
    )}
       {renderWrestlers()}
     </div>
   );
-};
+});
 
-const mapStateToProps = (state) => {
-  return {
-    teamData: state.teams.selectedTeam,
-  };
-};
 
-export default connect(mapStateToProps)(TeamWrestlers);
+export default TeamWrestlers;

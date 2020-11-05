@@ -11,9 +11,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-
-import { connect } from "react-redux";
-import { selectWrestler } from "../../actions/wrestlerActions";
+import { observer } from 'mobx-react';
+import { useStore } from '../../store';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -44,9 +43,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const WrestlerCard = (props) => {
-  const { selectWrestler, wrestlerData } = props;
-  const { id, name, img, currentRank } = wrestlerData;
+const WrestlerCard = observer((props) => {
+  const store = useStore();
+  const { wrestlerData } = props;
+  // const { id, name, img, currentRank } = wrestlerData;
 
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
@@ -66,7 +66,7 @@ const WrestlerCard = (props) => {
   };
 
   return (
-    <div onClick={() => selectWrestler(wrestlerData)}>
+    <div onClick={() => store.selectWrestler(wrestlerData)}>
       <Paper elevation={3}>
         <Link to="/wrestler">
           <ListItem>
@@ -107,6 +107,6 @@ const WrestlerCard = (props) => {
       </Paper>
     </div>
   );
-};
+});
 
-export default connect(null, { selectWrestler })(WrestlerCard);
+export default WrestlerCard;

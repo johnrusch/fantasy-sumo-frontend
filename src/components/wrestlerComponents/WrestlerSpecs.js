@@ -1,6 +1,6 @@
 import React from "react";
-
-import { connect } from "react-redux";
+import { observer } from 'mobx-react';
+import { useStore } from '../../store';
 
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -11,8 +11,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { Line } from 'react-chartjs-2';
 
-const WrestlerSpecs = (props) => {
-  const { id, name, age, img, currentRank, records } = props.wrestlerData;
+const WrestlerSpecs = observer((props) => {
+  const store = useStore();
+  const wrestler = store.selectedWrestler
+  // const { id, name, age, img, currentRank, records } = store.selectedWrestler;
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -40,66 +42,66 @@ const WrestlerSpecs = (props) => {
   const classes = useStyles();
 
  
-  const tournaments = records.map(record => {
-    return record.tournament
-  })
+  // const tournaments = records.map(record => {
+  //   return record.tournament
+  // })
 
-  const wins = records.map(record => {
-    return record.wins
-  })
+  // const wins = records.map(record => {
+  //   return record.wins
+  // })
 
 
-  const state = {
-    labels: tournaments.reverse(),
-    datasets: [
-      {
-        label: 'Wins',
-        fill: false,
-        lineTension: 0.5,
-        backgroundColor: 'rgba(75,192,192,1)',
-        borderColor: 'rgba(0,0,0,1)',
-        borderWidth: 2,
-        data: wins.reverse()
-      }
-    ]
-  }
+  // const state = {
+  //   labels: tournaments.reverse(),
+  //   datasets: [
+  //     {
+  //       label: 'Wins',
+  //       fill: false,
+  //       lineTension: 0.5,
+  //       backgroundColor: 'rgba(75,192,192,1)',
+  //       borderColor: 'rgba(0,0,0,1)',
+  //       borderWidth: 2,
+  //       data: wins.reverse()
+  //     }
+  //   ]
+  // }
 
   return (
     <div>
-      {props.wrestlerData ? (
+      {store.selectedWrestler ? (
         <Grid container component="main" className="grid-container">
           {console.log(props.wrestlerData)}
           <Card>
             <CardHeader
-              avatar={<Avatar aria-label="wrestler" alt={name} src={img} />}
-              title={name}
-              subheader={currentRank}
+              avatar={<Avatar aria-label="wrestler" alt={wrestler.name} src={wrestler.img} />}
+              title={wrestler.name}
+              subheader={wrestler.currentRank}
               className="Name"
             />
             <CardContent>
               <div className="Attributes">
                 <div>
-                  <p>Height: {props.wrestlerData.height} cm</p>
+                  <p>Height: {wrestler.height} cm</p>
                 </div>
                 <div>
-                  <p>Weight: {props.wrestlerData.weight} kg</p>
+                  <p>Weight: {wrestler.weight} kg</p>
                 </div>
                 <div>
-                  <p>Age: {props.wrestlerData.age}</p>
+                  <p>Age: {wrestler.age}</p>
                 </div>
                 <div>
-                  <p>Yusho (Tournament Wins): {props.wrestlerData.yusho}</p>
+                  <p>Yusho (Tournament Wins): {wrestler.yusho}</p>
                 </div>
               </div>
             </CardContent>
             <CardContent>
               <div className="Stable">
                 <div>
-                  <p>Stable: {props.wrestlerData.heya}</p>
+                  <p>Stable: {wrestler.heya}</p>
                 </div>
               </div>
             </CardContent>
-            <CardContent>
+            {/* <CardContent>
               <div className="Chart">
                 <Line 
                   data={state}
@@ -116,7 +118,7 @@ const WrestlerSpecs = (props) => {
                   }}
                 />
               </div>
-            </CardContent>
+            </CardContent> */}
           </Card>
         </Grid>
       ) : (
@@ -124,12 +126,6 @@ const WrestlerSpecs = (props) => {
       )}
     </div>
   );
-};
+});
 
-const mapStateToProps = (state) => {
-  return {
-    wrestlerData: state.wrestlers.selectedWrestler,
-  };
-};
-
-export default connect(mapStateToProps)(WrestlerSpecs);
+export default WrestlerSpecs;
