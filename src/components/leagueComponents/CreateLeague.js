@@ -6,20 +6,20 @@ import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { observer } from 'mobx-react';
 import { useStore } from '../../store';
 
-const CreateLeague = (props) => {
+const CreateLeague = observer((props) => {
   //new league state
   const store = useStore();
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [createdLeagueId, setCreatedLeagueId] = useState(0);
+  const [newLeagueLink, setNewLeagueLink] = useState('');
 
   //collects new league into object for post request
   const newLeague = {
     name: name,
     passphrase: password,
     closed: false,
-    creator_id: props.currentUserId,
+    creator_id: store.currentUserID,
   };
 
   //new league state handlers
@@ -38,26 +38,9 @@ const CreateLeague = (props) => {
   //onSubmit event handler
   const addLeague = (e) => {
     e.preventDefault();
-    props.createLeague(newLeague);
-    if (!props.errors) {
-      const newLeagueId = findNewLeagueId(newLeague.name);
-      console.log(props);
-      handleOpen();
-    } else {
-      return props.error;
-    }
+    const addedLeague = store.addLeague(newLeague);
+    // handleOpen();
   };
-
-  const findNewLeagueId = leagueName => {
-    const createdLeague = props.openLeagues.map(league => {
-      return league.name === name;
-    })
-    if (createdLeague.length !== 0) {
-      return createdLeague
-    } else {
-      return null;
-    }
-  }
 
   //on component update checks to see if passwords match
   useEffect(() => {
@@ -67,8 +50,6 @@ const CreateLeague = (props) => {
       }
       return true;
     });
-    setCreatedLeagueId(findNewLeagueId(newLeague.name))
-    console.log(props);
   });
 
   //modal state
@@ -163,12 +144,12 @@ const CreateLeague = (props) => {
           onClose={handleClose}
         >
           <div style={modalStyle} className={classes.paper}>
-            You're ready to go! {createdLeagueId}
+            You're ready to go! {newLeagueLink}
           </div>
         </Modal>
       </div>
     </div>
   );
-};
+});
 
 export default CreateLeague;

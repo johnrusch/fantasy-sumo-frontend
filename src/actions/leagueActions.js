@@ -10,23 +10,6 @@ const headers = () => {
     };
 };
 
-// export const fetchUserLeagues = () => {
-//     const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/user_leagues'
-//     return (dispatch) => {
-//         dispatch({ type: 'LOADING_LEAGUES'});
-//         fetch(URL, {
-//             headers: headers()
-//         })
-//         .then(resp => resp.json())
-//         .then(userLeagues => {
-//                 console.log(userLeagues)
-//                 if (!userLeagues.error) {
-//                     dispatch({ type: 'ADD_USER_LEAGUES', userLeagues })
-//                 }
-//             })
-//     }
-// }
-
 export const getUserLeagues = async () => {
     const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/user_leagues'
     let response = await fetch(URL, { headers: headers() });
@@ -35,18 +18,6 @@ export const getUserLeagues = async () => {
         return userLeagues;
     }
 }
-
-// export const fetchOpenLeagues = () => {
-//     const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/open_leagues'
-//     return (dispatch) => {
-//         dispatch({ type: 'LOADING_LEAGUES'});
-//         fetch(URL, {
-//             headers: headers()
-//         })
-//             .then(resp => resp.json())
-//             .then(openLeagues => dispatch({ type: 'ADD_OPEN_LEAGUES', openLeagues }))
-//     }
-// }
 
 export const getOpenLeagues = async () => {
     const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/open_leagues'
@@ -86,10 +57,8 @@ export const createLeague = async data => {
         headers: headers(),
         body: JSON.stringify(data)
     });
-    let league = await response.json();
-    return league;
+    if (response.ok) {
+        let league = await response.json();
+        return league;
+    }
 }
-
-export const selectLeague = (league) => {
-    return { type: 'SELECT_LEAGUE', payload: league}
-  };

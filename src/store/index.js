@@ -2,7 +2,7 @@ import React, { createContext, useContext } from 'react';
 import { makeAutoObservable, action, observable, computed, reaction } from 'mobx';
 import { getWrestlers } from '../actions/wrestlerActions';
 import { logIn } from '../actions/authActions';
-import { getUserLeagues, getOpenLeagues } from '../actions/leagueActions';
+import { getUserLeagues, getOpenLeagues, createLeague } from '../actions/leagueActions';
 import { getTeams } from '../actions/teamActions';
 
 export default class Store {
@@ -33,6 +33,7 @@ export default class Store {
             selectLeague: action,
             selectTeam: action,
             selectWrestler: action,
+            addLeague: action,
             loggedIn: computed,
             wrestlersLoaded: computed,
         });
@@ -60,6 +61,15 @@ export default class Store {
 
     selectWrestler = (wrestlerData) => {
         this.selectedWrestler = wrestlerData
+    }
+
+    async addLeague(leagueData) {
+        this.retrievingData = true;
+        const newLeague = await createLeague(leagueData);
+        this.userLeagues = [...this.userLeagues, newLeague];
+        this.openLeagues = [...this.openLeagues, newLeague];
+        this.retrievingData = false;
+        return newLeague;
     }
 
     get loggedIn() {return !!this.currentUserID}
