@@ -79,6 +79,16 @@ export const createLeague = data => {
 }
 }
 
+export const createLeague = async data => {
+    const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/leagues'
+    let response = await fetch(URL, {
+        method: "POST",
+        headers: headers(),
+        body: JSON.stringify(data)
+    });
+     
+}
+
 export const selectLeague = (league) => {
     return { type: 'SELECT_LEAGUE', payload: league}
   };

@@ -73,8 +73,10 @@ const NavBar = observer((props) => {
     <AppBar position="static">
       <Toolbar>
         <Typography variant="h6" className={classes.title}>
-          <Button href="/" className="domain">
-            Fantasy Sumo
+          <Button className="domain">
+            <Link to="/">
+              Fantasy Sumo
+            </Link>
           </Button>
         </Typography>
 
@@ -83,8 +85,10 @@ const NavBar = observer((props) => {
             Leagues
           </Link>
         </Button>
-        <Button color="inherit" className="link" href="/teams">
-          Teams
+        <Button color="inherit" className="link">
+          <Link to="/teams">
+            Teams
+          </Link>
         </Button>
         <Button color="inherit" className="link" href="/rules">
           Rules

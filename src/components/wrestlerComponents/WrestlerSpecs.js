@@ -42,11 +42,11 @@ const WrestlerSpecs = observer((props) => {
   const classes = useStyles();
 
  
-  // const tournaments = records.map(record => {
+  // const tournaments = wrestler.records.map(record => {
   //   return record.tournament
   // })
 
-  // const wins = records.map(record => {
+  // const wins = wrestler.records.map(record => {
   //   return record.wins
   // })
 
@@ -68,7 +68,7 @@ const WrestlerSpecs = observer((props) => {
 
   return (
     <div>
-      {store.selectedWrestler ? (
+      {wrestler ? (
         <Grid container component="main" className="grid-container">
           {console.log(props.wrestlerData)}
           <Card>

@@ -1,43 +1,30 @@
-import React, { Component } from "react";
+import React from "react";
 import TeamCard from "./TeamCard";
+import { observer } from "mobx-react";
+import { useStore } from "../../store";
 
-import { connect } from "react-redux";
+const Teams = observer(() => {
+  const store = useStore();
+  const currentUserID = store.currentUserID;
 
-import { fetchTeams } from "../../actions/teamActions"
-
-class Teams extends Component {
-  userTeams = () => {
-    const currentUser = this.props.currentUser;
-    return this.props.teams.filter((team) => {
-      return team.user.id === currentUser.id;
+  const userTeams = () => {
+    return store.teams.filter((team) => {
+      return team.user.id === currentUserID;
     });
   };
 
-  renderTeams = () => {
-    return this.userTeams().map((team) => {
-      return <TeamCard teamData={team} />;
+  const renderTeams = () => {
+    return userTeams().map((team) => {
+      return <TeamCard teamData={team} key={team.id} />;
     });
   };
 
-  componentDidMount() {
-    this.props.fetchTeams()
-  }
-
-  render() {
-    return (
+  return (
     <div>
-      <h4 className="center">My Teams</h4> 
-      {this.renderTeams()}
+      <h4 className="center">My Teams</h4>
+      {renderTeams()}
     </div>
-    )
-  }
-}
+  );
+});
 
-const mapStateToProps = (state) => {
-  return {
-    currentUser: state.auth,
-    teams: state.teams.teams,
-  };
-};
-
-export default connect(mapStateToProps, { fetchTeams })(Teams);
+export default Teams;

@@ -3,9 +3,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import { observer } from 'mobx-react';
+import { useStore } from '../../store';
 
 const CreateLeague = (props) => {
   //new league state
+  const store = useStore();
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -166,15 +169,6 @@ const CreateLeague = (props) => {
       </div>
     </div>
   );
-};
-
-const mapStateToProps = (state) => {
-  return {
-    currentUserId: state.auth.id,
-    errors: state.errors,
-    openLeagues: state.leagues.openLeagues,
-    loading: state.leagues.loading
-  };
 };
 
 export default CreateLeague;

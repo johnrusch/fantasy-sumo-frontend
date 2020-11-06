@@ -3,14 +3,15 @@ import { makeAutoObservable, action, observable, computed, reaction } from 'mobx
 import { getWrestlers } from '../actions/wrestlerActions';
 import { logIn } from '../actions/authActions';
 import { getUserLeagues, getOpenLeagues } from '../actions/leagueActions';
+import { getTeams } from '../actions/teamActions';
 
 export default class Store {
     currentUserID = '';
     currentUserName = '';
     wrestlers = [];
-    selectedWrestler = '';
     userLeagues = [];
     openLeagues = [];
+    teams = [];
     selectedLeague = '';
     selectedTeam = '';
     selectedWrestler = '';
@@ -21,9 +22,9 @@ export default class Store {
             currentUserID: observable,
             currentUserName: observable,
             wrestlers: observable,
-            selectedWrestler: observable,
             userLeagues: observable,
             openLeagues: observable,
+            teams: observable,
             selectedLeague: observable,
             selectedTeam: observable,
             selectedWrestler: observable,
@@ -45,6 +46,7 @@ export default class Store {
         this.wrestlers = await getWrestlers();
         this.userLeagues = await getUserLeagues();
         this.openLeagues = await getOpenLeagues();
+        this.teams = await getTeams();
         this.retrievingData = false;
     }
 
