@@ -12,7 +12,6 @@ const CreateLeague = observer((props) => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [newLeagueLink, setNewLeagueLink] = useState('');
 
   //collects new league into object for post request
   const newLeague = {
@@ -38,8 +37,8 @@ const CreateLeague = observer((props) => {
   //onSubmit event handler
   const addLeague = (e) => {
     e.preventDefault();
-    const addedLeague = store.addLeague(newLeague);
-    // handleOpen();
+    // const addedLeague = store.addLeague(newLeague);
+    handleOpen();
   };
 
   //on component update checks to see if passwords match
@@ -144,7 +143,7 @@ const CreateLeague = observer((props) => {
           onClose={handleClose}
         >
           <div style={modalStyle} className={classes.paper}>
-            You're ready to go! {newLeagueLink}
+            You're ready to go!
           </div>
         </Modal>
       </div>
