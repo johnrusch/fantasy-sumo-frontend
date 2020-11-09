@@ -22,6 +22,7 @@ import WrestlerSpecs from "./components/wrestlerComponents/WrestlerSpecs";
 import Rules from './components/Rules';
 import IsLoadingHOC from './HOCs/IsLoadingHOC';
 
+
 import { observer } from 'mobx-react';
 import { useStore } from './store';
 

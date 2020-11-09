@@ -37,8 +37,8 @@ const CreateLeague = observer((props) => {
   //onSubmit event handler
   const addLeague = (e) => {
     e.preventDefault();
-    // const addedLeague = store.addLeague(newLeague);
-    handleOpen();
+    const addedLeague = store.addLeague(newLeague);
+    // handleOpen();
   };
 
   //on component update checks to see if passwords match
@@ -52,7 +52,7 @@ const CreateLeague = observer((props) => {
   });
 
   //modal state
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
   const [modalStyle] = useState(getModalStyle);
 
   //modal styling
@@ -94,12 +94,14 @@ const CreateLeague = observer((props) => {
 
   const classes = useStyles();
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  const open = store.newLeagueSuccessModal;
+
+  // const handleOpen = () => {
+  //   setOpen(true);
+  // };
 
   const handleClose = () => {
-    setOpen(false);
+    store.setNewLeagueSuccessModal();
   };
 
   return (
@@ -140,7 +142,7 @@ const CreateLeague = observer((props) => {
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
           open={open}
-          onClose={handleClose}
+          onClose={() => handleClose()}
         >
           <div style={modalStyle} className={classes.paper}>
             You're ready to go!

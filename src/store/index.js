@@ -16,6 +16,7 @@ export default class Store {
     selectedTeam = '';
     selectedWrestler = '';
     retrievingData = false;
+    newLeagueSuccessModal = false;
 
     constructor(){
         makeAutoObservable(this, {
@@ -29,11 +30,13 @@ export default class Store {
             selectedTeam: observable,
             selectedWrestler: observable,
             retrievingData: observable,
+            newLeagueSuccessModal: observable,
             loadUser: action,
             selectLeague: action,
             selectTeam: action,
             selectWrestler: action,
             addLeague: action,
+            setNewLeagueSuccessModal: action,
             loggedIn: computed,
             wrestlersLoaded: computed,
         });
@@ -63,11 +66,16 @@ export default class Store {
         this.selectedWrestler = wrestlerData
     }
 
+    setNewLeagueSuccessModal = () => {
+        this.newLeagueSuccessModal = !this.newLeagueSuccessModal;
+    }
+
     async addLeague(leagueData) {
         this.retrievingData = true;
         const newLeague = await createLeague(leagueData);
         this.userLeagues = [...this.userLeagues, newLeague];
         this.openLeagues = [...this.openLeagues, newLeague];
+        this.setNewLeagueSuccessModal();
         this.retrievingData = false;
         return newLeague;
     }
