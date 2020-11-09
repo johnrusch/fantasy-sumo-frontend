@@ -16,6 +16,7 @@ export default class Store {
     selectedTeam = '';
     selectedWrestler = '';
     retrievingData = false;
+    newestLeague = '';
     newLeagueSuccessModal = false;
 
     constructor(){
@@ -30,6 +31,7 @@ export default class Store {
             selectedTeam: observable,
             selectedWrestler: observable,
             retrievingData: observable,
+            newestLeague: observable,
             newLeagueSuccessModal: observable,
             loadUser: action,
             selectLeague: action,
@@ -71,13 +73,14 @@ export default class Store {
     }
 
     async addLeague(leagueData) {
+        this.newestLeague = '';
         this.retrievingData = true;
         const newLeague = await createLeague(leagueData);
+        this.newestLeague = newLeague;
         this.userLeagues = [...this.userLeagues, newLeague];
         this.openLeagues = [...this.openLeagues, newLeague];
         this.setNewLeagueSuccessModal();
         this.retrievingData = false;
-        return newLeague;
     }
 
     get loggedIn() {return !!this.currentUserID}

@@ -33,7 +33,6 @@ const App = observer((props) => {
 
     return (
       <div>
-        {console.log(props)}
         <>
           {!loggedIn ?
           <Redirect to="/login" /> 
