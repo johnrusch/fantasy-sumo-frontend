@@ -20,7 +20,7 @@ import { useStore } from '../store';
 // import { logOut } from "../actions/authActions";
 
 const NavBar = observer((props) => {
-  const currentUser = props.currentUser;
+  // const currentUser = props.currentUser;
   const store = useStore();
 
   const useStyles = makeStyles((theme) => ({
@@ -93,7 +93,7 @@ const NavBar = observer((props) => {
         <Button color="inherit" className="link" href="/rules">
           Rules
         </Button>
-        {currentUser && (
+        {store.loggedIn && (
           <div>
             <IconButton
               aria-label="account of current user"
@@ -120,8 +120,10 @@ const NavBar = observer((props) => {
               onClose={handleClose}
             >
               <MenuItem>
-                <Button href="/settings" onClick={handleClose}>
-                  My Account
+                <Button onClick={handleClose}>
+                  <Link to='/settings'>
+                    My Account
+                  </Link>
                 </Button>
               </MenuItem>
               <MenuItem>
@@ -138,11 +140,5 @@ const NavBar = observer((props) => {
   );
   
 });
-
-const mapStateToProps = (state) => {
-  return {
-    currentUser: state.auth.name,
-  };
-};
 
 export default NavBar;

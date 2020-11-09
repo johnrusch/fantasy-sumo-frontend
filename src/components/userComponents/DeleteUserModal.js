@@ -2,9 +2,8 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
-
-import { connect } from 'react-redux';
-import { deleteUser } from '../../actions/userActions';
+import { observer } from 'mobx-react';
+import { useStore } from '../../store';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -35,7 +34,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SimpleModal = props => {
+const DeleteUserModal = observer(props => {
+  const store = useStore();
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
@@ -77,12 +77,6 @@ const SimpleModal = props => {
       </Modal>
     </div>
   );
-}
+}); 
 
-const mapStateToProps = state => {
-    return {
-        currentUserId: state.auth.id
-    }
-}
-
-export default connect(mapStateToProps, { deleteUser })(SimpleModal);
+export default DeleteUserModal;
