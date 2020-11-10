@@ -71,7 +71,7 @@ const App = observer(() => {
             render={props => <Settings {...props} />}
           />
           <Route
-            path="/invite/:leagueId"
+            path="/invite=:leagueId"
             render={props => <LeagueInvitation {...props} />}
           />
         </>
