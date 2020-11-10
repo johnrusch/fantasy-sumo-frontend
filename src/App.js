@@ -21,12 +21,13 @@ import TeamWrestlers from "./components/teamComponents/TeamWrestlers";
 import WrestlerSpecs from "./components/wrestlerComponents/WrestlerSpecs";
 import Rules from './components/Rules';
 import IsLoadingHOC from './HOCs/IsLoadingHOC';
+import LeagueInvitation from './components/leagueComponents/LeagueInvitation';
 
 
 import { observer } from 'mobx-react';
 import { useStore } from './store';
 
-const App = observer((props) => {
+const App = observer(() => {
   const token = localStorage.getItem("token");
   const store = useStore();
   const loggedIn = store.loggedIn;
@@ -34,10 +35,10 @@ const App = observer((props) => {
     return (
       <div>
         <>
-          {!loggedIn ?
+          {/* {!loggedIn ?
           <Redirect to="/login" /> 
-          : 
-          <NavBar /> }
+          :  */}
+          <NavBar /> 
         </>
         {store.retrievingData ?
         <IsLoadingHOC  />
@@ -68,6 +69,10 @@ const App = observer((props) => {
           <Route 
             path="/settings"
             render={props => <Settings {...props} />}
+          />
+          <Route
+            path="/invite/:leagueId"
+            render={props => <LeagueInvitation {...props} />}
           />
         </>
         }

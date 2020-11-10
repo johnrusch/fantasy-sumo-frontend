@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-import { observer } from 'mobx-react';
-import { useStore } from '../../store';
+import { observer } from "mobx-react";
+import { useStore } from "../../store";
 
 const CreateLeague = observer((props) => {
   //new league state
@@ -99,6 +99,8 @@ const CreateLeague = observer((props) => {
     store.setNewLeagueSuccessModal();
   };
 
+  const link = `localhost:3000/invite/${encodeURIComponent(store.newestLeague.id)}`
+
   return (
     <div>
       <ValidatorForm onSubmit={addLeague}>
@@ -140,7 +142,8 @@ const CreateLeague = observer((props) => {
           onClose={() => handleClose()}
         >
           <div style={modalStyle} className={classes.paper}>
-            You're ready to go! {store.newestLeague.name}
+            You're ready to go! 
+            <Button onClick={() => {navigator.clipboard.writeText(link)}} color="primary">Copy Invitation Link</Button>
           </div>
         </Modal>
       </div>

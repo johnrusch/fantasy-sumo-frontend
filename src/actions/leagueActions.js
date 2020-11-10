@@ -28,28 +28,6 @@ export const getOpenLeagues = async () => {
     }
 }
 
-// export const createLeague = data => {
-//     const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/leagues'
-//     return dispatch => {
-//         console.log(data)
-//         dispatch({ type: 'LOADING_LEAGUES'});
-//         fetch(URL, {
-//         method: "POST",
-//         headers: headers(),
-//         body: JSON.stringify(data)
-//     })
-//         .then(resp => resp.json())
-//         .then(league => {
-//             if (!league.error) {
-//                 dispatch({ type: 'CREATE_LEAGUE', league })
-//                 // localStorage.setItem("token", user.jwt)
-//             } else {
-//                 dispatch({ type: 'THROW_ERROR', league })
-//             }
-//         })
-// }
-// }
-
 export const createLeague = async data => {
     const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/leagues'
     let response = await fetch(URL, {
