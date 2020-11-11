@@ -2,7 +2,7 @@ import React, { createContext, useContext } from 'react';
 import { makeAutoObservable, action, observable, computed, reaction } from 'mobx';
 import { getWrestlers } from '../actions/wrestlerActions';
 import { logIn } from '../actions/authActions';
-import { getUserLeagues, getOpenLeagues, createLeague } from '../actions/leagueActions';
+import { getUserLeagues, getOpenLeagues, createLeague, addUserToLeague } from '../actions/leagueActions';
 import { getTeams } from '../actions/teamActions';
 
 export default class Store {
@@ -80,6 +80,16 @@ export default class Store {
         this.userLeagues = [...this.userLeagues, newLeague];
         this.openLeagues = [...this.openLeagues, newLeague];
         this.setNewLeagueSuccessModal();
+        this.retrievingData = false;
+    }
+
+    async addToLeague(data) {
+        this.retrievingData = true;
+        this.openLeagues = this.openLeagues.filter(league => {
+            return league.id != data.leagueID
+        })
+        const updatedLeague = await addUserToLeague(data);
+        this.openLeagues = [...this.openLeagues, updatedLeague];
         this.retrievingData = false;
     }
 

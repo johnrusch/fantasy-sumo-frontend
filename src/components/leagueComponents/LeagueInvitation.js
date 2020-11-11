@@ -8,8 +8,8 @@ const LeagueInvitation = observer(() => {
   const url = window.location.href.split("=");
   const leagueID = parseInt(url[1])
 
-  const joinLeague = id => {
-
+  const joinLeague = leagueAndUserData => {
+    store.addToLeague(leagueAndUserData)
   }
 
   return (
