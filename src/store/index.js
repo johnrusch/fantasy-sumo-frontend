@@ -86,7 +86,7 @@ export default class Store {
     async addToLeague(data) {
         this.retrievingData = true;
         this.openLeagues = this.openLeagues.filter(league => {
-            return league.id != data.leagueID
+            return league.id !== data.leagueID
         })
         const updatedLeague = await addUserToLeague(data);
         this.openLeagues = [...this.openLeagues, updatedLeague];

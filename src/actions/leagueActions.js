@@ -42,7 +42,7 @@ export const createLeague = async data => {
 }
 
 export const addUserToLeague = async data => {
-    const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/leagues' + `/${leagueID}`;
+    const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/leagues' + `/${data.leagueID}`;
     let response = await fetch(URL, {
         method: 'PATCH',
         headers: headers(),

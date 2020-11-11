@@ -8,14 +8,19 @@ const LeagueInvitation = observer(() => {
   const url = window.location.href.split("=");
   const leagueID = parseInt(url[1])
 
+  const joiningData = {
+      leagueID: leagueID,
+      userID: store.currentUserID
+  }
+
   const joinLeague = leagueAndUserData => {
-    store.addToLeague(leagueAndUserData)
+    return store.addToLeague(leagueAndUserData)
   }
 
   return (
     <div>
       <h2>You've been invited to a league!</h2>
-      <Button color="primary" type="submit" onClick={joinLeague(leagueID)}>
+      <Button color="primary" type="submit" onClick={joinLeague(joiningData)}>
         Join League
       </Button>
     </div>

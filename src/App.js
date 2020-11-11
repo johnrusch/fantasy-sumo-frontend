@@ -35,11 +35,12 @@ const App = observer(() => {
     return (
       <div>
         <>
-          {/* {!loggedIn ?
+          {!loggedIn ?
           <Redirect to="/login" /> 
-          :  */}
-          <NavBar /> 
+          : 
+          <NavBar /> }
         </>
+        {document.referrer.includes('localhost:3000/invite') ? window.history.back() : null}
         {store.retrievingData ?
         <IsLoadingHOC  />
         :
