@@ -38,9 +38,8 @@ const App = observer(() => {
           {!loggedIn ?
           <Redirect to="/login" /> 
           : 
-          <NavBar /> }
+          null }
         </>
-        {document.referrer.includes('localhost:3000/invite') ? window.history.back() : null}
         {store.retrievingData ?
         <IsLoadingHOC  />
         :

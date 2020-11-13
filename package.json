@@ -16,6 +16,7 @@
     "react-actioncable-provider": "^2.0.0",
     "react-bootstrap": "^1.2.2",
     "react-chartjs-2": "^2.10.0",
+    "react-cookie": "^4.0.3",
     "react-dom": "^16.13.1",
     "react-flash-message": "^1.0.2",
     "react-material-ui-form-validator": "^2.1.1",
