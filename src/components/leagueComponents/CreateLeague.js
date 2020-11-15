@@ -99,7 +99,7 @@ const CreateLeague = observer((props) => {
     store.setNewLeagueSuccessModal();
   };
 
-  const link = `localhost:3000/invite=${encodeURIComponent(store.newestLeague.id)}`
+  const link = `localhost:3000/invite/${store.newestLeague.id}`
 
   return (
     <div>

@@ -18,6 +18,7 @@ export default class Store {
     retrievingData = false;
     newestLeague = '';
     newLeagueSuccessModal = false;
+    referrer = '';
 
     constructor(){
         makeAutoObservable(this, {
@@ -33,14 +34,17 @@ export default class Store {
             retrievingData: observable,
             newestLeague: observable,
             newLeagueSuccessModal: observable,
+            referrer: observable,
             loadUser: action,
             selectLeague: action,
             selectTeam: action,
             selectWrestler: action,
             addLeague: action,
             setNewLeagueSuccessModal: action,
+            getReferrer: action,
             loggedIn: computed,
             wrestlersLoaded: computed,
+            fromInvite: computed
         });
     }
     
@@ -93,10 +97,19 @@ export default class Store {
         this.retrievingData = false;
     }
 
+    getReferrer() {
+        if (!this.loggedIn && this.fromInvite) {
+            this.referrer = window.location.origin;
+        } else {
+            this.referrer = '';
+        }
+    }
+
     get loggedIn() {return !!this.currentUserID}
 
     get wrestlersLoaded() {return !!this.wrestlers.length}
     
+    get fromInvite() {return !!window.location.origin.includes("invite")}
 }
 
 const StoreContext = createContext();

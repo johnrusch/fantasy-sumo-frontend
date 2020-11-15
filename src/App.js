@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect, useHistory } from "react-router-dom";
 
 // import { connect } from "react-redux";
 // import { fetchWrestlers } from "./actions/wrestlerActions";
@@ -28,7 +28,7 @@ import { observer } from 'mobx-react';
 import { useStore } from './store';
 
 const App = observer(() => {
-  const token = localStorage.getItem("token");
+  // const token = localStorage.getItem("token");
   const store = useStore();
   const loggedIn = store.loggedIn;
 
@@ -38,11 +38,12 @@ const App = observer(() => {
           {!loggedIn ?
           <Redirect to="/login" /> 
           : 
-          null }
+          <NavBar />}
         </>
         {store.retrievingData ?
         <IsLoadingHOC  />
         :
+        null}
         <>
           <Route exact path="/login" render={(props) => <Login {...props} />} />
           <Route path="/signup" render={props => <SignUp {...props} />}
@@ -71,11 +72,10 @@ const App = observer(() => {
             render={props => <Settings {...props} />}
           />
           <Route
-            path="/invite=:leagueId"
+            path="/invite/:leagueId"
             render={props => <LeagueInvitation {...props} />}
           />
         </>
-        }
       </div>
     );
 });

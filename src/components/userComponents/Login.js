@@ -41,7 +41,11 @@ const Login = observer((props) => {
     e.preventDefault();
     console.log(fields);
     store.loadUser(fields);
-    props.history.push("/");
+    if (store.referrer) {
+      window.location.assign(store.referrer);
+    } else {
+      props.history.push("/");
+    }
   };
 
   // render() {
