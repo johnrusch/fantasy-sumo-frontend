@@ -42,7 +42,7 @@ const Login = observer((props) => {
     e.preventDefault();
     console.log(fields);
     store.loadUser(fields);
-    props.history.push('/');
+    props.history.push('/home');
   };
 
   // render() {

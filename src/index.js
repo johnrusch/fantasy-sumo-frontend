@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router } from "react-router-dom";
+// import { BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
@@ -9,18 +9,16 @@ import * as serviceWorker from "./serviceWorker";
 // import { createStore, applyMiddleware } from "redux";
 // import thunk from "redux-thunk";
 // import rootReducer from './reducers/rootReducer';
-import Store, { StoreProvider } from './store/index';
+import Store, { StoreProvider } from "./store/index";
 
 // const store = createStore(rootReducer, applyMiddleware(thunk));
 
 const store = new Store();
 
 ReactDOM.render(
-    <StoreProvider store={store}>
-      <Router>
-        <App />
-      </Router>
-    </StoreProvider>,
+  <StoreProvider store={store}>
+    <App />
+  </StoreProvider>,
   document.getElementById("root")
 );
 

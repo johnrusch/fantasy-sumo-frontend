@@ -41,7 +41,7 @@ export default class Store {
             selectWrestler: action,
             addLeague: action,
             setNewLeagueSuccessModal: action,
-            getReferrer: action,
+            getReferrer: computed,
             loggedIn: computed,
             wrestlersLoaded: computed,
             fromInvite: computed
@@ -97,10 +97,9 @@ export default class Store {
         this.retrievingData = false;
     }
 
-    getReferrer() {
+    get getReferrer() {
         if (!this.loggedIn) {
-            this.referrer = window.location.origin;
-            window.history.pushState('', '', 'localhost:3000/login')
+            localStorage.referrer = window.location.origin;
         }
     }
 
