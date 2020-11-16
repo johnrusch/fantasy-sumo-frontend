@@ -35,10 +35,10 @@ const App = observer(() => {
     return (
       <div>
         <>
-          {!loggedIn ?
+          {/* {!loggedIn ?
           <Redirect to="/login" /> 
-          : 
-          <NavBar />}
+          :  */}
+          <NavBar />
         </>
         {store.retrievingData ?
         <IsLoadingHOC  />

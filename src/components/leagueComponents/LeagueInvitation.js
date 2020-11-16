@@ -20,7 +20,7 @@ const LeagueInvitation = observer(() => {
   return (
     <div>
       <h2>You've been invited to a league!</h2>
-      <Button color="primary" type="submit" onClick={joinLeague(joiningData)}>
+      <Button color="primary" type="submit" onClick={() => joinLeague(joiningData)}>
         Join League
       </Button>
     </div>

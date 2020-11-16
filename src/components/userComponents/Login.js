@@ -27,6 +27,7 @@ const Login = observer((props) => {
   const [password, setPassword] = useState("");
   const fields = { name, password };
 
+
   // changes state with the input received in the login form
   const handlePassword = (e) => {
     console.log(password);
@@ -41,11 +42,7 @@ const Login = observer((props) => {
     e.preventDefault();
     console.log(fields);
     store.loadUser(fields);
-    if (store.referrer) {
-      window.location.assign(store.referrer);
-    } else {
-      props.history.push("/");
-    }
+    props.history.push('/');
   };
 
   // render() {
@@ -87,9 +84,8 @@ const Login = observer((props) => {
   const classes = useStyles();
 
   return (
-    
     <Grid container component="main" className={classes.root}>
-      {console.log(store.currentUserID)}
+      {console.log(props)}
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>

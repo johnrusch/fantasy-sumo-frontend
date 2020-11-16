@@ -98,10 +98,9 @@ export default class Store {
     }
 
     getReferrer() {
-        if (!this.loggedIn && this.fromInvite) {
+        if (!this.loggedIn) {
             this.referrer = window.location.origin;
-        } else {
-            this.referrer = '';
+            window.history.pushState('', '', 'localhost:3000/login')
         }
     }
 
