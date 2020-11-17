@@ -27,7 +27,6 @@ const Login = observer((props) => {
   const [password, setPassword] = useState("");
   const fields = { name, password };
 
-
   // changes state with the input received in the login form
   const handlePassword = (e) => {
     console.log(password);
@@ -42,7 +41,7 @@ const Login = observer((props) => {
     e.preventDefault();
     console.log(fields);
     store.loadUser(fields);
-    props.history.push('/home');
+    props.history.push('/');
   };
 
   // render() {
@@ -85,7 +84,6 @@ const Login = observer((props) => {
 
   return (
     <Grid container component="main" className={classes.root}>
-      {console.log(props)}
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>

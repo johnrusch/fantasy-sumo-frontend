@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {
   Route,
   Redirect,
-  BrowserRouter as Router,
   Switch,
 } from "react-router-dom";
 
@@ -33,10 +32,10 @@ const App = observer(() => {
 
   return (
     <div>
-      <Router>
         {store.retrievingData ? <IsLoadingHOC /> : null}
+        {loggedIn ? <NavBar /> : null }
         <Switch>
-          <Route
+          {/* <Route
             exact
             path="/"
             render={(props) => {
@@ -45,12 +44,10 @@ const App = observer(() => {
                   to={{ pathname: "/login", state: { from: props.location } }}
                 />
               ) : (
-                <>
-                  <NavBar />
-                </>
+                <Redirect to='/home' />
               );
             }}
-          />
+          /> */}
           <Route exact path="/home" render={(props) => <Home {...props} />} />
           <Route exact path="/login" render={(props) => <Login {...props} />} />
           <Route path="/signup" render={(props) => <SignUp {...props} />} />
@@ -79,7 +76,6 @@ const App = observer(() => {
             render={(props) => <LeagueInvitation {...props} />}
           />
         </Switch>
-      </Router>
     </div>
   );
 });
