@@ -17,15 +17,13 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { observer } from "mobx-react";
 import { useStore } from "../../store/index";
-// import { connect } from "react-redux";
-// import { loggingIn } from "../../actions/authActions";
-// import { addAuth } from "../../actions/authActions";
 
 const Login = observer((props) => {
   const store = useStore();
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const fields = { name, password };
+  // const { pathname } = props.location.state.from
 
   // changes state with the input received in the login form
   const handlePassword = (e) => {
@@ -41,7 +39,7 @@ const Login = observer((props) => {
     e.preventDefault();
     console.log(fields);
     store.loadUser(fields);
-    props.history.push('/');
+    props.history.push(props.location.state.from.pathname);
   };
 
   // render() {
@@ -84,6 +82,7 @@ const Login = observer((props) => {
 
   return (
     <Grid container component="main" className={classes.root}>
+      {console.log(props.location.state.from.pathname)}
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>

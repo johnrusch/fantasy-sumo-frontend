@@ -34,8 +34,8 @@ const App = observer(() => {
     <div>
         {store.retrievingData ? <IsLoadingHOC /> : null}
         {loggedIn ? <NavBar /> : null }
-        <Switch>
-          {/* <Route
+        {/* <Switch> */}
+          <Route
             exact
             path="/"
             render={(props) => {
@@ -43,13 +43,11 @@ const App = observer(() => {
                 <Redirect
                   to={{ pathname: "/login", state: { from: props.location } }}
                 />
-              ) : (
-                <Redirect to='/home' />
-              );
+              ) : null ;
             }}
-          /> */}
-          <Route exact path="/home" render={(props) => <Home {...props} />} />
-          <Route exact path="/login" render={(props) => <Login {...props} />} />
+          />
+          <Route path="/home" render={(props) => <Home {...props} />} />
+          <Route path="/login" render={(props) => <Login {...props} />} />
           <Route path="/signup" render={(props) => <SignUp {...props} />} />
           <Route path="/leagues" render={(props) => <Leagues {...props} />} />
           <Route
@@ -73,9 +71,11 @@ const App = observer(() => {
           <Route path="/settings" render={(props) => <Settings {...props} />} />
           <Route
             path="/invite/:leagueId"
-            render={(props) => <LeagueInvitation {...props} />}
+            render={(props) => 
+            !loggedIn ? <Redirect to={{ pathname: '/login', state: { from: props.location }}} /> :
+            <LeagueInvitation {...props} />}
           />
-        </Switch>
+        {/* </Swi.tch> */}
     </div>
   );
 });

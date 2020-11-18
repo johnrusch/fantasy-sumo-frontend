@@ -1,16 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
-import createBrowserHistory from 'history/createBrowserHistory';
-import { RouterStore, syncHistoryWithStore } from 'mobx-react-router';
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import Store, { StoreProvider } from "./store/index";
-
-
-const browserHistory = createBrowserHistory();
-const routingStore = new RouterStore();
 
 const store = new Store();
 
