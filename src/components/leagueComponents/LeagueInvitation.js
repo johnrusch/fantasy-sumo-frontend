@@ -14,8 +14,8 @@ const LeagueInvitation = observer(() => {
       userID: store.currentUserID
   }
 
-  const joinLeague = leagueAndUserData => {
-    return store.addToLeague(leagueAndUserData)
+  const joinLeague = async leagueAndUserData => {
+    return await store.addToLeague(leagueAndUserData)
   }
 
   return (
