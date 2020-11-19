@@ -23,7 +23,7 @@ const Login = observer((props) => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const fields = { name, password };
-  // const { pathname } = props.location.state.from
+  const { pathname } = props.location.state.from
 
   // changes state with the input received in the login form
   const handlePassword = (e) => {
@@ -35,11 +35,11 @@ const Login = observer((props) => {
     setName(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(fields);
-    store.loadUser(fields);
-    props.history.push(props.location.state.from.pathname);
+    await store.loadUser(fields);
+    props.history.push(pathname);
   };
 
   // render() {
@@ -82,7 +82,6 @@ const Login = observer((props) => {
 
   return (
     <Grid container component="main" className={classes.root}>
-      {console.log(props.location.state.from.pathname)}
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
