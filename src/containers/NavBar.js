@@ -64,9 +64,7 @@ const NavBar = observer((props) => {
   };
 
   const handleLogout = () => {
-    // props.logOut();
-    localStorage.removeItem("token")
-    props.history.push("/login");
+    store.logOut();
   };
 
   return (
@@ -127,8 +125,10 @@ const NavBar = observer((props) => {
                 </Button>
               </MenuItem>
               <MenuItem>
-                <Button href="/login" onClick={handleLogout}>
-                  Log Out
+                <Button onClick={handleLogout}>
+                  <Link to='/login'>
+                    Log Out
+                  </Link>
                 </Button>
               </MenuItem>
             </Menu>

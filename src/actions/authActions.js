@@ -10,26 +10,6 @@ const headers = () => {
     };
 };
 
-// export const loggingIn = data => {
-//     const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/auth'
-//     return dispatch => {
-//         dispatch({ type: 'LOGGING_IN' });
-//         fetch(URL, {
-//             method: "POST",
-//             headers: headers(),
-//             body: JSON.stringify(data)
-//         })
-//             .then(resp => resp.json())
-//             .then(auth => {
-//                 console.log(auth)
-//                 if (!auth.error) {
-//                     localStorage.setItem("token", auth.jwt)
-//                     dispatch({ type: 'ADD_AUTH', auth })
-//                 }
-//             })
-//     }
-// }
-
 export const logIn = async data => {
     const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/auth';
     let response = await fetch(URL, {
@@ -48,20 +28,31 @@ export const addAuth = (auth) => {
     return { type: 'ADD_AUTH', auth }
 }
 
-export const getCurrentUser = () => {
-    const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/current_user'
-    return dispatch => {
-        dispatch({ type: 'LOGGING_IN' });
-        fetch(URL, {
-            headers: headers()
-        })
-            .then(resp => resp.json())
-            .then(user => {
-                const token = localStorage.getItem("token");
-                if (token) {
-                    dispatch({ type: 'ADD_USER', user })
-                }
-            })
+// export const getCurrentUser = () => {
+//     const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/current_user'
+//     return dispatch => {
+//         dispatch({ type: 'LOGGING_IN' });
+//         fetch(URL, {
+//             headers: headers()
+//         })
+//             .then(resp => resp.json())
+//             .then(user => {
+//                 const token = localStorage.getItem("token");
+//                 if (token) {
+//                     dispatch({ type: 'ADD_USER', user })
+//                 }
+//             })
+//     }
+// }
+
+export const getCurrentUser = async () => {
+    const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/current_user';
+    let response = await fetch(URL, {
+        headers: headers()
+    });
+    let currentUser = await response.json();
+    if (!currentUser.error) {
+        return currentUser;
     }
 }
 

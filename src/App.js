@@ -6,7 +6,6 @@ import {
   Redirect,
   Switch,
 } from "react-router-dom";
-
 import NavBar from "./containers/NavBar";
 import Home from "./components/Home";
 import Login from "./components/userComponents/Login";
@@ -30,10 +29,14 @@ const App = observer(() => {
   const store = useStore();
   const loggedIn = store.loggedIn;
 
+  useEffect(() => {
+    store.getUser()
+  });
+
   return (
     <div>
         {store.retrievingData ? <IsLoadingHOC /> : null}
-        {loggedIn ? <NavBar /> : null }
+        {loggedIn ? <NavBar /> : <Redirect to="/login" /> }
         {/* <Switch> */}
           <Route
             exact
@@ -47,7 +50,14 @@ const App = observer(() => {
             }}
           />
           <Route path="/home" render={(props) => <Home {...props} />} />
-          <Route path="/login" render={(props) => <Login {...props} />} />
+          <Route 
+            path="/login" 
+            render={(props) => {
+              return loggedIn ? (
+                <Redirect to='/' />
+              ) : (
+              <Login {...props} />
+              )}} />
           <Route path="/signup" render={(props) => <SignUp {...props} />} />
           <Route path="/leagues" render={(props) => <Leagues {...props} />} />
           <Route

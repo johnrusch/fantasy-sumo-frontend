@@ -23,7 +23,7 @@ const Login = observer((props) => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const fields = { name, password };
-  const { pathname } = props.location.state.from
+  // const { pathname } = props.location.state.from
 
   // changes state with the input received in the login form
   const handlePassword = (e) => {
@@ -39,7 +39,7 @@ const Login = observer((props) => {
     e.preventDefault();
     console.log(fields);
     await store.loadUser(fields);
-    props.history.push(pathname);
+    props.history.goBack();
   };
 
   // render() {

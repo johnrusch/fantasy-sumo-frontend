@@ -1,7 +1,7 @@
 import React, { createContext, useContext } from 'react';
 import { makeAutoObservable, action, observable, computed, reaction } from 'mobx';
 import { getWrestlers } from '../actions/wrestlerActions';
-import { logIn } from '../actions/authActions';
+import { logIn, getCurrentUser } from '../actions/authActions';
 import { getUserLeagues, getOpenLeagues, createLeague, addUserToLeague } from '../actions/leagueActions';
 import { getTeams } from '../actions/teamActions';
 
@@ -36,6 +36,8 @@ export default class Store {
             newLeagueSuccessModal: observable,
             referrer: observable,
             loadUser: action,
+            getUser: action,
+            logOut: action,
             selectLeague: action,
             selectTeam: action,
             selectWrestler: action,
@@ -58,6 +60,20 @@ export default class Store {
         this.openLeagues = await getOpenLeagues();
         this.teams = await getTeams();
         this.retrievingData = false;
+    }
+
+    async getUser() {
+        let currentUser = await getCurrentUser();
+        if (currentUser) {
+            this.currentUserID = currentUser.id
+            this.currentUserName = currentUser.name
+        }
+    }
+
+    logOut() {
+        localStorage.removeItem('token');
+        this.currentUserID = '';
+        this.currentUserName = '';
     }
 
     selectLeague = (leagueData) => {
