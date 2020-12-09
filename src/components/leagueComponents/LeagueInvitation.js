@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Redirect } from 'react-router-dom';
 import { observer } from "mobx-react";
 import { useStore } from "../../store";
@@ -15,15 +15,21 @@ const LeagueInvitation = observer((props) => {
       userID: store.currentUserID
   }
 
-  const joinLeague = async leagueAndUserData => {
-    leagueAndUserData.preventDefault();
-    return await store.addToLeague(leagueAndUserData)
+  const joinLeague = async (e) => {
+    e.preventDefault();
+    return await store.addToLeague(joiningData)
   }
+
+  // useEffect(() => {
+  //   if (!store.loggedIn) {
+  //     props.history.push('/login');
+  //   }
+  // })
 
   return (
     <div>
       <h2>You've been invited to a league!</h2>
-      <Button color="primary" type="submit" onClick={() => joinLeague(joiningData)}>
+      <Button color="primary" type="submit" onClick={joinLeague}>
         Join League
       </Button>
     </div>

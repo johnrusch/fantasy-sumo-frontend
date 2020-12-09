@@ -27,7 +27,6 @@ const Login = observer((props) => {
 
   // changes state with the input received in the login form
   const handlePassword = (e) => {
-    console.log(password);
     setPassword(e.target.value);
   };
 
@@ -37,9 +36,8 @@ const Login = observer((props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(fields);
     await store.loadUser(fields);
-    props.history.goBack();
+    props.history.push(localStorage.referrer);
   };
 
   // render() {

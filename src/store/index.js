@@ -115,7 +115,7 @@ export default class Store {
 
     get getReferrer() {
         if (!this.loggedIn) {
-            localStorage.referrer = window.location.origin;
+            localStorage.setItem('referrer' ,window.location.origin);
         }
     }
 

@@ -27,21 +27,18 @@ const App = observer((props) => {
 
   useEffect(() => {
     store.getUser();
-    
+    if (!store.loggedIn) {
+      window.history.pushState('state', '/login');
+    }
   });
 
   return (
     <div>
       {store.retrievingData ? <IsLoadingHOC /> : null}
-      {loggedIn ? <NavBar /> : null }
+      {loggedIn ? <NavBar /> : null}
       <Switch>
         <Route path="/home" render={(props) => <Home {...props} />} />
-        <Route
-          path="/login"
-          render={(props) => {
-            return loggedIn ? <Redirect to="/" /> : <Login {...props} />;
-          }}
-        />
+        <Route path="/login" render={(props) => <Login {...props} />} />
         <Route path="/signup" render={(props) => <SignUp {...props} />} />
         <Route
           path="/league/standings"
@@ -68,16 +65,17 @@ const App = observer((props) => {
           render={(props) => <LeagueInvitation {...props} />}
         />
         <Route
-        exact
-        path="/"
-        render={(props) => {
-          return !loggedIn ? (
-            <Redirect
-              to={{ pathname: "/login", state: { from: props.location } }}
-            />
-          ) : <Redirect to="/home" /> ;
-        }}
-      />
+          path="/"
+          render={(props) => {
+            return !loggedIn ? (
+              <Redirect
+                to={{ pathname: "/login", state: { from: props.location } }}
+              />
+            ) : (
+              <Redirect to="/home" />
+            );
+          }}
+        />
       </Switch>
     </div>
   );
