@@ -18,7 +18,7 @@ export default class ViewStore {
         currentView = observable,
         isAuthenticated = computed,
         currentPath = computed,
-        showOverview = action,
+        showLogin = action,
         performLogin = action
       })
   }
@@ -33,7 +33,22 @@ export default class ViewStore {
       }
   }
 
-  
+  showLogin() {
+      this.currentView = {
+          name: "login"
+      }
+  }
+
+  async showLeague(leagueId) {
+    this.currentView = {
+        name: "league",
+        leagueId,
+        league: fromPromise(
+            this.isAuthenticated 
+                ? await this.fetch('/')
+        )
+    }
+  }
 
 
 }
