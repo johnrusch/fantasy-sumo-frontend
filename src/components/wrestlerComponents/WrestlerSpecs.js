@@ -7,41 +7,41 @@ import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import Avatar from "@material-ui/core/Avatar";
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 
-import { Line } from 'react-chartjs-2';
+// import { Line } from 'react-chartjs-2';
 
 const WrestlerSpecs = observer((props) => {
   const store = useStore();
   const wrestler = store.selectedWrestler
   // const { id, name, age, img, currentRank, records } = store.selectedWrestler;
 
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      height: '100vh',
-    },
-    paper: {
-      margin: theme.spacing(8, 4),
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-    },
-    avatar: {
-      margin: theme.spacing(1),
-      backgroundColor: theme.palette.secondary.main,
-    },
-    form: {
-      width: '100%', // Fix IE 11 issue.
-      marginTop: theme.spacing(1),
-    },
-    submit: {
-      margin: theme.spacing(3, 0, 2),
-    },
-  }));
+  // const useStyles = makeStyles((theme) => ({
+  //   root: {
+  //     height: '100vh',
+  //   },
+  //   paper: {
+  //     margin: theme.spacing(8, 4),
+  //     display: 'flex',
+  //     flexDirection: 'column',
+  //     alignItems: 'center',
+  //   },
+  //   avatar: {
+  //     margin: theme.spacing(1),
+  //     backgroundColor: theme.palette.secondary.main,
+  //   },
+  //   form: {
+  //     width: '100%', // Fix IE 11 issue.
+  //     marginTop: theme.spacing(1),
+  //   },
+  //   submit: {
+  //     margin: theme.spacing(3, 0, 2),
+  //   },
+  // }));
 
-  const classes = useStyles();
+  // WRESTLER RECORD CHARTS *NOT WORKING RN*
+  // const classes = useStyles();
 
- 
   // const tournaments = wrestler.records.map(record => {
   //   return record.tournament
   // })

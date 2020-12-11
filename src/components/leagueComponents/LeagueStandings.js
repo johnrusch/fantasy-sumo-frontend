@@ -5,7 +5,7 @@ import { useStore } from '../../store';
 
 const LeagueStandings = observer((props) => {
   const store = useStore();
-  const { name, teams, id, closed } = store.selectedLeague;
+  const { name, teams, closed } = store.selectedLeague;
 
   const comparePoints = (a, b) => {
     const pointsA = parseInt(a.points);

@@ -21,7 +21,6 @@ import { observer } from "mobx-react";
 import { useStore } from "./store";
 
 const App = observer((props) => {
-  const token = localStorage.getItem("token");
   const store = useStore();
   const loggedIn = store.loggedIn;
 

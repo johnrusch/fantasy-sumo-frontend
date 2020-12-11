@@ -1,7 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Provider } from 'mobx-react';
-import { RouterStore, startRouter } from 'mobx-state-tree-router';
 import { BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
 import App from "./App";

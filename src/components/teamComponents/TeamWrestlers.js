@@ -2,12 +2,9 @@ import React from "react";
 import WrestlerCard from "../wrestlerComponents/WrestlerCard";
 import { observer } from 'mobx-react';
 import { useStore } from '../../store';
-import List from '@material-ui/core/List';
-
 
 const TeamWrestlers = observer((props) => {
   const store = useStore();
-  const { selectWrestler } = props;
   const { name, wrestlers } = store.selectedTeam;
 
   const renderWrestlers = () => {

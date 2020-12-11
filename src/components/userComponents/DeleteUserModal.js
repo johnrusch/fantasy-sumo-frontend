@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
 import { observer } from 'mobx-react';
-import { useStore } from '../../store';
+// import { useStore } from '../../store';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const DeleteUserModal = observer(props => {
-  const store = useStore();
+  // const store = useStore();
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);

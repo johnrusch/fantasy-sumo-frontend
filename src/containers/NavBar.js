@@ -6,9 +6,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import Switch from "@material-ui/core/Switch";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormGroup from "@material-ui/core/FormGroup";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import Button from "@material-ui/core/Button";
@@ -37,30 +34,15 @@ const NavBar = observer((props) => {
   }));
 
   const classes = useStyles();
-  const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [anchorOptions, setAnchorOptions] = React.useState(null);
   const open = Boolean(anchorEl);
-  const openOptions = Boolean(anchorOptions);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleOptionsMenu = (event) => {
-    setAnchorOptions(event.currentTarget);
-  };
-
-  const handleOptions = (event) => {
-    setAnchorOptions(event.currentTarget);
-  };
-
   const handleClose = () => {
     setAnchorEl(null);
-  };
-
-  const handleCloseOptions = () => {
-    setAnchorOptions(null);
   };
 
   const handleLogout = () => {

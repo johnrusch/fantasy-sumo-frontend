@@ -1,8 +1,5 @@
 import React from "react";
 
-import { connect } from 'react-redux';
-import { signUp } from '../../actions/userActions';
-
 class Signup extends React.Component {
   constructor() {
     super();
@@ -69,4 +66,4 @@ class Signup extends React.Component {
   }
 }
 
-export default connect(null, { signUp })(Signup);
+export default Signup;

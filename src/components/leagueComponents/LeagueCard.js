@@ -9,7 +9,7 @@ import { useStore } from '../../store';
 
 const LeagueCard = observer((props) => {
   const { leagueData } = props;
-  const { name, id, teams } = leagueData;
+  const { name } = leagueData;
   const store = useStore();
 
   return (

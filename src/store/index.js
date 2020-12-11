@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react';
-import { makeAutoObservable, action, observable, computed, reaction } from 'mobx';
+import { makeAutoObservable, action, observable, computed } from 'mobx';
 import { getWrestlers } from '../actions/wrestlerActions';
 import { logIn, getCurrentUser } from '../actions/authActions';
 import { getUserLeagues, getOpenLeagues, createLeague, addUserToLeague } from '../actions/leagueActions';
@@ -43,7 +43,6 @@ export default class Store {
             selectWrestler: action,
             addLeague: action,
             setNewLeagueSuccessModal: action,
-            getReferrer: computed,
             loggedIn: computed,
             wrestlersLoaded: computed,
             fromInvite: computed
@@ -111,12 +110,6 @@ export default class Store {
         const updatedLeague = await addUserToLeague(data);
         this.openLeagues = [...this.openLeagues, updatedLeague];
         this.retrievingData = false;
-    }
-
-    get getReferrer() {
-        if (!this.loggedIn) {
-            localStorage.setItem('referrer' ,window.location.origin);
-        }
     }
 
     get loggedIn() {return !!this.currentUserID}

@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { Redirect } from 'react-router-dom';
+import React from "react";
 import { observer } from "mobx-react";
 import { useStore } from "../../store";
 import Button from "@material-ui/core/Button";
@@ -19,12 +18,6 @@ const LeagueInvitation = observer((props) => {
     e.preventDefault();
     return await store.addToLeague(joiningData)
   }
-
-  // useEffect(() => {
-  //   if (!store.loggedIn) {
-  //     props.history.push('/login');
-  //   }
-  // })
 
   return (
     <div>

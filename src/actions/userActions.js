@@ -31,7 +31,7 @@ export const signUp = data => {
 }
 
 export const deleteUser = data => {
-    const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/users' + `/${data}`
+    const URL = `https://fantasy-sumo-backend.herokuapp.com/api/v1/users/${data}`
     return dispatch => {
         console.log(data)
         dispatch({ type: 'DELETE_USER'});

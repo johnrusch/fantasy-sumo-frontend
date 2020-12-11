@@ -7,17 +7,20 @@ import Modal from "@material-ui/core/Modal";
 import { observer } from "mobx-react";
 import { useStore } from "../../store";
 
+
+// THIS IS BROKEN RN
 const EditUserForm = observer((props) => {
   const store = useStore();
 
-  const [id, setId] = useState(store.currentUserID);
   const [name, setName] = useState(store.currentUserName);
-  const [showModal, setShowModal] = useState(false);
+  // const id = store.currentUserID;
+  // MODAL FOR DELETING ACCT, MAYBE NOT NECESSARY
+  // const [showModal, setShowModal] = useState(false);
 
-  const user = {
-    id,
-    name,
-  };
+  // const user = {
+  //   id,
+  //   name,
+  // };
 
   const rand = () => {
     return Math.round(Math.random() * 20) - 10;
@@ -65,7 +68,6 @@ const EditUserForm = observer((props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // setId(currentUser.id)
-    // dispatch(updateUser({ id: currentUser.id, name }));
     props.history.push("/");
   };
 
