@@ -14,6 +14,7 @@ import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import Alert from '@material-ui/lab/Alert';
 
 import { observer } from "mobx-react";
 import { useStore } from "../../store/index";
@@ -23,12 +24,12 @@ const Login = observer((props) => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const fields = { name, password };
-  let pathname
+  let pathname;
 
   if (props.location.state.from !== null) {
     pathname = props.location.state.from;
   } else {
-    pathname = '/';
+    pathname = "/";
   }
   // changes state with the input received in the login form
   const handlePassword = (e) => {
@@ -41,11 +42,11 @@ const Login = observer((props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await store.loadUser(fields);
-    props.history.push(pathname);
+    await store.logInUser(fields);
+    if (!store.logInError) {
+      props.history.push(pathname);
+    }
   };
-
-  // render() {
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -95,6 +96,7 @@ const Login = observer((props) => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
+          {store.logInError && <Alert severity="error">{store.logInError}</Alert>}
           <form className={classes.form} noValidate>
             <TextField
               variant="outlined"

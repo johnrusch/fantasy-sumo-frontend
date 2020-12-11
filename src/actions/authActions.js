@@ -20,10 +20,8 @@ export const logIn = async data => {
     let auth = await response.json();
     if (!auth.error){
         localStorage.setItem("token", auth.jwt)
-        return auth;
-    } else {
-        return auth.error;
-    }
+    } 
+    return auth;
 }
 
 export const addAuth = (auth) => {
