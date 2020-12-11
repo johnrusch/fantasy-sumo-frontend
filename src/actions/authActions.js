@@ -34,7 +34,5 @@ export const getCurrentUser = async () => {
         headers: headers()
     });
     let currentUser = await response.json();
-    if (!currentUser.error) {
-        return currentUser;
-    }
+    return currentUser;
 }

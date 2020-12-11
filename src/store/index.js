@@ -59,6 +59,7 @@ export default class Store {
 
   async logInUser(data) {
     this.retrievingData = true;
+    this.logInError = null;
     let currentUser = await logIn(data);
     console.log(currentUser);
     this.retrievingData = false;
@@ -84,9 +85,7 @@ export default class Store {
     if (!currentUser.error) {
       this.currentUserID = currentUser.id;
       this.currentUserName = currentUser.name;
-    } else {
-      this.logInError = currentUser.error;
-    }
+    } 
   }
 
   logOut() {

@@ -23,11 +23,11 @@ const App = observer((props) => {
   const store = useStore();
   const loggedIn = store.loggedIn;
 
-  // useEffect(() => {
-  //   if (!loggedIn) {
-  //     await store.getUser()
-  //   }
-  // });
+  useEffect(() => {
+    if (!loggedIn) {
+      store.getUser()
+    }
+  });
 
   return (
     <div>
