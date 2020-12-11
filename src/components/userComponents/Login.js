@@ -23,8 +23,13 @@ const Login = observer((props) => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const fields = { name, password };
-  // let pathname = props.location.state.from.pathname ||= '/';
+  let pathname
 
+  if (props.location.state.from !== null) {
+    pathname = props.location.state.from;
+  } else {
+    pathname = '/';
+  }
   // changes state with the input received in the login form
   const handlePassword = (e) => {
     setPassword(e.target.value);
@@ -37,7 +42,7 @@ const Login = observer((props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await store.loadUser(fields);
-    props.history.push(localStorage.referrer);
+    props.history.push(pathname);
   };
 
   // render() {

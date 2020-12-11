@@ -70,7 +70,6 @@ const WrestlerSpecs = observer((props) => {
     <div>
       {wrestler ? (
         <Grid container component="main" className="grid-container">
-          {console.log(props.wrestlerData)}
           <Card>
             <CardHeader
               avatar={<Avatar aria-label="wrestler" alt={wrestler.name} src={wrestler.img} />}

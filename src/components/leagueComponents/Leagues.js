@@ -21,8 +21,6 @@ const Leagues = observer(() => {
       <div>
         <h4 className="center">My Leagues</h4>
         {store.userLeagues && renderUserLeagues()}
-        {/* <h4 className="center">Open Leagues</h4>
-        {this.props.openLeagues && this.renderOpenLeagues()} */}
         <Paper elevation={3}>
           <Link to="/league/new">Create New League</Link>
         </Paper>

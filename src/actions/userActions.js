@@ -49,7 +49,7 @@ export const deleteUser = data => {
 }
 
 export const updateUser = data => {
-    const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/users' + `/${data.id}`
+    const URL = `https://fantasy-sumo-backend.herokuapp.com/api/v1/users/${data.id}`
     return dispatch => {
         console.log(data)
         dispatch({ type: 'UPDATE_USER'});

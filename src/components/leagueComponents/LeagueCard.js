@@ -15,7 +15,7 @@ const LeagueCard = observer((props) => {
   return (
     <div className="flexbox" onClick={() => store.selectLeague(leagueData)}>
     <Paper elevation={3}>
-      <Link to="/league/standings">
+      <Link to= {`/league/${leagueData.id}`}>
         <ListItem>
           <ListItemText
             primary={name}

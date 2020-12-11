@@ -17,7 +17,7 @@ const TeamCard = observer((props) => {
   return (
     <div className="flexbox" onClick={() => store.selectTeam(teamData)}>
       <Paper elevation={3}>
-        <Link to="/team/wrestlers">
+        <Link to={`/team/${teamData.id}`}>
           <ListItem alignItems="flex-start">
             <ListItemAvatar>
               {teamData.user.avatar && (

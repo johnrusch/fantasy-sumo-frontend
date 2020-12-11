@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Redirect, Switch } from "react-router-dom";
@@ -24,51 +24,117 @@ const App = observer((props) => {
   const store = useStore();
   const loggedIn = store.loggedIn;
 
-  useEffect(() => {
-    store.getUser();
-    if (!store.loggedIn) {
-      window.history.pushState('state', '/login');
-    }
-  });
-
   return (
     <div>
       {store.retrievingData ? <IsLoadingHOC /> : null}
       {loggedIn ? <NavBar /> : null}
       <Switch>
-        <Route path="/home" render={(props) => <Home {...props} />} />
+        <Route
+          path="/home"
+          render={(props) => {
+            return !loggedIn ? (
+              <Redirect
+                to={{ pathname: "/login", state: { from: window.location.pathname } }}
+              />
+            ) : (
+              <Home {...props} />
+            );
+          }}
+        />
         <Route path="/login" render={(props) => <Login {...props} />} />
         <Route path="/signup" render={(props) => <SignUp {...props} />} />
         <Route
-          path="/league/standings"
-          render={(props) => <LeagueStandings {...props} />}
+          path="/league/:leagueId"
+          render={(props) => {
+            return !loggedIn ? (
+              <Redirect
+                to={{ pathname: "/login", state: { from: window.location.pathname } }}
+              />
+            ) : (
+              <LeagueStandings {...props} />
+            );
+          }}
         />
         <Route
           path="/league/new"
-          render={(props) => <CreateLeague {...props} />}
+          render={(props) => {
+            return !loggedIn ? (
+              <Redirect
+                to={{ pathname: "/login", state: { from: window.location.pathname } }}
+              />
+            ) : (
+              <CreateLeague {...props} />
+            );
+          }}
         />
-        <Route path="/leagues" render={(props) => <Leagues {...props} />} />
         <Route
-          path="/team/wrestlers"
-          render={(props) => <TeamWrestlers {...props} />}
+          path="/leagues"
+          render={(props) => {
+            return !loggedIn ? (
+              <Redirect
+                to={{ pathname: "/login", state: { from: window.location.pathname } }}
+              />
+            ) : (
+              <Leagues {...props} />
+            );
+          }}
         />
-        <Route path="/teams" render={(props) => <Teams {...props} />} />
+        <Route
+          path="/team/:teamId"
+          render={(props) => {
+            return !loggedIn ? (
+              <Redirect
+                to={{ pathname: "/login", state: { from: window.location.pathname } }}
+              />
+            ) : (
+              <TeamWrestlers {...props} />
+            );
+          }}
+        />
+        <Route
+          path="/teams"
+          render={(props) => {
+            return !loggedIn ? (
+              <Redirect
+                to={{ pathname: "/login", state: { from: window.location.pathname } }}
+              />
+            ) : (
+              <Teams {...props} />
+            );
+          }}
+        />
         <Route
           path="/wrestler"
-          render={(props) => <WrestlerSpecs {...props} />}
+          render={(props) => {
+            return !loggedIn ? (
+              <Redirect
+                to={{ pathname: "/login", state: { from: window.location.pathname } }}
+              />
+            ) : (
+              <WrestlerSpecs {...props} />
+            );
+          }}
         />
         <Route path="/rules" render={(props) => <Rules {...props} />} />
         <Route path="/settings" render={(props) => <Settings {...props} />} />
         <Route
           path="/invite/:leagueId"
-          render={(props) => <LeagueInvitation {...props} />}
+          render={(props) => {
+            return !loggedIn ? (
+              <Redirect
+                to={{ pathname: "/login", state: { from: window.location.pathname } }}
+              />
+            ) : (
+              <LeagueInvitation {...props} />
+            );
+          }}
         />
         <Route
           path="/"
           render={(props) => {
             return !loggedIn ? (
               <Redirect
-                to={{ pathname: "/login", state: { from: props.location } }}
+                to={{ pathname: "/login", state: { from: window.location.pathname } }}
               />
             ) : (
               <Redirect to="/home" />

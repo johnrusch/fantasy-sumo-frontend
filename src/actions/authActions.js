@@ -21,29 +21,14 @@ export const logIn = async data => {
     if (!auth.error){
         localStorage.setItem("token", auth.jwt)
         return auth;
+    } else {
+        return auth.error;
     }
 }
 
 export const addAuth = (auth) => {
     return { type: 'ADD_AUTH', auth }
 }
-
-// export const getCurrentUser = () => {
-//     const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/current_user'
-//     return dispatch => {
-//         dispatch({ type: 'LOGGING_IN' });
-//         fetch(URL, {
-//             headers: headers()
-//         })
-//             .then(resp => resp.json())
-//             .then(user => {
-//                 const token = localStorage.getItem("token");
-//                 if (token) {
-//                     dispatch({ type: 'ADD_USER', user })
-//                 }
-//             })
-//     }
-// }
 
 export const getCurrentUser = async () => {
     const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/current_user';
@@ -55,12 +40,3 @@ export const getCurrentUser = async () => {
         return currentUser;
     }
 }
-
-export const logOut = () => {
-    localStorage.removeItem("token")
-    return { type: 'DELETE_AUTH' }
-}
-
-// export const authAPI = {
-//     logIn = logIn
-// }

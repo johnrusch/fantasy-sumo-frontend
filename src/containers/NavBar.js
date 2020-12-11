@@ -108,7 +108,9 @@ const NavBar = observer((props) => {
               </MenuItem>
               <MenuItem>
                 <Button onClick={handleLogout}>
-                  <Link to='/login'>
+                  <Link to={{
+                    pathname: '/login',
+                    state: {from: '/'}}}>
                     Log Out
                   </Link>
                 </Button>
