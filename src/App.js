@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Redirect, Switch } from "react-router-dom";
 import NavBar from "./containers/NavBar";
 import Home from "./components/Home";
@@ -23,6 +22,12 @@ import { useStore } from "./store";
 const App = observer((props) => {
   const store = useStore();
   const loggedIn = store.loggedIn;
+
+  // useEffect(() => {
+  //   if (!loggedIn) {
+  //     await store.getUser()
+  //   }
+  // });
 
   return (
     <div>

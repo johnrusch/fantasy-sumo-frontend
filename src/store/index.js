@@ -63,9 +63,11 @@ export default class Store {
 
     async getUser() {
         let currentUser = await getCurrentUser();
-        if (currentUser) {
+        if (currentUser.ok) {
             this.currentUserID = currentUser.id
             this.currentUserName = currentUser.name
+        } else {
+            
         }
     }
 
