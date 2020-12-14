@@ -15,6 +15,7 @@ import WrestlerSpecs from "./components/wrestlerComponents/WrestlerSpecs";
 import Rules from "./components/Rules";
 import IsLoadingHOC from "./HOCs/IsLoadingHOC";
 import LeagueInvitation from "./components/leagueComponents/LeagueInvitation";
+import Draft from "./components/Draft";
 
 import { observer } from "mobx-react";
 import { useStore } from "./store";
@@ -143,6 +144,18 @@ const App = observer((props) => {
               />
             ) : (
               <Redirect to="/home" />
+            );
+          }}
+        />
+        <Route
+          path="/draft/:leagueID"
+          render={(props) => {
+            return !loggedIn ? (
+              <Redirect
+                to={{ pathname: "/login", state: { from: window.location.pathname } }}
+              />
+            ) : (
+              <Draft {...props} />
             );
           }}
         />

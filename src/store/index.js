@@ -43,7 +43,7 @@ export default class Store {
       newLeagueSuccessModal: observable,
       referrer: observable,
       logInUser: action,
-      loadUser: action,
+      loadWrestlers: action,
       getUser: action,
       logOut: action,
       selectLeague: action,
@@ -62,22 +62,29 @@ export default class Store {
     this.logInError = null;
     let currentUser = await logIn(data);
     console.log(currentUser);
-    this.retrievingData = false;
     if (!currentUser.error) {
       this.currentUserID = currentUser.id;
       this.currentUserName = currentUser.name;
+      this.loadWrestlers();
+      this.loadLeagues();
+      this.loadTeams();
     } else {
-        this.logInError = currentUser.error;
+      this.logInError = currentUser.error;
     }
+    this.retrievingData = false;
   }
 
-  async loadUser(data) {
-    this.retrievingData = true;
+  async loadWrestlers() {
     this.wrestlers = await getWrestlers();
+  }
+
+  async loadLeagues() {
     this.userLeagues = await getUserLeagues();
     this.openLeagues = await getOpenLeagues();
+  }
+
+  async loadTeams() {
     this.teams = await getTeams();
-    this.retrievingData = false;
   }
 
   async getUser() {
