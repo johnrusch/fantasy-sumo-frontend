@@ -9,21 +9,30 @@
       name="description"
       content="Web site created using create-react-app"
     />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
       crossorigin="anonymous"
-    /><script src="https://unpkg.com/react/umd/react.production.min.js" crossorigin></script>
+    />
+    <script
+      src="https://unpkg.com/react/umd/react.production.min.js"
+      crossorigin
+    ></script>
 
     <script
       src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"
-      crossorigin></script>
-    
+      crossorigin
+    ></script>
+
     <script
       src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js"
-      crossorigin></script>
+      crossorigin
+    ></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
@@ -55,5 +64,28 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      var firebaseConfig = {
+        apiKey: "AIzaSyCN99ATwmsKZ0wSXAVeC3bx45aX042q5sM",
+        authDomain: "fantasy-sumo-55058.firebaseapp.com",
+        projectId: "fantasy-sumo-55058",
+        storageBucket: "fantasy-sumo-55058.appspot.com",
+        messagingSenderId: "673042171750",
+        appId: "1:673042171750:web:6389f527e328109f7d2aa7",
+        measurementId: "G-Q3L796EQY0",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
   </body>
 </html>

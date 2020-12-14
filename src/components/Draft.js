@@ -1,11 +1,12 @@
-import React from 'react';
-import { ActionCableProvider } from 'react-actioncable-provider';
+import React from "react";
+import { FirebaseDatabaseProvider } from "@react-firebase/database";
 
 const Draft = () => {
+  return (
+    <FirebaseDatabaseProvider>
+      <div>The Draft</div>
+    </FirebaseDatabaseProvider>
+  );
+};
 
-    return (
-        <div>
-
-        </div>
-    )
-}
+export default Draft;
