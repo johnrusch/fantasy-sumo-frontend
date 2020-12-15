@@ -50,18 +50,6 @@ const App = observer((props) => {
         <Route path="/login" render={(props) => <Login {...props} />} />
         <Route path="/signup" render={(props) => <SignUp {...props} />} />
         <Route
-          path="/league/:leagueId"
-          render={(props) => {
-            return !loggedIn ? (
-              <Redirect
-                to={{ pathname: "/login", state: { from: window.location.pathname } }}
-              />
-            ) : (
-              <LeagueStandings {...props} />
-            );
-          }}
-        />
-        <Route
           path="/league/new"
           render={(props) => {
             return !loggedIn ? (
@@ -70,6 +58,18 @@ const App = observer((props) => {
               />
             ) : (
               <CreateLeague {...props} />
+            );
+          }}
+        />
+        <Route
+          path="/league/:leagueId"
+          render={(props) => {
+            return !loggedIn ? (
+              <Redirect
+                to={{ pathname: "/login", state: { from: window.location.pathname } }}
+              />
+            ) : (
+              <LeagueStandings {...props} />
             );
           }}
         />
