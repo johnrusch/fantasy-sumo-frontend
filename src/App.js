@@ -136,6 +136,10 @@ const App = observer((props) => {
           }}
         />
         <Route
+          path="/draft/:leagueID"
+          render={(props) => <Draft {...props } />}
+        />
+        <Route
           path="/"
           render={(props) => {
             return !loggedIn ? (
@@ -144,18 +148,6 @@ const App = observer((props) => {
               />
             ) : (
               <Redirect to="/home" />
-            );
-          }}
-        />
-        <Route
-          path="/draft/:leagueID"
-          render={(props) => {
-            return !loggedIn ? (
-              <Redirect
-                to={{ pathname: "/login", state: { from: window.location.pathname } }}
-              />
-            ) : (
-              <Draft {...props} />
             );
           }}
         />

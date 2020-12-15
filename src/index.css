@@ -72,3 +72,20 @@ title {
 .Attributes { grid-area: Attributes; }
 
 .Stable { grid-area: Stable; }
+
+.draftContainer {
+  display: grid;
+  grid-template: 1fr
+                  / 1fr 1fr;
+  grid-column-gap: 50px;
+  padding: 50px;
+}
+
+.draftTeams {
+  grid-area: 1 / 1 / 2 / 2;
+
+}
+
+.draftWrestlers {
+  grid-area: 1 / 2 / 2 / 3;
+}
