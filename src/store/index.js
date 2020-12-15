@@ -61,7 +61,6 @@ export default class Store {
     this.retrievingData = true;
     this.logInError = null;
     let currentUser = await logIn(data);
-    console.log(currentUser);
     if (!currentUser.error) {
       this.currentUserID = currentUser.id;
       this.currentUserName = currentUser.name;
@@ -135,6 +134,7 @@ export default class Store {
     });
     const updatedLeague = await addUserToLeague(data);
     this.openLeagues = [...this.openLeagues, updatedLeague];
+    this.loadTeams();
     this.retrievingData = false;
   }
 

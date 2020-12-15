@@ -76,7 +76,7 @@ title {
 .draftContainer {
   display: grid;
   grid-template: 1fr
-                  / 1fr 1fr;
+                  / 1fr 2fr;
   grid-column-gap: 50px;
   padding: 50px;
 }
