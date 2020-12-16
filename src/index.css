@@ -89,3 +89,22 @@ title {
 .draftWrestlers {
   grid-area: 1 / 2 / 2 / 3;
 }
+
+.banzuke {
+  display: grid;
+  grid-template: 50px
+                 1fr  
+                  / 1fr 20px 1fr;
+}
+
+.banzukeHeader {
+  grid-area: 1 / 1 / 2 / 4;
+}
+
+.banzukeEast {
+  grid-area: 2 / 1 / 3 / 2;
+}
+
+.banzukeWest {
+  grid-area: 2 / 3 / 3 / 4;
+}

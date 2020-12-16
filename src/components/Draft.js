@@ -3,6 +3,7 @@ import { FirebaseDatabaseProvider } from "@react-firebase/database";
 import Paper from "@material-ui/core/Paper";
 import { observer } from 'mobx-react';
 import { useStore } from '../store';
+import Banzuke from './Banzuke';
 
 const Draft = observer((props) => {
   const store = useStore();
@@ -12,7 +13,9 @@ const Draft = observer((props) => {
     <FirebaseDatabaseProvider>
       <div className="draftContainer">
         <Paper className="draftTeams">Teams</Paper>
-        <Paper className="draftWrestlers">Wrestlers </Paper>
+        <Paper className="draftWrestlers">
+          <Banzuke />
+        </Paper>
       </div>
     </FirebaseDatabaseProvider>
   );
