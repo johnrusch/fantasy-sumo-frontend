@@ -5,16 +5,20 @@ import Typography from "@material-ui/core/Typography";
 import { observer } from 'mobx-react';
 import { useStore } from '../store';
 import Banzuke from './Banzuke';
+import DraftTeams from './leagueComponents/DraftTeams';
+
 
 const Draft = observer((props) => {
   const store = useStore();
-  const { name, teams } = store.selectedLeague;
+  const { name, teams, id } = store.selectedLeague;
 
   return (
     <FirebaseDatabaseProvider>
       <div className="draftContainer">
-        <Paper className="draftTeams"><Typography>Teams</Typography></Paper>
-        <Paper className="draftWrestlers">
+        <Paper className="draftTeamsContainer">
+          <DraftTeams teams={teams} key={id} />
+        </Paper>
+        <Paper className="draftWrestlersContainer">
           <Banzuke />
         </Paper>
       </div>
