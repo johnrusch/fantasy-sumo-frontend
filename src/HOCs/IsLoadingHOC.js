@@ -13,12 +13,12 @@ const useStyles = makeStyles((theme) => ({
 const IsLoadingHOC = (props) => {
 
   const classes = useStyles();
-  const [open, setOpen] = useState(true);
+  // const [open, setOpen] = useState(true);
 
   return (
   
     <div>
-      <Backdrop open={open} className={classes.backdrop}>
+      <Backdrop open={true} className={classes.backdrop}>
         <CircularProgress color="inherit" />
       </Backdrop>
     </div>
