@@ -13,9 +13,10 @@ const LeagueCard = observer((props) => {
   const { name } = leagueData;
   const store = useStore();
 
+
   return (
     <div onClick={() => store.selectLeague(leagueData)}>
-      <Paper elevation={3} display="flex" flexDirection="row">
+      <Paper elevation={3}>
         <Link to={`/league/${leagueData.id}`} width="75%">
           <ListItem>
             <ListItemText
@@ -24,10 +25,13 @@ const LeagueCard = observer((props) => {
             />
           </ListItem>
         </Link>
-        {leagueData.creator_id === store.currentUserID ? (
+        {!leagueData.closed ? (
             <Button>
               <Link to={`/draft/${leagueData.id}`}>Start Draft</Link>
             </Button>
+        ) : null}
+        {leagueData.creator_id === store.currentUserID ? (
+          <Button onClick={() => {navigator.clipboard.writeText(`localhost:3000/invite/${leagueData.id}`)}} color="primary">Copy Invitation Link</Button>
         ) : null}
       </Paper>
     </div>

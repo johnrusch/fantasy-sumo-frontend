@@ -4,7 +4,7 @@ import { useStore } from "../store";
 import BanzukeWrestlerCard from "./wrestlerComponents/BanzukeWrestlerCard";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import WrestlerCard from './wrestlerComponents/WrestlerCard'
+// import WrestlerCard from './wrestlerComponents/WrestlerCard'
 
 const Banzuke = observer((props) => {
   const store = useStore();
@@ -15,7 +15,7 @@ const Banzuke = observer((props) => {
       return division === div && currentRank === rank;
     });
     if (wrestler) {
-      return <WrestlerCard wrestlerData={wrestler} />;
+      return <BanzukeWrestlerCard wrestlerData={wrestler} />;
     } else {
       return <Paper />;
     }

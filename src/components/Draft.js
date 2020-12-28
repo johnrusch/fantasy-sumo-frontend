@@ -14,6 +14,7 @@ const Draft = observer((props) => {
   return (
     <FirebaseDatabaseProvider>
       <div className="draftContainer">
+        <h1>{name}</h1>
         <Paper className="draftTeamsContainer">
           <DraftTeams teams={teams} key={id} />
         </Paper>
