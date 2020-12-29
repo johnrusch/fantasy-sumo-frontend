@@ -18,11 +18,11 @@ code {
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 
 .navbar {
-  background-color: #5179E0 ;
+  background-color:	#c38c49 ;
 }
 
 .domain {
-  color: white;
+  color: 	#c38c49;
 }
 
 .domain:hover {
@@ -33,10 +33,6 @@ code {
   color: white;
   padding-left: 20px;
   padding-right: 20px;
-}
-
-title {
-  
 }
 
 .center {
@@ -72,6 +68,24 @@ title {
 .Attributes { grid-area: Attributes; }
 
 .Stable { grid-area: Stable; }
+
+.homeContainer {
+  display: grid;
+  padding: 50px;
+  grid-template: 100px
+                  1fr
+                  1fr
+                  / 1fr 2fr;
+}
+
+.homeHeader {
+  grid-area: 1 / 1 / 2 / 3;
+  text-align: center;
+}
+
+.homeBanzuke {
+  grid-area: 2 / 2 / 4 / 3;
+}
 
 .draftContainer {
   display: grid;

@@ -70,9 +70,6 @@ const NavBar = observer((props) => {
             Teams
           </Link>
         </Button>
-        <Button color="inherit" className="link" href="/rules">
-          Rules
-        </Button>
         {store.loggedIn && (
           <div>
             <IconButton
