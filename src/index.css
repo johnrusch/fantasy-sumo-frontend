@@ -84,11 +84,16 @@ code {
                   1fr
                   1fr
                   / 1fr 2fr;
+  grid-column-gap: 20px;
 }
 
 .homeHeader {
   grid-area: 1 / 1 / 2 / 3;
   text-align: center;
+}
+
+.homeLeftColumn {
+  grid-area: 2 / 1 / 4 / 2;
 }
 
 .homeBanzuke {
