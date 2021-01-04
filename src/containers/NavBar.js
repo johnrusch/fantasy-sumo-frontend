@@ -9,9 +9,10 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import Button from "@material-ui/core/Button";
+import Leagues from '../components/leagueComponents/Leagues'
 
-import { observer } from 'mobx-react';
-import { useStore } from '../store';
+import { observer } from "mobx-react";
+import { useStore } from "../store";
 
 // import { connect } from "react-redux";
 // import { logOut } from "../actions/authActions";
@@ -30,6 +31,9 @@ const NavBar = observer((props) => {
     title: {
       flexGrow: 1,
       color: "white",
+    },
+    header: {
+      backgroundColor: "#c38c49",
     },
   }));
 
@@ -50,25 +54,22 @@ const NavBar = observer((props) => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" className={classes.header}>
       <Toolbar>
         <Typography variant="h6" className={classes.title}>
-          <Button className="domain">
-            <Link to="/">
-              Fantasy Sumo
-            </Link>
+          <Button>
+          <Link to="/" style={{color: "white"}} className="domain">Fantasy Sumo</Link>
           </Button>
         </Typography>
-
-        <Button color="inherit" className="link">
-          <Link to="/leagues">
-            Leagues
-          </Link>
+        <Button>
+        <Link to="/leagues" className="link">
+          Leagues
+        </Link>
         </Button>
-        <Button color="inherit" className="link">
-          <Link to="/teams">
-            Teams
-          </Link>
+        <Button>
+        <Link to="/teams" className="link">
+          Teams
+        </Link>
         </Button>
         {store.loggedIn && (
           <div>
@@ -96,30 +97,26 @@ const NavBar = observer((props) => {
               open={open}
               onClose={handleClose}
             >
-              <MenuItem>
-                <Button onClick={handleClose}>
-                  <Link to='/settings'>
-                    My Account
-                  </Link>
-                </Button>
+              <MenuItem className={classes.header}>
+                  <Link to="/settings" onClick={handleClose}>My Account</Link>
               </MenuItem>
-              <MenuItem>
-                <Button onClick={handleLogout}>
-                  <Link to={{
-                    pathname: '/login',
-                    state: {from: '/'}}}>
+              <MenuItem className={classes.header}>
+                  <Link
+                    to={{
+                      pathname: "/login",
+                      state: { from: "/" },
+                    }}
+                    onClick={handleLogout}
+                  >
                     Log Out
                   </Link>
-                </Button>
               </MenuItem>
             </Menu>
           </div>
         )}
       </Toolbar>
     </AppBar>
-   
   );
-  
 });
 
 export default NavBar;

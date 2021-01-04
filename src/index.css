@@ -1,4 +1,11 @@
+a {
+  /* color: white; */
+  text-decoration: none !important;
+}
 
+a:hover {
+  color: #8d2216;
+}
 
 body {
   margin: 0;
@@ -7,6 +14,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* background-color: #eecd9c; */
 }
 
 code {
@@ -17,16 +25,12 @@ code {
 @import "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 
-.navbar {
-  background-color:	#c38c49 ;
-}
-
 .domain {
   color: 	#c38c49;
 }
 
 .domain:hover {
-  color: black;
+  color: #8d2216;
 }
 
 .link {
@@ -69,6 +73,10 @@ code {
 
 .Stable { grid-area: Stable; }
 
+.container {
+  padding: 50px;
+}
+
 .homeContainer {
   display: grid;
   padding: 50px;
@@ -85,6 +93,7 @@ code {
 
 .homeBanzuke {
   grid-area: 2 / 2 / 4 / 3;
+  background-color: #eecd9c;
 }
 
 .draftContainer {

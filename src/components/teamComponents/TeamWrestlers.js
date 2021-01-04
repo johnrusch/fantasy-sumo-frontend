@@ -21,10 +21,10 @@ const TeamWrestlers = observer((props) => {
     }
   };
   return (
-    <div>
+    <div className="container">
       {/* <List> */}
    {name ? (
-      <h4 className="center">{`${name} - ${store.selectedTeam.user.name}`}</h4>
+      <h4 style={{textAlign: "center"}}>{`${name} - ${store.selectedTeam.user.name}`}</h4>
    ) : (
      props.history.push("/league/standings")
    )}

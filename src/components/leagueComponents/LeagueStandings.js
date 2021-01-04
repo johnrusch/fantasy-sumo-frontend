@@ -32,8 +32,8 @@ const LeagueStandings = observer((props) => {
   };
 
   return (
-    <div>
-      <h4 className="center">{name}</h4>
+    <div className="container">
+      <h4 style={{textAlign: "center"}}>{name}</h4>
         {renderTeams()}
     </div>
   );

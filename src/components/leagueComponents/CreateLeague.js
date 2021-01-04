@@ -102,7 +102,7 @@ const CreateLeague = observer((props) => {
   const link = `localhost:3000/invite/${store.newestLeague.id}`
 
   return (
-    <div>
+    <div className="container">
       <ValidatorForm onSubmit={addLeague}>
         <TextValidator
           id="leagueName"

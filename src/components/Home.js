@@ -11,11 +11,11 @@ const Home = observer((props) => {
   return (
     <div className="homeContainer">
       <div className="homeHeader">
-        <Paper><Typography>Welcome back, {store.currentUserName}!</Typography></Paper>
+        <Paper><Typography variant="h3">Welcome back, {store.currentUserName}!</Typography></Paper>
         </div>
       <div className="homeLeftColumn">
         <Paper>
-          
+
         </Paper>
       </div>
       <div className="homeBanzuke">

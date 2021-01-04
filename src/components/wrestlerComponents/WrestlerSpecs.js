@@ -67,7 +67,7 @@ const WrestlerSpecs = observer((props) => {
   // }
 
   return (
-    <div>
+    <div className="container">
       {wrestler ? (
         <Grid container component="main" className="grid-container">
           <Card>

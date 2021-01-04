@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import LeagueCard from "./LeagueCard";
 import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
 import { observer } from 'mobx-react';
 import { useStore } from '../../store';
 
@@ -18,11 +19,13 @@ const Leagues = observer(() => {
   };
 
     return (
-      <div>
-        <h4 className="center">My Leagues</h4>
+      <div className="container">
+        <h4 style={{textAlign: "center"}}>My Leagues</h4>
         {store.userLeagues && renderUserLeagues()}
-        <Paper elevation={3}>
+        <Paper elevation={3} style={{textAlign: "center"}}>
+          <Button>
           <Link to="/league/new">Create New League</Link>
+          </Button>
         </Paper>
       </div>
     );

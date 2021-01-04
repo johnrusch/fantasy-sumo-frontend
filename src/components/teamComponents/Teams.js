@@ -20,8 +20,8 @@ const Teams = observer(() => {
   };
 
   return (
-    <div>
-      <h4 className="center">My Teams</h4>
+    <div className="container">
+      <h4 style={{textAlign: "center"}}>My Teams</h4>
       {renderTeams()}
     </div>
   );
