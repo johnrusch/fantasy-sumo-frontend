@@ -2,6 +2,8 @@
 
 Fantasy Sumo is a fantasy sports app for fans of Sumo Wrestling. Users can create leagues with other users, draft teams of sumo wrestlers, and compete for the most points.
 
+***CURRENTLY UNDER CONSTRUCTION***
+
 [This](https://github.com/johnrusch/fantasy-sumo-backend) is a link to the back-end repository.
 
 ## Motivation
