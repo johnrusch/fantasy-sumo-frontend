@@ -48,7 +48,10 @@ const App = observer((props) => {
           }}
         />
         <Route path="/login" render={(props) => <Login {...props} />} />
-        <Route path="/signup" render={(props) => <SignUp {...props} />} />
+        <Route path="/signup" component={() => {
+          window.location.href = 'https://github.com/johnrusch/fantasy-sumo-frontend';
+          return null;
+        }} />
         <Route
           path="/league/new"
           render={(props) => {
