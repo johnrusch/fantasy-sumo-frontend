@@ -9,6 +9,7 @@ import {
   addUserToLeague,
 } from "../actions/leagueActions";
 import { getTeams } from "../actions/teamActions";
+import { signUp } from "../actions/userActions";
 
 export default class Store {
   currentUserID = "";
@@ -43,6 +44,7 @@ export default class Store {
       newLeagueSuccessModal: observable,
       referrer: observable,
       logInUser: action,
+      signUpUser: action,
       loadWrestlers: action,
       getUser: action,
       logOut: action,
@@ -69,6 +71,21 @@ export default class Store {
       this.loadTeams();
     } else {
       this.logInError = currentUser.error;
+    }
+    this.retrievingData = false;
+  }
+
+  async signUpUser(newUserData) {
+    this.retrievingData = true;
+    let newUser = await signUp(newUserData);
+    if (!newUser.error) {
+      this.currentUserID = newUser.id;
+      this.currentUserName = newUser.name;
+      this.loadWrestlers();
+      this.loadLeagues();
+      this.loadTeams();
+    } else {
+      this.logInError = newUser.error;
     }
     this.retrievingData = false;
   }

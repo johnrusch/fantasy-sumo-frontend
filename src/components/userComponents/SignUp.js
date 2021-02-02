@@ -19,17 +19,13 @@ import { useStore } from "../../store/index";
 
 const Signup = observer((props) => {
   const store = useStore();
+
+
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const fields = { name, password };
-  let pathname;
 
-  // if (props.location.state.from !== null) {
-  //   pathname = props.location.state.from;
-  // } else {
-  //   pathname = "/";
-  // }
-  // changes state with the input received in the login form
+  const fields = { name, password };
+
   const handlePassword = (e) => {
     setPassword(e.target.value);
   };
@@ -42,7 +38,7 @@ const Signup = observer((props) => {
     e.preventDefault();
     await store.logInUser(fields);
     if (!store.logInError) {
-      props.history.push(pathname);
+      props.history.push('/');
     }
   };
 
@@ -138,7 +134,7 @@ const Signup = observer((props) => {
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="/signup" variant="body2">
+                <Link href="/login" variant="body2">
                   {"Already have an account? Sign in"}
                 </Link>
               </Grid>

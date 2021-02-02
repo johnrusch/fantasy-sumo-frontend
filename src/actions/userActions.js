@@ -10,24 +10,18 @@ const headers = () => {
     };
 };
 
-export const signUp = data => {
+export const signUp = async data => {
     const URL = 'https://fantasy-sumo-backend.herokuapp.com/api/v1/users'
-    return dispatch => {
-        console.log(data)
-        dispatch({ type: 'SIGNING_UP '});
-        fetch(URL, {
+    let response = await fetch(URL, {
         method: "POST",
         headers: headers(),
         body: JSON.stringify(data)
-    })
-        .then(resp => resp.json())
-        .then(user => {
-            if (!user.error) {
-                dispatch({ type: 'ADD_USER', user })
-                localStorage.setItem("token", user.jwt)
-            }
-        })
-}
+    });
+    let newUser = await response.json();
+    if (!newUser.error) {
+        localStorage.setItem("token", newUser.jwt)
+    }
+    return newUser;
 }
 
 export const deleteUser = data => {
