@@ -12,7 +12,7 @@ const Home = observer((props) => {
     <div className="homeContainer">
       <div className="homeHeader">
         <Paper>
-          <Typography variant="h3">
+          <Typography variant="h3" className="welcomeMessage">
             Welcome back, {store.currentUserName}!
           </Typography>
         </Paper>

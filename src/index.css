@@ -92,6 +92,10 @@ code {
   text-align: center;
 }
 
+.welcomeMessage {
+  padding: 10px;
+}
+
 .homeLeftColumn {
   grid-area: 2 / 1 / 4 / 2;
 }

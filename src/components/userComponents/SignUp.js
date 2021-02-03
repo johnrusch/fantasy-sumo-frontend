@@ -36,7 +36,7 @@ const Signup = observer((props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await store.logInUser(fields);
+    await store.signUpUser(fields);
     if (!store.logInError) {
       props.history.push('/');
     }
@@ -132,13 +132,16 @@ const Signup = observer((props) => {
             >
               Sign Up
             </Button>
-            <Grid container>
+
+            {/* BROKEN LINK BACK TO LOGIN PAGE */}
+            {/* <Grid container>
               <Grid item>
                 <Link href="/login" variant="body2">
                   {"Already have an account? Sign in"}
                 </Link>
               </Grid>
-            </Grid>
+            </Grid> */}
+            
             <Box mt={5}></Box>
           </form>
         </div>
