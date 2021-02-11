@@ -49,6 +49,7 @@ export const addUserToLeague = async data => {
         headers: headers(),
         body: JSON.stringify(data)
     });
+    console.log(response)
     if (response.ok) {
         let league = await response.json();
         console.log(league);
