@@ -149,6 +149,7 @@ export default class Store {
     this.openLeagues = this.openLeagues.filter((league) => {
       return league.id !== data.leagueID;
     });
+    console.log(data)
     const updatedLeague = await addUserToLeague(data);
     this.openLeagues = [...this.openLeagues, updatedLeague];
     this.loadTeams();
