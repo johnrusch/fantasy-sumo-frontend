@@ -153,6 +153,7 @@ export default class Store {
     const updatedLeague = await addUserToLeague(data);
     this.openLeagues = [...this.openLeagues, updatedLeague];
     this.loadTeams();
+    this.loadLeagues();
     this.retrievingData = false;
   }
 

@@ -2,6 +2,7 @@ import React from "react";
 import { observer } from "mobx-react";
 import { useStore } from "../../store";
 import Button from "@material-ui/core/Button";
+import LeagueSuccessModal from './LeagueSuccessModal';
 
 const LeagueInvitation = observer((props) => {
   const store = useStore();
@@ -16,7 +17,10 @@ const LeagueInvitation = observer((props) => {
 
   const joinLeague = async (e) => {
     e.preventDefault();
-    return await store.addToLeague(joiningData)
+    if (await store.addToLeague(joiningData)) {
+      return <LeagueSuccessModal />
+    }
+    
   }
 
   return (
