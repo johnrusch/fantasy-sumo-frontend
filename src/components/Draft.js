@@ -9,9 +9,11 @@ import DraftTeams from './leagueComponents/DraftTeams';
 const Draft = observer((props) => {
   const store = useStore();
   const { name, teams, id } = store.selectedLeague;
+  const { leagueCreator } = store.leagueCreator;
 
   return (
       <div className="draftContainer">
+        {console.log('hey')}
         <h1>{name}</h1>
         <Paper className="draftTeamsContainer">
           <DraftTeams teams={teams} key={id} />

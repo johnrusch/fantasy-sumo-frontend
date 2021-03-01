@@ -17,10 +17,7 @@ const LeagueInvitation = observer((props) => {
 
   const joinLeague = async (e) => {
     e.preventDefault();
-    if (await store.addToLeague(joiningData)) {
-      return <LeagueSuccessModal />
-    }
-    
+    await store.addToLeague(joiningData)
   }
 
   return (

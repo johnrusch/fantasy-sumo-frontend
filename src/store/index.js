@@ -56,6 +56,7 @@ export default class Store {
       loggedIn: computed,
       wrestlersLoaded: computed,
       fromInvite: computed,
+      leagueCreator: computed
     });
   }
 
@@ -167,6 +168,10 @@ export default class Store {
 
   get fromInvite() {
     return !!window.location.origin.includes("invite");
+  }
+
+  get leagueCreator() {
+    return !!this.currentUserID === this.selectedLeague.creator_id;
   }
 }
 
