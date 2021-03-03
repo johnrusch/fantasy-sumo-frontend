@@ -55,8 +55,7 @@ export default class Store {
       setNewLeagueSuccessModal: action,
       loggedIn: computed,
       wrestlersLoaded: computed,
-      fromInvite: computed,
-      leagueCreator: computed
+      fromInvite: computed
     });
   }
 
@@ -170,9 +169,6 @@ export default class Store {
     return !!window.location.origin.includes("invite");
   }
 
-  get leagueCreator() {
-    return !!this.currentUserID === this.selectedLeague.creator_id;
-  }
 }
 
 const StoreContext = createContext();
