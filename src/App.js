@@ -32,6 +32,7 @@ const App = observer((props) => {
 
   return (
     <div>
+      {console.log(props.cableApp)}
       {store.retrievingData ? <IsLoadingHOC /> : null}
       {loggedIn ? <NavBar /> : null}
       <Switch>
