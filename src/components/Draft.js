@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Paper from "@material-ui/core/Paper";
 import { observer } from 'mobx-react';
 import { useStore } from '../store';
@@ -10,6 +10,10 @@ import Button from "@material-ui/core/Button";
 const Draft = observer((props) => {
   const store = useStore();
   const { name, teams, id } = store.selectedLeague;
+
+  useEffect(() => {
+    
+  })
 
   return (
       <div className="draftContainer">

@@ -7,10 +7,11 @@
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.57",
-    "@react-firebase/database": "^0.3.11",
+    "@react-firebase/database": "^0.2.10",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "actioncable": "^5.2.4",
     "chart.js": "^2.9.3",
     "elliptic": "^6.5.3",
     "firebase": "^8.2.0",
@@ -32,7 +33,7 @@
     "react-material-ui-form-validator": "^2.1.1",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.4",
+    "react-scripts": "^4.0.3",
     "serialize-javascript": "^5.0.1",
     "websocket-extensions": "^0.1.4"
   },
@@ -59,7 +60,6 @@
   },
   "description": "Fantasy Sumo is a fantasy sports app for fans of Sumo Wrestling. Users can create leagues with other users, draft teams of sumo wrestlers, and compete for the most points.",
   "main": "index.js",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/johnrusch/fantasy-sumo-frontend.git"
@@ -69,5 +69,5 @@
   "bugs": {
     "url": "https://github.com/johnrusch/fantasy-sumo-frontend/issues"
   },
-  "homepage": "https://github.com/johnrusch/fantasy-sumo-frontend#readme"
+  "homepage": "/"
 }

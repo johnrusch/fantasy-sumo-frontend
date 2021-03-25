@@ -137,7 +137,7 @@ const App = observer((props) => {
         />
         <Route
           path="/draft/:leagueID"
-          render={(props) => <Draft {...props } />}
+          render={(props) => <Draft {...props} cableApp={props.cableApp} />}
         />
         <Route
           path="/"
