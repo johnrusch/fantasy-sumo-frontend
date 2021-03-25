@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import { observer } from 'mobx-react';
 import { useStore } from '../../store';
 
-const Leagues = observer(() => {
+const Leagues = observer((props) => {
   const store = useStore();
 
   const renderUserLeagues = () => {

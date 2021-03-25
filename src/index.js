@@ -11,7 +11,7 @@ const store = new Store();
 
 const CableApp = {};
 
-CableApp.cable = actionCable.createConsumer('ws://fantasy-sumo-backend.herokuapp.com/api/v1/cable')
+CableApp.cable = actionCable.createConsumer('wss://fantasy-sumo-backend.herokuapp.com/api/v1/cable')
 
 ReactDOM.render(
   <StoreProvider store={store}>

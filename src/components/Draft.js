@@ -12,10 +12,10 @@ const Draft = observer((props) => {
 
   
   useEffect(() => {
-    // props.cableApp.league = props.cableApp.cable.subscriptions.create({
-    //   channel: "LeaguesChannel",
-    //   league: id,
-    // });
+    props.cableApp.league = props.cableApp.cable.subscriptions.create({
+      channel: "LeaguesChannel",
+      leagueID: id,
+    });
   });
 
   return (

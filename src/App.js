@@ -23,6 +23,7 @@ import { useStore } from "./store";
 const App = observer((props) => {
   const store = useStore();
   const loggedIn = store.loggedIn;
+  const { cableApp } = props
 
   useEffect(() => {
     if (!loggedIn) {
@@ -82,7 +83,7 @@ const App = observer((props) => {
                 to={{ pathname: "/login", state: { from: window.location.pathname } }}
               />
             ) : (
-              <Leagues {...props} />
+              <Leagues {...props}/>
             );
           }}
         />
@@ -138,7 +139,7 @@ const App = observer((props) => {
         />
         <Route
           path="/draft/:leagueID"
-          render={(props) => <Draft {...props} cableApp={props.cableApp} />}
+          render={(props) => <Draft {...props} cableApp={cableApp} />}
         />
         <Route
           path="/"
