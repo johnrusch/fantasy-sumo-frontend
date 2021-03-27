@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Paper from "@material-ui/core/Paper";
 import { observer } from "mobx-react";
 import { useStore } from "../store";
@@ -15,6 +15,10 @@ const Draft = observer((props) => {
     props.cableApp.league = props.cableApp.cable.subscriptions.create({
       channel: "LeaguesChannel",
       leagueID: id,
+    }, {
+      connected() {
+        
+      }
     });
   });
 
