@@ -1,8 +1,9 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import TeamCard from '../teamComponents/TeamCard';
+import { observer } from "mobx-react";
 
-const DraftTeams = (props) => {
+const DraftTeams = observer((props) => {
     const { teams } = props
 
   const renderTeams = () => {
@@ -19,6 +20,6 @@ const DraftTeams = (props) => {
       <div className="draftTeamsList">{teams && renderTeams()}</div>
     </div>
   );
-};
+});
 
 export default DraftTeams;

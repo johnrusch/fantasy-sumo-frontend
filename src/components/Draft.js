@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button";
 const Draft = observer((props) => {
   const store = useStore();
   const { name, teams, id } = store.selectedLeague;
+  const [online, setOnline] = useState(false);
 
   
   useEffect(() => {
@@ -16,10 +17,9 @@ const Draft = observer((props) => {
       channel: "LeaguesChannel",
       leagueID: id,
     }, {
-      connected() {
-        
-      }
-    });
+    connected() {
+      setOnline(true);
+    }});
   });
 
   return (
