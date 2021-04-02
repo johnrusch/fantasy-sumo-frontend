@@ -29,7 +29,7 @@ const Draft = observer((props) => {
       <h1>{name}</h1>
       <Paper className="draftTeamsContainer">
         {store.selectedLeague.creator_id === store.currentUserID ? (
-          <Button color="primary">Start Draft</Button>
+          <DraftTimer />
         ) : null}
         <DraftTeams teams={teams} key={id} />
       </Paper>

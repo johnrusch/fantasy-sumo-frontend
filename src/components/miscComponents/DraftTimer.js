@@ -1,9 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 const DraftTimer = () => {
 
     const [timeRemaining, setTimeRemaining] = useState({})
-    const [timeInSeconds, setTimeInSeconds] = useState(120)
+    const [seconds, setSeconds] = useState(120);
+    const [timer, setTimer] = useState(0);
+
+    useEffect(() => {
+        let timeLeft = secondsToTime(seconds)
+        setTimeRemaining(timeLeft)
+    }, [])
 
     const secondsToTime = (secs) => {
 
@@ -20,21 +26,26 @@ const DraftTimer = () => {
         return obj;
     }
 
+    const startTimer = () => {
+        if (timer === 0 && timeRemaining.seconds > 0) {
+            setTimer(setInterval(countDown, 1000))
+        }
+    }
+
     const countDown = () => {
-        let seconds = timeRemaining - 1;
-        setTimeRemaining({
-          time: this.secondsToTime(seconds),
-          seconds: seconds,
-        });
-        
+        let secondsLeft = seconds - 1;
+        setTimeRemaining(this.secondsToTime(secondsLeft));
+        setSeconds(secondsLeft);
         // Check if we're at zero.
-        if (seconds == 0) { 
+        if (seconds === 0) { 
           clearInterval(this.timer);
         }
     }
 
     return (
         <div>
+            {console.log(timeRemaining)}
+            <button onClick={startTimer}>Start Draft Timer</button>
             {timeRemaining.m} : {timeRemaining.s}
         </div>
     )
