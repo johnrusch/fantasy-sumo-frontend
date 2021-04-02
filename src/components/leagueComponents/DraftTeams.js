@@ -4,10 +4,26 @@ import TeamCard from '../teamComponents/TeamCard';
 import { observer } from "mobx-react";
 
 const DraftTeams = observer((props) => {
-    const { teams } = props
+  const { teams } = props
+
+  const shuffleTeams = (teams) => {
+    let unshuffledLength = teams.length, t, i;
+    
+    while (unshuffledLength) {
+
+      i = Math.floor(Math.random() * unshuffledLength--);
+
+      //t is last element
+      t = teams[unshuffledLength]
+      teams[unshuffledLength] = teams[i]
+      teams[i] = t;
+    }
+
+    return teams
+  }
 
   const renderTeams = () => {
-    return teams.map((team) => {
+    return shuffleTeams(teams).map((team) => {
       return <TeamCard teamData={team} key={team.id} />;
     });
   };
