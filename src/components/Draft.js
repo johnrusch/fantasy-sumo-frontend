@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import Paper from "@material-ui/core/Paper";
 import { observer } from "mobx-react";
 import { useStore } from "../store";
-import Banzuke from "./Banzuke";
+import { MemoizedBanzuke } from "./Banzuke";
 import DraftTeams from "./leagueComponents/DraftTeams";
 import Button from "@material-ui/core/Button";
 import DraftTimer from "./miscComponents/DraftTimer";
+import { startDraft } from "../actions/leagueActions"
 
 const Draft = observer((props) => {
   const store = useStore();
@@ -18,23 +19,22 @@ const Draft = observer((props) => {
       channel: "LeaguesChannel",
       leagueID: id,
     }, {
-    connected() {
-      setOnline(true);
+    received(data) {
+      console.log(data);
     }});
-  });
+  }, []);
 
   return (
     <div className="draftContainer">
-      {console.log(props)}
       <h1>{name}</h1>
       <Paper className="draftTeamsContainer">
         {store.selectedLeague.creator_id === store.currentUserID ? (
-          <DraftTimer />
+          <Button onClick={() => startDraft({leagueID: id})}>Start Draft</Button>
         ) : null}
         <DraftTeams teams={teams} key={id} />
       </Paper>
       <Paper className="draftWrestlersContainer">
-        <Banzuke />
+        <MemoizedBanzuke  />
       </Paper>
     </div>
   );

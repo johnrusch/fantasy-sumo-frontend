@@ -143,6 +143,7 @@ code {
 
 .banzuke {
   display: grid;
+  border: 1px solid red;
   grid-template: 50px
                  1fr
                  1fr

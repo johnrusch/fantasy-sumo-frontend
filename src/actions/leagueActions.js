@@ -54,3 +54,17 @@ export const addUserToLeague = async data => {
         return league;
     }
 }
+
+export const startDraft = async data => {
+    const URL = `https://fantasy-sumo-backend.herokuapp.com/api/v1/leagues/${data.leagueID}/start_draft`;
+    let response = await fetch(URL, {
+        method: 'POST',
+        headers: headers(),
+        body: JSON.stringify(data)
+    });
+    if (response.ok) {
+        let draft = await response.json();
+        console.log(draft);
+        return draft;
+    }
+}
