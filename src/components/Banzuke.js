@@ -17,7 +17,6 @@ const Banzuke = observer((props) => {
     if (wrestler) {
       return <WrestlerCard wrestlerData={wrestler} />;
     } else {
-      console.log("hey")
       return <Paper />;
     }
   };

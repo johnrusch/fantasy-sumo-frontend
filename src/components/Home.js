@@ -24,7 +24,7 @@ const Home = observer((props) => {
       </div>
       <div className="homeBanzuke">
         <Paper>
-          {/* <MemoizedBanzuke /> */}
+          <MemoizedBanzuke />
         </Paper>
       </div>
     </div>

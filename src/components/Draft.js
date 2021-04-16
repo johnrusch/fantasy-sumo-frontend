@@ -11,7 +11,6 @@ import { startDraft } from "../actions/leagueActions"
 const Draft = observer((props) => {
   const store = useStore();
   const { name, teams, id } = store.selectedLeague;
-  const [online, setOnline] = useState(false);
 
   
   useEffect(() => {
@@ -20,7 +19,8 @@ const Draft = observer((props) => {
       leagueID: id,
     }, {
     received(data) {
-      console.log(data);
+
+      console.log(data.start);
     }});
   }, []);
 
@@ -31,6 +31,7 @@ const Draft = observer((props) => {
         {store.selectedLeague.creator_id === store.currentUserID ? (
           <Button onClick={() => startDraft({leagueID: id})}>Start Draft</Button>
         ) : null}
+        <DraftTimer />
         <DraftTeams teams={teams} key={id} />
       </Paper>
       <Paper className="draftWrestlersContainer">

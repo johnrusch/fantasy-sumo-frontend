@@ -10,7 +10,6 @@ const BanzukeWrestlerCard = (props) => {
 
   return (
     <Paper >
-      {console.log("hey")}
       <ListItem>
         <ListItemAvatar>
           {wrestlerData.img && (

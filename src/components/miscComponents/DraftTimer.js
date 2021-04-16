@@ -43,7 +43,7 @@ const DraftTimer = () => {
     }
 
     return (
-        <div>
+        <div style={{border: '1px solid red'}}>
             {console.log(timeRemaining)}
             <button onClick={startTimer}>Start Draft Timer</button>
             {timeRemaining.m} : {timeRemaining.s}
