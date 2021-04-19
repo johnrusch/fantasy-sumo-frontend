@@ -35,7 +35,7 @@ const Draft = observer((props) => {
         <DraftTeams teams={teams} key={id} />
       </Paper>
       <Paper className="draftWrestlersContainer">
-        <MemoizedBanzuke  />
+        <MemoizedBanzuke  draftBanzuke={true} />
       </Paper>
     </div>
   );
