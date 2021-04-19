@@ -5,24 +5,33 @@ import { useStore } from "../store";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import WrestlerCard from './wrestlerComponents/WrestlerCard'
+import WrestlerSpecs from './wrestlerComponents/WrestlerSpecs'
 
 const Banzuke = observer((props) => {
   const store = useStore();
   const wrestlers = store.wrestlers;
+  let wrestlerStatsOpen = false;
 
   const findWrestler = (div, rank) => {
     const wrestler = wrestlers.find(({ division, currentRank }) => {
       return division === div && currentRank === rank;
     });
     if (wrestler) {
-      return <WrestlerCard wrestlerData={wrestler} />;
+      return <WrestlerCard wrestlerData={wrestler} openWrestlerStats={openWrestlerStats}/>;
     } else {
       return <Paper />;
     }
   };
 
+  const openWrestlerStats = (wrestlerData) => {
+    store.selectWrestler(wrestlerData);
+    wrestlerStatsOpen = true;
+  }
+
   return (
     <div className="banzuke">
+      {console.log(wrestlerStatsOpen)}
+      {wrestlerStatsOpen ? <WrestlerSpecs /> : null}
       <div className="banzukeHeader">
         <Typography>Sumo Wrestlers</Typography>
       </div>
