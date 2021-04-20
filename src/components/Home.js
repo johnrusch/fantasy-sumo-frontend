@@ -3,7 +3,8 @@ import { observer } from "mobx-react";
 import { useStore } from "../store";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
-import { MemoizedBanzuke } from "./Banzuke";
+// import { MemoizedBanzuke } from "./Banzuke";
+import Banzuke from './Banzuke'
 
 const Home = observer((props) => {
   const store = useStore();
@@ -24,7 +25,7 @@ const Home = observer((props) => {
       </div>
       <div className="homeBanzuke">
         <Paper>
-          <MemoizedBanzuke />
+          <Banzuke />
         </Paper>
       </div>
     </div>

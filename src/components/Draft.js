@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import Paper from "@material-ui/core/Paper";
 import { observer } from "mobx-react";
 import { useStore } from "../store";
-import { MemoizedBanzuke } from "./Banzuke";
+// import { MemoizedBanzuke } from "./Banzuke";
+import Banzuke from './Banzuke'
 import DraftTeams from "./leagueComponents/DraftTeams";
 import Button from "@material-ui/core/Button";
 import DraftTimer from "./miscComponents/DraftTimer";
@@ -35,7 +36,7 @@ const Draft = observer((props) => {
         <DraftTeams teams={teams} key={id} />
       </Paper>
       <Paper className="draftWrestlersContainer">
-        <MemoizedBanzuke  draftBanzuke={true} />
+        <Banzuke  draftBanzuke={true} />
       </Paper>
     </div>
   );

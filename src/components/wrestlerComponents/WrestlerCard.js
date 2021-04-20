@@ -17,7 +17,7 @@ const WrestlerCard = observer((props) => {
 
 
   return (
-    <div onClick={() => props.openWrestlerStats(wrestlerData)}>
+    <div onClick={() => props.openWrestlerStats(wrestlerData)} style={{cursor: 'pointer'}}>
       <Paper elevation={3}>
         <ListItem>
           <ListItemAvatar>

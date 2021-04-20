@@ -90,4 +90,5 @@ const Banzuke = observer((props) => {
 
 // export default Banzuke;
 
-export const MemoizedBanzuke = React.memo(Banzuke);
+// export const MemoizedBanzuke = React.memo(Banzuke);
+export default Banzuke;
