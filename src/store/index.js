@@ -23,6 +23,7 @@ export default class Store {
   selectedTeam = "";
   selectedWrestler = "";
   retrievingData = false;
+  wrestlerModalOpen = false;
   newestLeague = "";
   newLeagueSuccessModal = false;
   referrer = "";
@@ -40,6 +41,7 @@ export default class Store {
       selectedTeam: observable,
       selectedWrestler: observable,
       retrievingData: observable,
+      wrestlerModalOpen: observable,
       newestLeague: observable,
       newLeagueSuccessModal: observable,
       referrer: observable,
@@ -53,6 +55,7 @@ export default class Store {
       selectWrestler: action,
       addLeague: action,
       setNewLeagueSuccessModal: action,
+      toggleWrestlerModal: action,
       loggedIn: computed,
       wrestlersLoaded: computed,
       fromInvite: computed
@@ -108,6 +111,9 @@ export default class Store {
     if (!currentUser.error) {
       this.currentUserID = currentUser.id;
       this.currentUserName = currentUser.name;
+      this.loadWrestlers();
+      this.loadLeagues();
+      this.loadTeams();
     } 
   }
 
@@ -126,8 +132,13 @@ export default class Store {
   };
 
   selectWrestler = (wrestlerData) => {
+    this.toggleWrestlerModal();
     this.selectedWrestler = wrestlerData;
   };
+
+  toggleWrestlerModal = () => {
+    this.wrestlerModalOpen = !this.wrestlerModalOpen;
+  }
 
   setNewLeagueSuccessModal = () => {
     this.newLeagueSuccessModal = !this.newLeagueSuccessModal;

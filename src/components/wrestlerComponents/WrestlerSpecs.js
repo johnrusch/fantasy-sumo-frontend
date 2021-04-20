@@ -75,9 +75,9 @@ const WrestlerSpecs = observer((props) => {
   // }
 
   return (
-    <div className="container">
+    <div className="wrestlerSpecs">
       {wrestler ? (
-        <Backdrop open={true} className={classes.backdrop}>
+        <Backdrop open={true} className={classes.backdrop} onClick={store.toggleWrestlerModal}>
         <Grid container component="main" className="grid-container">
           <Card>
             <CardHeader

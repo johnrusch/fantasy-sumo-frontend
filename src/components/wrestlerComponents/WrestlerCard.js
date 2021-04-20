@@ -15,9 +15,13 @@ const WrestlerCard = observer((props) => {
   const store = useStore();
   const { wrestlerData } = props;
 
+  const openWrestlerModal = () => {
+    store.selectWrestler(wrestlerData);
+  }
+
 
   return (
-    <div onClick={() => props.openWrestlerStats(wrestlerData)} style={{cursor: 'pointer'}}>
+    <div onClick={() => openWrestlerModal()} style={{cursor: 'pointer'}}>
       <Paper elevation={3}>
         <ListItem>
           <ListItemAvatar>

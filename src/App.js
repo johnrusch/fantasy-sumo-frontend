@@ -34,6 +34,7 @@ const App = observer((props) => {
   return (
     <div>
       {store.retrievingData ? <IsLoadingHOC /> : null}
+      {store.wrestlerModalOpen ? <WrestlerSpecs /> : null}
       {loggedIn ? <NavBar /> : null}
       <Switch>
         <Route

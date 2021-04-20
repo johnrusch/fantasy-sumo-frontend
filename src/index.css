@@ -56,6 +56,8 @@ code {
 
 .grid-container {
   display: grid;
+  margin-left: auto;
+  margin-right: auto;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   gap: 1px 1px;
@@ -185,4 +187,11 @@ code {
 
 .banzukeRankings {
   grid-area: 2 / 2 / 22 / 3;
+}
+
+.wrestlerSpecs {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
