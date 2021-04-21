@@ -62,6 +62,7 @@ export const startDraft = async data => {
         headers: headers(),
         body: JSON.stringify(data)
     });
+    console.log(response)
     if (response.ok) {
         let draft = await response.json();
         console.log(draft);

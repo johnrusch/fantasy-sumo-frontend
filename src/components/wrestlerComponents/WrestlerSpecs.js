@@ -75,11 +75,11 @@ const WrestlerSpecs = observer((props) => {
   // }
 
   return (
-    <div className="wrestlerSpecs">
+    <div>
       {wrestler ? (
         <Backdrop open={true} className={classes.backdrop} onClick={store.toggleWrestlerModal}>
         <Grid container component="main" className="grid-container">
-          <Card>
+          <Card className="wrestlerSpecs">
             <CardHeader
               avatar={<Avatar aria-label="wrestler" alt={wrestler.name} src={wrestler.img} />}
               title={wrestler.name}
