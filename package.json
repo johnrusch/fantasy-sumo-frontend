@@ -21,7 +21,7 @@
     "mobx": "^6.0.4",
     "mobx-react": "^7.0.5",
     "node-forge": "^0.10.0",
-    "object-path": "^0.11.5",
+    "object-path": "^0.11.8",
     "private": "^0.1.8",
     "react": "^16.13.1",
     "react-actioncable-provider": "^2.0.0",
